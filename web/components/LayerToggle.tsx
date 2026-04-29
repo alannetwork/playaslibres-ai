@@ -9,6 +9,8 @@ export type LayerVisibility = {
   pleamar: boolean;
 };
 
+export type SatelliteSource = "esri" | "sentinel";
+
 const ITEMS: {
   key: keyof LayerVisibility;
   label: string;
@@ -16,13 +18,13 @@ const ITEMS: {
 }[] = [
   {
     key: "sentinel",
-    label: "Sentinel-2",
-    hint: "Imagen satelital RGB (referencia visual)",
+    label: "Satélite",
+    hint: "Imagen aérea de fondo",
   },
   {
     key: "zofemat",
     label: "ZOFEMAT oficial",
-    hint: "Capa SEMARNAT (referencial, no plano legal)",
+    hint: "Capa SEMARNAT (referencial)",
   },
   {
     key: "pleamar",
@@ -48,9 +50,13 @@ const PLEAMAR_LEGEND = [
 export function LayerToggle({
   value,
   onChange,
+  satSource,
+  onSatSourceChange,
 }: {
   value: LayerVisibility;
   onChange: (v: LayerVisibility) => void;
+  satSource: SatelliteSource;
+  onSatSourceChange: (s: SatelliteSource) => void;
 }) {
   return (
     <Card className="w-fit max-w-full border-slate-700 bg-slate-950/85 text-slate-100 shadow-xl backdrop-blur">
@@ -76,6 +82,36 @@ export function LayerToggle({
               </span>
             </label>
           ))}
+        </div>
+
+        <div className="flex items-center gap-2 text-xs text-slate-400">
+          <span>Fuente:</span>
+          <div className="inline-flex overflow-hidden rounded-md border border-slate-700">
+            <button
+              type="button"
+              onClick={() => onSatSourceChange("esri")}
+              className={`px-2 py-0.5 text-[11px] transition ${
+                satSource === "esri"
+                  ? "bg-slate-700 text-slate-100"
+                  : "bg-transparent text-slate-400 hover:text-slate-200"
+              }`}
+              title="Imagen aérea de alta resolución (Esri World Imagery)"
+            >
+              Esri (alta res.)
+            </button>
+            <button
+              type="button"
+              onClick={() => onSatSourceChange("sentinel")}
+              className={`px-2 py-0.5 text-[11px] transition ${
+                satSource === "sentinel"
+                  ? "bg-slate-700 text-slate-100"
+                  : "bg-transparent text-slate-400 hover:text-slate-200"
+              }`}
+              title="Sentinel-2 con fecha conocida (10 m/pixel)"
+            >
+              Sentinel-2
+            </button>
+          </div>
         </div>
 
         <div className="mt-1 grid gap-x-4 gap-y-1 border-t border-slate-800 pt-2 text-[11px] text-slate-300 sm:grid-cols-2">

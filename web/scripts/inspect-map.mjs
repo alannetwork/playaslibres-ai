@@ -167,11 +167,64 @@ if ((await pleamarToggle.count()) > 0) {
 await page.evaluate(() => {
   window.__map.flyTo({
     center: [-105.539, 20.772],
-    zoom: 16,
+    zoom: 17,
     duration: 0,
   });
 });
-await page.waitForTimeout(2500);
+await page.waitForTimeout(3000);
+
+// Probar hover tooltip simulando mouse move sobre una línea oficial
+const hovered = await page.evaluate(() => {
+  const m = window.__map;
+  const feats = m.queryRenderedFeatures({ layers: ["zofemat-pleamar-oficial"] });
+  if (!feats.length) return null;
+  const c = m.project(m.getCenter());
+  // disparar un mousemove sintético sobre el canvas en el centro
+  const cnv = m.getCanvas();
+  const rect = cnv.getBoundingClientRect();
+  const x = rect.left + cnv.width / 4;
+  const y = rect.top + cnv.height / 4;
+  const evt = new MouseEvent("mousemove", {
+    bubbles: true,
+    clientX: x,
+    clientY: y,
+  });
+  cnv.dispatchEvent(evt);
+  return { features: feats.length, centerPx: c };
+});
+await page.waitForTimeout(400);
+console.log("\n→ Hover test:", hovered);
+
+// Cambiar a Sentinel y volver a Esri para validar el selector
+console.log("→ Click en selector Sentinel-2");
+const sentinelBtn = page.locator('button:has-text("Sentinel-2")').last();
+if ((await sentinelBtn.count()) > 0) {
+  await sentinelBtn.click();
+  await page.waitForTimeout(2000);
+  const src1 = await page.evaluate(() =>
+    window.__map.getSource("sentinel-raster")
+      ? "still-set"
+      : window.__map.getSource("sat-sentinel")
+        ? "sat-sentinel"
+        : window.__map.getSource("sat-esri")
+          ? "sat-esri"
+          : "missing",
+  );
+  console.log(`  source ahora: ${src1}`);
+}
+const esriBtn = page.locator('button:has-text("Esri")').last();
+if ((await esriBtn.count()) > 0) {
+  await esriBtn.click();
+  await page.waitForTimeout(1500);
+  const src2 = await page.evaluate(() =>
+    window.__map.getSource("sat-esri")
+      ? "sat-esri"
+      : window.__map.getSource("sat-sentinel")
+        ? "sat-sentinel"
+        : "missing",
+  );
+  console.log(`  → click Esri: source ${src2}`);
+}
 
 const stateZoomed = await page.evaluate(() => {
   const m = window.__map;

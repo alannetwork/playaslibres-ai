@@ -35,6 +35,20 @@ const MAX_BOUNDS: [[number, number], [number, number]] = [
 const BASEMAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
 const SENTINEL_TILEJSON = (cogUrl: string) =>
   `https://titiler.xyz/cog/WebMercatorQuad/tilejson.json?url=${encodeURIComponent(cogUrl)}`;
+const ESRI_WORLD_IMAGERY =
+  "https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
+
+const ZOFEMAT_DESCRIPTIONS: Record<string, string> = {
+  "PLEAMAR MAXIMA":
+    "Línea oficial de la pleamar máxima delimitada por SEMARNAT.",
+  "ZONA FEDERAL":
+    "Borde interno de la franja federal (20 m tierra adentro de la pleamar).",
+  "TERRENOS GANADOS MAR":
+    "Áreas rellenadas o ganadas artificialmente al mar (sujetas a régimen especial).",
+  "PLAYA MARITIMA": "Playa pública entre pleamar y bajamar.",
+  MANGLE: "Manglar inventariado por SEMARNAT.",
+  MUELLE: "Muelle o estructura portuaria.",
+};
 
 /** Ejecuta `fn` ahora si el estilo del mapa está listo, o lo difiere a `load`. */
 function whenStyleReady(map: MlMap, fn: () => void) {
@@ -42,8 +56,11 @@ function whenStyleReady(map: MlMap, fn: () => void) {
   else map.once("load", fn);
 }
 
+export type SatelliteSource = "esri" | "sentinel";
+
 export function Map() {
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const tooltipRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MlMap | null>(null);
   const [styleReady, setStyleReady] = useState(false);
 
@@ -56,6 +73,7 @@ export function Map() {
     zofemat: true,
     pleamar: true,
   });
+  const [satSource, setSatSource] = useState<SatelliteSource>("esri");
   const [tideHeight, setTideHeight] = useState(0);
 
   // Carga inicial de metadata estática.
@@ -144,6 +162,23 @@ export function Map() {
           width: 3,
         },
       ];
+      const showTooltip = (
+        e: MapMouseEvent & { features?: maplibregl.MapGeoJSONFeature[] },
+        title: string,
+        body: string,
+      ) => {
+        const tip = tooltipRef.current;
+        if (!tip) return;
+        tip.innerHTML = `<div style="font-weight:600;margin-bottom:2px;">${title}</div><div style="color:#cbd5e1;">${body}</div>`;
+        tip.style.display = "block";
+        tip.style.left = e.point.x + 14 + "px";
+        tip.style.top = e.point.y + 14 + "px";
+      };
+      const hideTooltip = () => {
+        const tip = tooltipRef.current;
+        if (tip) tip.style.display = "none";
+      };
+
       for (const sl of subLayers) {
         map.addLayer({
           id: sl.id,
@@ -158,9 +193,17 @@ export function Map() {
             ...(sl.dashArray ? { "line-dasharray": sl.dashArray } : {}),
           },
         });
-        // Cursor pointer + popup sobre todas las sublayers ZOFEMAT.
-        map.on("mouseenter", sl.id, () => (map.getCanvas().style.cursor = "pointer"));
-        map.on("mouseleave", sl.id, () => (map.getCanvas().style.cursor = ""));
+        // Hover tooltip + cursor pointer
+        map.on("mousemove", sl.id, (e) => {
+          map.getCanvas().style.cursor = "pointer";
+          const desc = ZOFEMAT_DESCRIPTIONS[sl.layerName] ?? "";
+          showTooltip(e, `ZOFEMAT · ${sl.layerName}`, desc);
+        });
+        map.on("mouseleave", sl.id, () => {
+          map.getCanvas().style.cursor = "";
+          hideTooltip();
+        });
+        // Click → popup completo con propiedades
         map.on(
           "click",
           sl.id,
@@ -175,11 +218,13 @@ export function Map() {
                   !k.startsWith("Shape"),
               )
               .slice(0, 8);
+            const desc = ZOFEMAT_DESCRIPTIONS[sl.layerName] ?? "";
             const html = `
               <div style="font-size:12px;line-height:1.4;">
-                <div style="font-weight:600;margin-bottom:4px;">ZOFEMAT · ${
+                <div style="font-weight:600;margin-bottom:2px;">ZOFEMAT · ${
                   props.Layer ?? "?"
                 }</div>
+                <div style="color:#94a3b8;margin-bottom:6px;font-size:11px;">${desc}</div>
                 ${rows
                   .map(
                     ([k, v]) =>
@@ -195,6 +240,47 @@ export function Map() {
         );
       }
 
+      // Hover sobre las pleamares estimadas.
+      const pleamarTooltip = (
+        title: string,
+        body: string,
+      ): ((e: MapMouseEvent) => void) => {
+        return (e) => {
+          map.getCanvas().style.cursor = "pointer";
+          showTooltip(e, title, body);
+        };
+      };
+      map.once("idle", () => {
+        if (map.getLayer("pleamar-max")) {
+          map.on(
+            "mousemove",
+            "pleamar-max",
+            pleamarTooltip(
+              "Pleamar máxima estimada",
+              "Línea ciudadana derivada del DEM Copernicus a 1.2 m sobre nivel del mar.",
+            ),
+          );
+          map.on("mouseleave", "pleamar-max", () => {
+            map.getCanvas().style.cursor = "";
+            hideTooltip();
+          });
+        }
+        if (map.getLayer("pleamar-dynamic")) {
+          map.on(
+            "mousemove",
+            "pleamar-dynamic",
+            pleamarTooltip(
+              "Pleamar instantánea",
+              "Estimación de pleamar al timestamp del slider (DEM + modelo de marea).",
+            ),
+          );
+          map.on("mouseleave", "pleamar-dynamic", () => {
+            map.getCanvas().style.cursor = "";
+            hideTooltip();
+          });
+        }
+      });
+
       setStyleReady(true);
     });
 
@@ -205,19 +291,11 @@ export function Map() {
     };
   }, []);
 
-  // Sentinel-2 raster vía TiTiler — usar `url` (TileJSON), no `tiles`.
+  // Capa raster satelital — Esri World Imagery (alta resolución) o Sentinel-2 (vía TiTiler).
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || !sentinel) return;
+    if (!map) return;
     whenStyleReady(map, () => {
-      if (map.getSource("sentinel")) return;
-      map.addSource("sentinel", {
-        type: "raster",
-        url: SENTINEL_TILEJSON(sentinel.visual_cog),
-        tileSize: 512,
-        attribution: "Sentinel-2 Copernicus",
-      });
-      // Insertamos por debajo de la primera capa ZOFEMAT (todas usan la misma fuente).
       const ZOFEMAT_IDS = [
         "zofemat-mangle",
         "zofemat-terrenos-ganados",
@@ -227,17 +305,56 @@ export function Map() {
         "zofemat-pleamar-oficial",
       ];
       const before = ZOFEMAT_IDS.find((id) => map.getLayer(id));
-      map.addLayer(
-        {
-          id: "sentinel-raster",
+
+      // Quitar capa+source previas si existen (cambio de fuente).
+      if (map.getLayer("sentinel-raster")) map.removeLayer("sentinel-raster");
+      if (map.getSource("sat-esri")) map.removeSource("sat-esri");
+      if (map.getSource("sat-sentinel")) map.removeSource("sat-sentinel");
+
+      if (satSource === "esri") {
+        map.addSource("sat-esri", {
           type: "raster",
-          source: "sentinel",
-          paint: { "raster-opacity": 0.85 },
-        },
-        before,
-      );
+          tiles: [ESRI_WORLD_IMAGERY],
+          tileSize: 256,
+          maxzoom: 19,
+          attribution: "© Esri World Imagery",
+        });
+        map.addLayer(
+          {
+            id: "sentinel-raster",
+            type: "raster",
+            source: "sat-esri",
+            paint: { "raster-opacity": 0.95 },
+          },
+          before,
+        );
+      } else if (satSource === "sentinel" && sentinel) {
+        map.addSource("sat-sentinel", {
+          type: "raster",
+          url: SENTINEL_TILEJSON(sentinel.visual_cog),
+          tileSize: 512,
+          attribution: "Sentinel-2 Copernicus",
+        });
+        map.addLayer(
+          {
+            id: "sentinel-raster",
+            type: "raster",
+            source: "sat-sentinel",
+            paint: { "raster-opacity": 0.85 },
+          },
+          before,
+        );
+      }
+      // Aplicar visibilidad según toggle.
+      if (map.getLayer("sentinel-raster")) {
+        map.setLayoutProperty(
+          "sentinel-raster",
+          "visibility",
+          layers.sentinel ? "visible" : "none",
+        );
+      }
     });
-  }, [sentinel, styleReady]);
+  }, [satSource, sentinel, styleReady, layers.sentinel]);
 
   // Pleamar / floodlines.
   useEffect(() => {
@@ -342,15 +459,19 @@ export function Map() {
 
   const onTideChange = useCallback((h: number) => setTideHeight(h), []);
 
-  const sentinelLabel = useMemo(() => {
-    if (!sentinel) return "—";
-    const d = new Date(sentinel.datetime);
-    return d.toLocaleDateString("es-MX", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-    });
-  }, [sentinel]);
+  const headerLabel = useMemo(() => {
+    if (satSource === "esri") return "Esri World Imagery";
+    if (sentinel) {
+      const d = new Date(sentinel.datetime);
+      const fmt = d.toLocaleDateString("es-MX", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+      return `Sentinel-2 ${fmt}`;
+    }
+    return "—";
+  }, [satSource, sentinel]);
 
   return (
     <div
@@ -363,17 +484,28 @@ export function Map() {
         style={{ width: "100%", height: "100%" }}
       />
 
+      <div
+        ref={tooltipRef}
+        className="pointer-events-none absolute z-30 max-w-xs rounded-md border border-slate-700 bg-slate-950/95 px-2.5 py-1.5 text-[11px] leading-snug text-slate-100 shadow-xl backdrop-blur"
+        style={{ display: "none" }}
+      />
+
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-3 sm:p-4">
         <div className="pointer-events-auto inline-flex w-fit items-center gap-2 rounded-md bg-slate-950/80 px-3 py-1.5 text-xs font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur">
           <span className="h-2 w-2 rounded-full bg-emerald-400" />
           Playas Libres · Bahía de Banderas
-          <span className="text-slate-400">· Sentinel-2 {sentinelLabel}</span>
+          <span className="text-slate-400">· {headerLabel}</span>
         </div>
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-3 sm:p-4">
         <div className="pointer-events-auto">
-          <LayerToggle value={layers} onChange={setLayers} />
+          <LayerToggle
+            value={layers}
+            onChange={setLayers}
+            satSource={satSource}
+            onSatSourceChange={setSatSource}
+          />
         </div>
         <div className="pointer-events-auto">
           <TideSlider onHeightChange={onTideChange} />
