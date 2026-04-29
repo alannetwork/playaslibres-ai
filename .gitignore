@@ -1,0 +1,48 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Datasets crudos (pesados, regenerables)
+data/raw/
+data/processed/*.tif
+data/processed/*.tiff
+
+# Archivos comprimidos descargados
+*.zip
+*.tar
+*.tar.gz
+
+# Modelos de marea (FES2014 requiere registro AVISO+)
+data/raw/tide_models/
+
+# macOS
+.DS_Store
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# Variables de entorno (nunca commitear)
+.env
+.env*.local
+.env.production
+.env.test
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor / Claude Code
+.vscode/
+.idea/
+*.swp
+.claude/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
