@@ -9,6 +9,7 @@ __pycache__/
 data/raw/
 data/processed/*.tif
 data/processed/*.tiff
+data/processed/*.aux.xml
 
 # Archivos comprimidos descargados
 *.zip

@@ -54,23 +54,31 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
-## Deploy a Cloudflare Pages
+## Deploy
 
-El sitio se compila estáticamente con `next build`. Para subirlo a Cloudflare Pages:
+### AWS Amplify Hosting (recomendado)
+
+El repo trae `amplify.yml` con `appRoot: web` para que Amplify entienda el monorepo (la app Next.js está en `web/`, los scripts del pipeline en la raíz).
+
+1. En la consola Amplify Hosting, "Host a web app" → conectar el repo Git.
+2. Amplify detecta `amplify.yml` y configura el build automáticamente. Verifica que el `App root` quede en `web` (lo lee del `applications[].appRoot`).
+3. Variables de entorno (en la consola Amplify):
+   - `NEXT_PUBLIC_SITE_URL` — URL canónica del sitio (ej. `https://playas-libres.mx`).
+4. Deploy.
+
+Notas:
+- El runtime de `opengraph-image.tsx` es `nodejs` (no `edge`) para máxima compatibilidad con Amplify.
+- Los PMTiles y JSON de `web/public/` se sirven como estáticos por Amplify; no hay base de datos.
+- El pipeline Python NO corre en Amplify; los datasets se regeneran localmente y se commitean (o se suben aparte a S3/R2).
+
+### Cloudflare Pages (alternativa)
 
 ```bash
-# Una sola vez por máquina:
 npm i -g wrangler
 wrangler login
-
-# Cada deploy (desde web/):
-cd web
-npm run build
+cd web && npm run build
 wrangler pages deploy .next --project-name=playas-libres
 ```
-
-Variables de entorno opcionales en Cloudflare:
-- `NEXT_PUBLIC_SITE_URL` — URL canónica del sitio (default `https://playas-libres.mx`).
 
 ## Disclaimer legal
 
