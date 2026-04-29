@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { Layers, X } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Card } from "@/components/ui/card";
 
@@ -58,11 +60,41 @@ export function LayerToggle({
   satSource: SatelliteSource;
   onSatSourceChange: (s: SatelliteSource) => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!expanded) {
+    return (
+      <button
+        type="button"
+        onClick={() => setExpanded(true)}
+        title="Capas y leyenda"
+        className="inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-950/85 px-2.5 py-1.5 text-xs font-medium text-slate-100 shadow-lg backdrop-blur transition hover:border-slate-500 hover:bg-slate-900"
+      >
+        <Layers className="h-4 w-4" />
+        <span>Capas</span>
+        <span className="ml-1 text-[10px] text-slate-400">
+          {Object.values(value).filter(Boolean).length}/3
+        </span>
+      </button>
+    );
+  }
+
   return (
     <Card className="w-fit max-w-full border-slate-700 bg-slate-950/85 text-slate-100 shadow-xl backdrop-blur">
       <div className="flex flex-col gap-2 p-3">
-        <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-          Capas
+        <div className="flex items-center justify-between gap-3">
+          <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            Capas
+          </div>
+          <button
+            type="button"
+            onClick={() => setExpanded(false)}
+            className="rounded p-0.5 text-slate-400 hover:bg-slate-800 hover:text-slate-100"
+            title="Minimizar"
+            aria-label="Minimizar"
+          >
+            <X className="h-3.5 w-3.5" />
+          </button>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:gap-4">
           {ITEMS.map((item) => (

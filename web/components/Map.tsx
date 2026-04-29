@@ -498,19 +498,15 @@ export function Map() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-3 sm:p-4">
-        <div className="pointer-events-auto">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 p-3 sm:p-4">
+        <div className="pointer-events-auto flex flex-wrap items-end gap-2">
           <LayerToggle
             value={layers}
             onChange={setLayers}
             satSource={satSource}
             onSatSourceChange={setSatSource}
           />
-        </div>
-        <div className="pointer-events-auto">
           <TideSlider onHeightChange={onTideChange} />
-        </div>
-        <div className="pointer-events-auto">
           <Attribution />
         </div>
       </div>
