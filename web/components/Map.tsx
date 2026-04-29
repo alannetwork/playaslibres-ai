@@ -26,8 +26,8 @@ export type Disputa = {
   links: { label: string; url: string }[];
 };
 
-const CENTER: [number, number] = [-105.546, 20.766];
-const INITIAL_ZOOM = 13;
+const CENTER: [number, number] = [-105.5085, 20.7714];
+const INITIAL_ZOOM = 14;
 const MAX_BOUNDS: [[number, number], [number, number]] = [
   [-105.85, 20.35],
   [-104.95, 21.0],
@@ -72,6 +72,15 @@ export function Map() {
     sentinel: true,
     zofemat: true,
     pleamar: false, // experimental — ver /validacion
+    zofematSub: {
+      playaLibre: true,
+      pleamarMaxima: true,
+      zonaFederal: true,
+      playaMaritima: false,
+      terrenosGanadosMar: false,
+      mangle: false,
+      muelle: false,
+    },
   });
   const [satSource, setSatSource] = useState<SatelliteSource>("esri");
   const [tideHeight, setTideHeight] = useState(0);
@@ -119,6 +128,50 @@ export function Map() {
     }
 
     map.on("load", () => {
+      // Playa Libre (polígono pintado, debajo de las líneas).
+      map.addSource("playa-libre", {
+        type: "vector",
+        url: "pmtiles:///tiles/playa_libre_bb.pmtiles",
+      });
+      map.addLayer({
+        id: "playa-libre-fill",
+        type: "fill",
+        source: "playa-libre",
+        "source-layer": "playa_libre",
+        paint: {
+          "fill-color": "#facc15",
+          "fill-opacity": 0.55,
+        },
+      });
+      map.addLayer({
+        id: "playa-libre-outline",
+        type: "line",
+        source: "playa-libre",
+        "source-layer": "playa_libre",
+        paint: {
+          "line-color": "#fde047",
+          "line-width": 1.2,
+          "line-opacity": 0.9,
+        },
+      });
+      map.on(
+        "mousemove",
+        "playa-libre-fill",
+        (e) => {
+          const tip = tooltipRef.current;
+          if (!tip) return;
+          tip.innerHTML = `<div style="font-weight:600;margin-bottom:2px;">Playa libre (ZOFEMAT)</div><div style="color:#cbd5e1;">Franja pública de 20 m entre la pleamar máxima y la línea de zona federal. Uso público inalienable (Art. 27 Const., LGBN art. 119).</div>`;
+          tip.style.display = "block";
+          tip.style.left = e.point.x + 14 + "px";
+          tip.style.top = e.point.y + 14 + "px";
+          map.getCanvas().style.cursor = "help";
+        },
+      );
+      map.on("mouseleave", "playa-libre-fill", () => {
+        if (tooltipRef.current) tooltipRef.current.style.display = "none";
+        map.getCanvas().style.cursor = "";
+      });
+
       // ZOFEMAT vector source (1 PMTiles, múltiples sublayers por property "Layer").
       map.addSource("zofemat", {
         type: "vector",
@@ -401,16 +454,20 @@ export function Map() {
       if (!map.getLayer(id)) return;
       map.setLayoutProperty(id, "visibility", visible ? "visible" : "none");
     };
-    const ZOFEMAT_IDS = [
-      "zofemat-mangle",
-      "zofemat-terrenos-ganados",
-      "zofemat-muelle",
-      "zofemat-playa",
-      "zofemat-zona-federal",
-      "zofemat-pleamar-oficial",
-    ];
     setVis("sentinel-raster", layers.sentinel);
-    ZOFEMAT_IDS.forEach((id) => setVis(id, layers.zofemat));
+
+    // ZOFEMAT master + sub-capas individuales
+    const sub = layers.zofematSub;
+    const masterOn = layers.zofemat;
+    setVis("playa-libre-fill", masterOn && sub.playaLibre);
+    setVis("playa-libre-outline", masterOn && sub.playaLibre);
+    setVis("zofemat-pleamar-oficial", masterOn && sub.pleamarMaxima);
+    setVis("zofemat-zona-federal", masterOn && sub.zonaFederal);
+    setVis("zofemat-playa", masterOn && sub.playaMaritima);
+    setVis("zofemat-terrenos-ganados", masterOn && sub.terrenosGanadosMar);
+    setVis("zofemat-mangle", masterOn && sub.mangle);
+    setVis("zofemat-muelle", masterOn && sub.muelle);
+
     setVis("pleamar-max", layers.pleamar);
     setVis("pleamar-dynamic", layers.pleamar);
   }, [layers, styleReady]);
