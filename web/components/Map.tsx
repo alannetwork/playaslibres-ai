@@ -71,7 +71,7 @@ export function Map() {
   const [layers, setLayers] = useState<LayerVisibility>({
     sentinel: true,
     zofemat: true,
-    pleamar: true,
+    pleamar: false, // experimental — ver /validacion
   });
   const [satSource, setSatSource] = useState<SatelliteSource>("esri");
   const [tideHeight, setTideHeight] = useState(0);

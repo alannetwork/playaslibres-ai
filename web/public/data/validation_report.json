@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-04-29T23:39:37.209896Z",
+  "metadata": {
+    "n_features": 1319,
+    "fechas_lev": [
+      "2021"
+    ],
+    "escalas": [
+      "1:1000"
+    ],
+    "proyecciones": [
+      "ITRF_2008_Z13"
+    ],
+    "n_planos": 105,
+    "by_layer": {
+      "MARGEN": 113,
+      "ZONA FEDERAL": 292,
+      "PLEAMAR MAXIMA": 296,
+      "TERRENOS GANADOS MAR": 184,
+      "MUELLE": 347,
+      "PLAYA MARITIMA": 55,
+      "MANGLE": 32
+    }
+  },
+  "test_legal_20m": {
+    "n": 31584,
+    "min": 0.0,
+    "p05": 4.9999733250793374,
+    "p25": 19.999927866681475,
+    "median": 19.99999382283152,
+    "p75": 20.000037855110072,
+    "p95": 26.87243027351628,
+    "max": 282.1863889301577,
+    "mean": 20.90550954062967,
+    "std": 20.57741750539988
+  },
+  "ciudadana_vs_oficial": {
+    "n": 15752,
+    "min": 0.0005847493398218873,
+    "p05": 1.8491610108922871,
+    "p25": 9.931088687529977,
+    "median": 25.913265183530516,
+    "p75": 152.2100101653483,
+    "p95": 11575.957970251804,
+    "max": 16643.219095283977,
+    "mean": 1447.391897586939,
+    "std": 3681.5196573291446
+  },
+  "dem_stats": {
+    "min": -5.267457008361816,
+    "max": 1313.138916015625,
+    "mean": 78.49903869628906,
+    "px_total": 2268000,
+    "px_coastal_le_5m": 1434990,
+    "px_negative": 4332,
+    "px_coastal_above_1_2m": 24862
+  },
+  "uncertainty_notes": [
+    {
+      "component": "ZOFEMAT SEMARNAT (PLEAMAR/ZF)",
+      "sigma": "1-3 m horizontal",
+      "note": "Plano 1:1000 ITRF2008, FECHA_LEV 2021"
+    },
+    {
+      "component": "Copernicus DEM 30 m (DSM)",
+      "sigma": "±2-4 m vertical, 30 m horizontal",
+      "note": "Mide superficie, no suelo"
+    },
+    {
+      "component": "FES2014 (no usado)",
+      "sigma": "±10-20 cm",
+      "note": "Falta credenciales AVISO+"
+    },
+    {
+      "component": "Fallback armónico (en uso)",
+      "sigma": "±20-50 cm",
+      "note": "Constantes hardcoded sin calibrar"
+    },
+    {
+      "component": "Datum offset DEM↔NMM",
+      "sigma": "±50-100 cm",
+      "note": "DATUM_OFFSET_M=0 sin calibrar"
+    },
+    {
+      "component": "Línea ciudadana combinada",
+      "sigma": "±20-50 m horizontal",
+      "note": "Acumulación de las anteriores"
+    }
+  ]
+}

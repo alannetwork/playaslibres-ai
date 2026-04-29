@@ -22,7 +22,15 @@ export default function MetodologiaPage() {
         </h1>
         <p className="mt-2 text-slate-300">
           Para periodistas, abogados y cualquier persona que quiera entender
-          de dónde sale cada línea del mapa.
+          de dónde sale cada línea del mapa. Para los números y la
+          consistencia, ver{" "}
+          <Link
+            href="/validacion"
+            className="text-blue-300 underline-offset-2 hover:underline"
+          >
+            Validación científica
+          </Link>
+          .
         </p>
       </header>
 

@@ -35,10 +35,17 @@ export function Attribution() {
       <p className="mb-1 text-slate-300">
         Capas referenciales. No constituyen delimitación oficial de la ZOFEMAT.{" "}
         <Link
+          href="/validacion"
+          className="text-blue-300 underline-offset-2 hover:underline"
+        >
+          Validación
+        </Link>
+        {" · "}
+        <Link
           href="/metodologia"
           className="text-blue-300 underline-offset-2 hover:underline"
         >
-          Ver Metodología
+          Metodología
         </Link>
         {" · "}
         <Link

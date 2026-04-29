@@ -30,8 +30,8 @@ const ITEMS: {
   },
   {
     key: "pleamar",
-    label: "Pleamar estimada",
-    hint: "Aproximación ciudadana ±10–30 m",
+    label: "Pleamar estimada (experimental)",
+    hint: "Errores grandes — ver /validacion",
   },
 ];
 
