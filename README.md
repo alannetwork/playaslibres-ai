@@ -54,6 +54,24 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
+## Deploy a Cloudflare Pages
+
+El sitio se compila estáticamente con `next build`. Para subirlo a Cloudflare Pages:
+
+```bash
+# Una sola vez por máquina:
+npm i -g wrangler
+wrangler login
+
+# Cada deploy (desde web/):
+cd web
+npm run build
+wrangler pages deploy .next --project-name=playas-libres
+```
+
+Variables de entorno opcionales en Cloudflare:
+- `NEXT_PUBLIC_SITE_URL` — URL canónica del sitio (default `https://playas-libres.mx`).
+
 ## Disclaimer legal
 
 Las capas mostradas son **referenciales**. La capa "Pleamar estimada" tiene una incertidumbre estimada de ±10 a 30 metros y **no constituye una delimitación oficial ni produce efectos jurídicos**. Los planos con valor jurídico son únicamente los firmados por perito autorizado y validados por la DGZFMTAC conforme a la NOM-146-SEMARNAT-2017.

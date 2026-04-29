@@ -1,0 +1,19 @@
+[
+  {
+    "id": "las-cocinas",
+    "name": "Playa Las Cocinas",
+    "coords": [-105.5390, 20.7720],
+    "status": "en_conflicto",
+    "summary": "Vecinos de Punta de Mita denuncian invasión de zona federal por desarrollo hotelero Cantiles de Mita / Montage. Suspensión temporal SEMARNAT vigente desde abril 2026.",
+    "links": [
+      {
+        "label": "La Jornada — abril 2026",
+        "url": "https://www.jornada.com.mx/noticia/2026/04/28/estados/la-naturaleza-no-se-privatiza-en-bahia-de-banderas-se-oponen-al-despojo-de-playa-las-cocinas"
+      },
+      {
+        "label": "Vallarta Independiente",
+        "url": "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/"
+      }
+    ]
+  }
+]
