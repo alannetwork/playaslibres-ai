@@ -117,13 +117,30 @@ export function LegalDisclaimer() {
             </ul>
           </div>
 
+          <div className="rounded-md border border-emerald-700/40 bg-emerald-900/15 p-3">
+            <div className="mb-1 font-semibold text-emerald-200">
+              Fuente oficial: SEMARNAT
+            </div>
+            <p>
+              Las líneas de pleamar máxima, zona federal y demás capas
+              SEMARNAT que muestra el mapa son los{" "}
+              <strong>datos oficiales publicados por la Dirección
+              General de Zona Federal Marítimo-Terrestre y Ambientes
+              Costeros (DGZFMTAC)</strong>, descargados directamente del
+              MapServer ArcGIS de SEMARNAT. Son la referencia
+              gubernamental para Bahía de Banderas: planos a escala
+              1:1000, ITRF2008 Z13, levantamiento 2021. La franja
+              &ldquo;Playa libre&rdquo; se deriva geométricamente de
+              esos mismos datos oficiales.
+            </p>
+          </div>
+
           <div>
             <div className="mb-1 font-semibold text-slate-100">
               Metodología
             </div>
             <p>
-              Usamos los planos topográficos publicados por SEMARNAT
-              (1:1000, ITRF2008, levantamiento 2021), imagen aérea de Esri
+              Encima de los datos SEMARNAT mostramos imagen aérea Esri
               World Imagery y el modelo digital de elevación Copernicus
               30 m. La capa &ldquo;pleamar estimada&rdquo; (experimental,
               desactivada por defecto) deriva del DEM y un modelo
@@ -148,18 +165,15 @@ export function LegalDisclaimer() {
           <div className="rounded-md border border-amber-700/40 bg-amber-900/15 p-3">
             <div className="mb-1 flex items-center gap-1.5 font-semibold text-amber-200">
               <AlertTriangle className="h-4 w-4" />
-              Descargo de responsabilidad
+              Alcance legal
             </div>
             <p className="text-amber-100/90">
-              Las capas son <strong>referenciales, no probatorias</strong>.
-              No constituyen delimitación oficial de la ZOFEMAT ni
-              producen efectos jurídicos. Los planos con valor legal son
-              los firmados por perito autorizado y validados por la
-              Dirección General de Zona Federal Marítimo-Terrestre y
-              Ambientes Costeros (DGZFMTAC) conforme a la
-              NOM-146-SEMARNAT-2017. Los datos SEMARNAT mostrados son de
-              2021 y pueden no reflejar cambios costeros o de catastro
-              posteriores.
+              Los datos son la <strong>publicación oficial</strong> de
+              SEMARNAT con fines informativos. Para procesos judiciales,
+              la NOM-146-SEMARNAT-2017 requiere el plano original
+              firmado por perito autorizado y validado por la DGZFMTAC.
+              Los datos del MapServer son del levantamiento 2021 y
+              pueden no reflejar cambios o concesiones posteriores.
             </p>
           </div>
         </div>

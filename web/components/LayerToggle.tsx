@@ -201,9 +201,12 @@ export function LayerToggle({
                 type="button"
                 onClick={() => setZofematDetail((p) => !p)}
                 className="flex items-center gap-1 text-left font-medium hover:text-slate-300"
-                title="Mostrar sub-capas"
+                title="Mostrar sub-capas — Fuente oficial DGZFMTAC SEMARNAT"
               >
-                ZOFEMAT oficial (SEMARNAT)
+                ZOFEMAT (SEMARNAT)
+                <span className="rounded bg-emerald-500/15 px-1 py-0.5 text-[9px] font-semibold uppercase text-emerald-300">
+                  Oficial
+                </span>
                 {zofematDetail ? (
                   <ChevronDown className="h-3.5 w-3.5 text-slate-400" />
                 ) : (

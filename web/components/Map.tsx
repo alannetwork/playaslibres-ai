@@ -284,6 +284,7 @@ export function Map() {
                       `<span style="color:#94a3b8;">${k}:</span> ${v}`,
                   )
                   .join("<br/>")}
+                <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;color:#10b981;font-size:10px;">Fuente oficial · DGZFMTAC SEMARNAT</div>
               </div>`;
             new maplibregl.Popup({ closeButton: true })
               .setLngLat(e.lngLat)

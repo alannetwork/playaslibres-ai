@@ -221,15 +221,47 @@ export default function MetodologiaPage() {
             4. Qué es la capa &ldquo;ZOFEMAT oficial&rdquo;
           </h2>
           <p className="text-sm">
-            Es la representación digital de los planos publicados por
-            SEMARNAT vía MapServer público.{" "}
-            <strong>No es</strong> el plano firmado por perito autorizado
-            al que se refiere la NOM-146-SEMARNAT-2017 como única fuente
-            con valor jurídico. Es la versión digital difundida por la
-            propia secretaría con fines informativos. Para efectos
-            legales, la única fuente válida es el plano peritado y
-            validado por la DGZFMTAC.
+            <strong className="text-emerald-300">
+              Es la fuente oficial publicada por el gobierno mexicano.
+            </strong>{" "}
+            Específicamente, es la capa <code>220 B_BANDERAS_2021</code>{" "}
+            del MapServer ArcGIS de la{" "}
+            <strong>
+              Dirección General de Zona Federal Marítimo-Terrestre y
+              Ambientes Costeros (DGZFMTAC) de SEMARNAT
+            </strong>
+            . Estos planos topográficos a escala 1:1000 son los datos
+            que el propio gobierno publica como referencia de la
+            delimitación de la ZOFEMAT en Bahía de Banderas.
           </p>
+          <p className="mt-2 text-sm">
+            Importante distinción para uso legal: la
+            NOM-146-SEMARNAT-2017 establece que los planos con{" "}
+            <em>valor jurídico probatorio</em> (es decir, los que sirven
+            como prueba en un juicio) son los <strong>originales
+            firmados por perito autorizado</strong> y validados por la
+            DGZFMTAC. Lo que muestra este sitio es la{" "}
+            <strong>publicación digital oficial</strong> de esos planos
+            — información gubernamental verídica, ideal para
+            transparencia ciudadana y periodismo, pero la copia
+            digital no sustituye al plano peritado original cuando
+            hay un proceso judicial en curso.
+          </p>
+          <p className="mt-2 text-sm">
+            En resumen:
+          </p>
+          <ul className="mt-1 list-disc space-y-1 pl-5 text-sm">
+            <li>
+              <strong>Para informarte y documentar denuncias:</strong>{" "}
+              esta capa es la fuente oficial mexicana, válida y
+              verificable contra el MapServer público de SEMARNAT.
+            </li>
+            <li>
+              <strong>Para presentar como prueba en juicio:</strong>{" "}
+              hay que solicitar a la DGZFMTAC el plano peritado
+              original.
+            </li>
+          </ul>
         </div>
 
         {/* 5. Qué NO se puede concluir */}

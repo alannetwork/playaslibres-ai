@@ -138,14 +138,28 @@ export default async function ValidacionPage() {
                 </div>
               </div>
             </div>
-            <p className="mt-3 text-sm text-slate-400">
-              <strong className="text-slate-300">Veredicto.</strong> Datos
-              vigentes en 2021, escala 1:1000 (precisión cm) y proyección
-              geodésica oficial mexicana ITRF2008 Z13. La capa SEMARNAT es
-              la fuente más rigurosa que se muestra en el sitio. Su mayor
-              limitación es la <em>antigüedad</em>: 5 años vs imagen Esri
-              actual. Construcciones nuevas no aparecen en el catastro.
-            </p>
+            <div className="mt-3 rounded-md border border-emerald-700/40 bg-emerald-900/15 p-3 text-sm">
+              <strong className="text-emerald-200">
+                Veredicto: fuente oficial del gobierno.
+              </strong>{" "}
+              <span className="text-slate-200">
+                Esta es la capa{" "}
+                <code className="rounded bg-slate-800 px-1 text-xs">
+                  220 B_BANDERAS_2021
+                </code>{" "}
+                del MapServer ArcGIS de la{" "}
+                <strong>DGZFMTAC (SEMARNAT)</strong>. Es el dato
+                gubernamental publicado: planos topográficos a escala
+                1:1000, proyección oficial ITRF2008 Z13, levantamiento
+                2021. Cualquier persona puede verificarla contra el
+                MapServer público.{" "}
+                <strong>Es la referencia oficial mexicana</strong> para
+                Bahía de Banderas. Lo que NO sustituye es el plano
+                peritado original (NOM-146-SEMARNAT-2017) cuando se
+                necesita para juicio. Su mayor limitación práctica es
+                temporal: 5 años desde el levantamiento.
+              </span>
+            </div>
           </div>
 
           {/* Test legal 20m */}
