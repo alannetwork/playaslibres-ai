@@ -1,0 +1,15 @@
+{
+  "id": "S2C_13QDD_20251220_0_L2A",
+  "datetime": "2025-12-20T17:48:14.785000+00:00",
+  "cloud_cover": 0.001165,
+  "bbox": [
+    -105.967124,
+    20.708657,
+    -104.90565,
+    21.703381
+  ],
+  "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/12/S2C_13QDD_20251220_0_L2A/TCI.tif",
+  "preview": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/12/S2C_13QDD_20251220_0_L2A/preview.jpg",
+  "stac_url": "https://earth-search.aws.element84.com/v1",
+  "collection": "sentinel-2-l2a"
+}
