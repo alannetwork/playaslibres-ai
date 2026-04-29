@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 5%;
+    --foreground: 210 20% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 210 100% 65%;
+    --primary-foreground: 222 47% 10%;
+
+    --secondary: 215 25% 18%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 16% 65%;
+
+    --accent: 215 25% 22%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 215 25% 22%;
+    --input: 215 25% 22%;
+    --ring: 210 100% 65%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* MapLibre overrides para tema oscuro */
+.maplibregl-ctrl-attrib {
+  display: none !important;
+}
+.maplibregl-popup-content {
+  background: rgba(2, 6, 23, 0.92) !important;
+  color: rgb(226, 232, 240) !important;
+  border: 1px solid rgba(51, 65, 85, 0.6) !important;
+  border-radius: 0.5rem !important;
+  font-size: 12px !important;
+  padding: 10px 12px !important;
+}
+.maplibregl-popup-tip {
+  border-top-color: rgba(2, 6, 23, 0.92) !important;
+  border-bottom-color: rgba(2, 6, 23, 0.92) !important;
+}
+.maplibregl-popup-close-button {
+  color: rgb(148, 163, 184) !important;
+  font-size: 18px !important;
+  padding-right: 6px !important;
+}
