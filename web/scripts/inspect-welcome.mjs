@@ -3,7 +3,7 @@ import { chromium } from "playwright";
 
 const URL = "http://localhost:3000/";
 const browser = await chromium.launch();
-const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+const ctx = await browser.newContext({ viewport: { width: 1400, height: 1100 } });
 const page = await ctx.newPage();
 
 // 1. Cargar SIN cookie de welcome → debe aparecer modal
@@ -18,8 +18,13 @@ console.log("Modal bienvenida visible:", welcomeOpen);
 
 await page.screenshot({ path: "/tmp/playas_welcome.png" });
 
-// Aceptar
-await page.locator('button:has-text("Entendido")').click();
+// Aceptar (dialog ocupa más alto que viewport — clickear por JS)
+await page.evaluate(() => {
+  const btn = [...document.querySelectorAll("button")].find((b) =>
+    b.textContent?.includes("Entendido"),
+  );
+  btn?.click();
+});
 await page.waitForTimeout(800);
 
 // 2. Verificar que existe la capa playa-libre-fill y la franja se ve

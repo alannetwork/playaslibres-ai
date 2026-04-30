@@ -139,8 +139,8 @@ export function Map() {
         source: "playa-libre",
         "source-layer": "playa_libre",
         paint: {
-          "fill-color": "#facc15",
-          "fill-opacity": 0.55,
+          "fill-color": "#fde047",
+          "fill-opacity": 0.7,
         },
       });
       map.addLayer({
@@ -149,9 +149,9 @@ export function Map() {
         source: "playa-libre",
         "source-layer": "playa_libre",
         paint: {
-          "line-color": "#fde047",
-          "line-width": 1.2,
-          "line-opacity": 0.9,
+          "line-color": "#facc15",
+          "line-width": 1.5,
+          "line-opacity": 1,
         },
       });
       map.on(
@@ -350,7 +350,11 @@ export function Map() {
     const map = mapRef.current;
     if (!map) return;
     whenStyleReady(map, () => {
-      const ZOFEMAT_IDS = [
+      // Insertamos el raster ANTES de la franja Playa Libre y de las líneas
+      // ZOFEMAT, para que el polígono amarillo y las líneas queden encima.
+      const STACK_TOP_FIRST = [
+        "playa-libre-fill",
+        "playa-libre-outline",
         "zofemat-mangle",
         "zofemat-terrenos-ganados",
         "zofemat-muelle",
@@ -358,7 +362,7 @@ export function Map() {
         "zofemat-zona-federal",
         "zofemat-pleamar-oficial",
       ];
-      const before = ZOFEMAT_IDS.find((id) => map.getLayer(id));
+      const before = STACK_TOP_FIRST.find((id) => map.getLayer(id));
 
       // Quitar capa+source previas si existen (cambio de fuente).
       if (map.getLayer("sentinel-raster")) map.removeLayer("sentinel-raster");
