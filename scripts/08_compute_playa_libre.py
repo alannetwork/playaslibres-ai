@@ -34,10 +34,11 @@ PMTILES = ROOT / "data" / "tiles" / "playa_libre_bb.pmtiles"
 WEB_PMTILES = ROOT / "web" / "public" / "tiles" / "playa_libre_bb.pmtiles"
 
 # Buffer en metros aplicado a cada línea. La intersección de los dos
-# buffers (cada uno de 12 m) cubre franjas con separación ≤ 24 m, que
-# capturan la mayoría de los 80% de tramos consistentes con la regla
-# legal de 20 m.
-BUFFER_M = 12.0
+# buffers (cada uno de 18 m) cubre franjas con separación ≤ 36 m, lo
+# cual captura ~95% de los tramos (incluyendo el p95 de 27 m del audit).
+# Más alto que esto empieza a generar artefactos en zonas con muelles
+# y terrenos ganados al mar.
+BUFFER_M = 18.0
 
 TO_UTM = Transformer.from_crs("EPSG:4326", "EPSG:32613", always_xy=True)
 TO_WGS = Transformer.from_crs("EPSG:32613", "EPSG:4326", always_xy=True)
