@@ -6,10 +6,17 @@ __pycache__/
 *.egg-info/
 
 # Datasets crudos (pesados, regenerables)
-data/raw/
+data/raw/*
+# pero conservamos el snapshot fechado del MapServer SEMARNAT
+!data/raw/zofemat_bb_raw.geojson
+
+# Imágenes raster pesadas
 data/processed/*.tif
 data/processed/*.tiff
 data/processed/*.aux.xml
+# pero conservamos los recortes a la bahía (cobertura del proyecto)
+!data/processed/dem_bb.tif
+!data/processed/sentinel_bb.tif
 
 # Archivos comprimidos descargados
 *.zip
