@@ -34,7 +34,7 @@ const ZOFEMAT_SUBS: {
     key: "playaLibre",
     label: "Playa libre (ZOFEMAT)",
     hint: "Franja pública 20 m entre pleamar y zona federal",
-    swatch: { color: "#facc15", fill: true },
+    swatch: { color: "#22c55e", fill: true },
   },
   {
     key: "pleamarMaxima",

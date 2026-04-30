@@ -70,17 +70,17 @@ export function LegalDisclaimer() {
                     display: "inline-block",
                     width: 12,
                     height: 8,
-                    background: "#facc15",
+                    background: "#22c55e",
                     opacity: 0.55,
-                    border: "1px solid #facc15",
+                    border: "1px solid #86efac",
                     borderRadius: 2,
                     marginTop: 6,
                   }}
                 />
                 <span>
-                  <strong>Playa libre</strong> — la franja amarilla de 20 m
-                  entre la línea de pleamar máxima y la zona federal. Uso
-                  público por mandato del Art. 27 constitucional.
+                  <strong>Playa libre</strong> — la franja verde entre la
+                  pleamar máxima y la zona federal (≈ 20 m). Uso público
+                  inalienable por mandato del Art. 27 constitucional.
                 </span>
               </li>
               <li className="flex items-start gap-2">

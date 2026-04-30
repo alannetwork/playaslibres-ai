@@ -139,8 +139,8 @@ export function Map() {
         source: "playa-libre",
         "source-layer": "playa_libre",
         paint: {
-          "fill-color": "#fde047",
-          "fill-opacity": 0.7,
+          "fill-color": "#22c55e",
+          "fill-opacity": 0.55,
         },
       });
       map.addLayer({
@@ -149,7 +149,7 @@ export function Map() {
         source: "playa-libre",
         "source-layer": "playa_libre",
         paint: {
-          "line-color": "#facc15",
+          "line-color": "#86efac",
           "line-width": 1.5,
           "line-opacity": 1,
         },
