@@ -77,7 +77,7 @@ export function Map() {
       pleamarMaxima: true,
       zonaFederal: true,
       playaMaritima: false,
-      terrenosGanadosMar: false,
+      terrenosGanadosMar: true,
       mangle: false,
       muelle: false,
     },
@@ -490,34 +490,61 @@ export function Map() {
     map.setFilter("pleamar-dynamic", ["==", ["get", "tide_m"], safe]);
   }, [tideHeight, styleReady]);
 
-  // Markers de disputas.
+  // Markers de disputas. MapLibre no requiere style cargado para markers,
+  // y usamos un ref persistente para evitar el bug donde el cleanup async
+  // remueve markers que se acaban de crear.
+  const markersRef = useRef<maplibregl.Marker[]>([]);
   useEffect(() => {
     const map = mapRef.current;
     if (!map || disputas.length === 0) return;
-    const markers: maplibregl.Marker[] = [];
-    whenStyleReady(map, () => {
-      disputas.forEach((d) => {
-        const el = document.createElement("button");
-        el.className =
-          "flex h-9 w-9 items-center justify-center rounded-full border-2 border-amber-300 bg-amber-500/90 text-slate-900 shadow-lg ring-2 ring-amber-300/50 transition hover:scale-110";
-        el.style.cssText =
-          "font-size:18px;font-weight:bold;cursor:pointer;line-height:1;";
-        el.title = d.name;
-        el.innerHTML = "⚠";
-        el.addEventListener("click", (ev) => {
-          ev.stopPropagation();
-          setActiveDisputa(d);
-        });
-        const marker = new maplibregl.Marker({ element: el })
-          .setLngLat(d.coords)
-          .addTo(map);
-        markers.push(marker);
+    markersRef.current.forEach((m) => m.remove());
+    markersRef.current = [];
+
+    disputas.forEach((d) => {
+      const el = document.createElement("button");
+      el.title = d.name;
+      el.innerHTML = "⚠";
+      el.style.cssText = `
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        padding: 0;
+        border-radius: 9999px;
+        border: 2px solid #fcd34d;
+        background: #f59e0b;
+        color: #1e293b;
+        font-size: 22px;
+        font-weight: 900;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,.4), 0 0 0 4px rgba(252,211,77,.35);
+        transition: transform .15s ease;
+      `.replace(/\s+/g, " ");
+      el.addEventListener("mouseenter", () => {
+        el.style.transform = "scale(1.15)";
       });
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "scale(1)";
+      });
+      el.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        setActiveDisputa(d);
+      });
+      const marker = new maplibregl.Marker({ element: el, anchor: "center" })
+        .setLngLat(d.coords)
+        .addTo(map);
+      markersRef.current.push(marker);
     });
+  }, [disputas]);
+
+  useEffect(() => {
     return () => {
-      markers.forEach((m) => m.remove());
+      markersRef.current.forEach((m) => m.remove());
+      markersRef.current = [];
     };
-  }, [disputas, styleReady]);
+  }, []);
 
   const onTideChange = useCallback((h: number) => setTideHeight(h), []);
 
