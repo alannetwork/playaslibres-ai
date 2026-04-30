@@ -23,7 +23,21 @@ export type Disputa = {
   coords: [number, number];
   status: "en_conflicto" | "resuelto" | "monitoreo";
   summary: string;
+  evidence?: {
+    title: string;
+    intro: string;
+    features: {
+      objectid: number;
+      plano: string;
+      layer: string;
+      fecha_lev: string;
+      escala: string;
+      proyeccion: string;
+    }[];
+    verify_links: { label: string; url: string }[];
+  };
   links: { label: string; url: string }[];
+  legal_refs?: { label: string; url: string }[];
 };
 
 const CENTER: [number, number] = [-105.5085, 20.7714];
@@ -501,10 +515,14 @@ export function Map() {
     markersRef.current = [];
 
     disputas.forEach((d) => {
-      const el = document.createElement("button");
-      el.title = d.name;
-      el.innerHTML = "⚠";
-      el.style.cssText = `
+      // Wrapper externo: MapLibre aplica `transform: translate(...)` aquí.
+      const wrapper = document.createElement("div");
+      wrapper.style.cssText = "cursor: pointer;";
+      // Inner: aquí aplicamos hover scale sin chocar con el translate.
+      const inner = document.createElement("button");
+      inner.title = d.name;
+      inner.innerHTML = "⚠";
+      inner.style.cssText = `
         display: flex;
         align-items: center;
         justify-content: center;
@@ -521,18 +539,20 @@ export function Map() {
         cursor: pointer;
         box-shadow: 0 4px 12px rgba(0,0,0,.4), 0 0 0 4px rgba(252,211,77,.35);
         transition: transform .15s ease;
+        transform: scale(1);
       `.replace(/\s+/g, " ");
-      el.addEventListener("mouseenter", () => {
-        el.style.transform = "scale(1.15)";
+      inner.addEventListener("mouseenter", () => {
+        inner.style.transform = "scale(1.15)";
       });
-      el.addEventListener("mouseleave", () => {
-        el.style.transform = "scale(1)";
+      inner.addEventListener("mouseleave", () => {
+        inner.style.transform = "scale(1)";
       });
-      el.addEventListener("click", (ev) => {
+      inner.addEventListener("click", (ev) => {
         ev.stopPropagation();
         setActiveDisputa(d);
       });
-      const marker = new maplibregl.Marker({ element: el, anchor: "center" })
+      wrapper.appendChild(inner);
+      const marker = new maplibregl.Marker({ element: wrapper, anchor: "center" })
         .setLngLat(d.coords)
         .addTo(map);
       markersRef.current.push(marker);

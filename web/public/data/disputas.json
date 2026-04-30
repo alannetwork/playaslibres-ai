@@ -4,7 +4,43 @@
     "name": "Playa Las Cocinas",
     "coords": [-105.5085332, 20.7713954],
     "status": "en_conflicto",
-    "summary": "Vecinos de Punta de Mita denuncian invasión de zona federal por desarrollo hotelero Cantiles de Mita / Montage. La línea oficial SEMARNAT 2021 ya registra un TERRENO GANADO AL MAR en este punto (OBJECTID 344 y 358 del catastro); la denuncia ciudadana sostiene que el desarrollo extendió la incursión más allá. Suspensión temporal SEMARNAT vigente desde abril 2026.",
+    "summary": "Vecinos de Punta de Mita denuncian invasión de zona federal por desarrollo hotelero Cantiles de Mita / Montage. Suspensión temporal SEMARNAT vigente desde abril 2026.",
+    "evidence": {
+      "title": "Terreno ganado al mar registrado por SEMARNAT (2021)",
+      "intro": "El catastro oficial publicado por la DGZFMTAC ya documenta que en este punto existe un relleno artificial al mar. La denuncia ciudadana actual sostiene que el desarrollo extendió la incursión más allá de lo registrado en 2021.",
+      "features": [
+        {
+          "objectid": 344,
+          "plano": "F13C58-49",
+          "layer": "TERRENOS GANADOS MAR",
+          "fecha_lev": "2021",
+          "escala": "1:1000",
+          "proyeccion": "ITRF_2008_Z13"
+        },
+        {
+          "objectid": 358,
+          "plano": "F13C58-50",
+          "layer": "TERRENOS GANADOS MAR",
+          "fecha_lev": "2021",
+          "escala": "1:1000",
+          "proyeccion": "ITRF_2008_Z13"
+        }
+      ],
+      "verify_links": [
+        {
+          "label": "Capa 220 ZOFEMAT B_BANDERAS_2021 (MapServer SEMARNAT)",
+          "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220"
+        },
+        {
+          "label": "Consulta directa OBJECTID 344 (GeoJSON)",
+          "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D344&outFields=*&f=geojson&outSR=4326"
+        },
+        {
+          "label": "Consulta directa OBJECTID 358 (GeoJSON)",
+          "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D358&outFields=*&f=geojson&outSR=4326"
+        }
+      ]
+    },
     "links": [
       {
         "label": "La Jornada — abril 2026",
@@ -13,6 +49,20 @@
       {
         "label": "Vallarta Independiente",
         "url": "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/"
+      }
+    ],
+    "legal_refs": [
+      {
+        "label": "Constitución, art. 27 — playas y ZOFEMAT son bienes nacionales",
+        "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/CPEUM.pdf"
+      },
+      {
+        "label": "Ley General de Bienes Nacionales, art. 119",
+        "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LGBN.pdf"
+      },
+      {
+        "label": "NOM-146-SEMARNAT-2017 (DOF)",
+        "url": "https://www.dof.gob.mx/nota_detalle.php?codigo=5485172"
       }
     ]
   }
