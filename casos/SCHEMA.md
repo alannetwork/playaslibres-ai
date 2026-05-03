@@ -23,7 +23,7 @@ El frontmatter es lo que el sitio consume; el cuerpo es para humanos (dossier ex
 | `fuentes[]` | array | sí (≥1) | Lista de fuentes verificables. Ver abajo. |
 | `poligono_zofemat_objectids[]` | array<int> | no | OBJECTIDs del MapServer SEMARNAT capa 220 vinculados al caso. |
 | `coords_bbox` | array<float, 4> | no | `[lon_min, lat_min, lon_max, lat_max]` para change detection. Si se omite, se infiere del polígono. |
-| `marco_legal[]` | array | no | Referencias a normas aplicables (ya vienen estandarizadas en el footer del sitio; aquí solo si el caso invoca normas adicionales). |
+| `marco_legal[]` | array | no | Referencias a normas aplicables específicas del caso. El sitio ya muestra un marco legal general (Constitución art. 27, LGBN, NOM-146); usar este campo solo cuando el caso invoque normas adicionales o quiera resaltar alguna. Ver sub-schema. |
 | `contribuyente` | string | no | Atribución del autor del PR. `@handle` o `anonymous`. |
 | `contacto` | string \| null | no | Solo si la persona quiere ser contactable. **Nunca** datos personales de terceros. |
 
@@ -38,6 +38,17 @@ fuentes:
     autoridad: "SEMARNAT"   # obligatorio si tipo == oficial
     fecha: 2026-04-28       # obligatorio (YYYY-MM-DD o YYYY-MM o YYYY)
     descripcion: "..."      # opcional
+```
+
+### `marco_legal[]` — sub-schema
+
+```yaml
+marco_legal:
+  - tipo: ley                # constitucion | ley | reglamento | norma | tratado | otro
+    titulo: "..."            # obligatorio
+    url: "https://..."       # obligatorio (idealmente DOF o sitio oficial)
+    articulo: "27"           # opcional
+    descripcion: "..."       # opcional
 ```
 
 ### `expediente_oficial[]` — sub-schema
@@ -78,6 +89,11 @@ contribuyente: "@anonymous"
 
 Cuerpo libre en Markdown...
 ```
+
+## Archivos auto-generados (no editar a mano)
+
+- `web/public/data/casos.json` — índice consolidado para el frontend. Lo genera `scripts/10_build_casos_index.py` e incluye un `timeline[]` cronológico armado a partir de `fuentes[]` + `expediente_oficial[]`.
+- `casos/<slug>/cambios.json` — opcional. Lo genera `scripts/11_change_detection.py` y contiene escenas Sentinel-2 antes/después del periodo del caso, más un link a EO-Browser para inspección visual.
 
 ## Validación
 

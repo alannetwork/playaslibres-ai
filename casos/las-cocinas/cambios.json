@@ -1,0 +1,56 @@
+{
+  "queried_at": "2026-05-03T23:36:41.913086+00:00",
+  "bbox": [
+    -105.5063,
+    20.7706,
+    -105.5062,
+    20.771
+  ],
+  "ventana": {
+    "antes_dias": 365,
+    "despues_dias": 90,
+    "max_cloud_cover": 30.0
+  },
+  "antes": [
+    {
+      "id": "S2C_13QDD_20250514_0_L2A",
+      "datetime": "2025-05-14T17:48:23.932000Z",
+      "cloud_cover": 8.787018,
+      "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2C_13QDD_20250514_0_L2A/TCI.tif",
+      "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2C_13QDD_20250514_0_L2A/preview.jpg"
+    },
+    {
+      "id": "S2C_13QDC_20250514_0_L2A",
+      "datetime": "2025-05-14T17:48:38.132000Z",
+      "cloud_cover": 5.44778,
+      "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2C_13QDC_20250514_0_L2A/TCI.tif",
+      "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2C_13QDC_20250514_0_L2A/preview.jpg"
+    },
+    {
+      "id": "S2A_13QDD_20250516_2_L2A",
+      "datetime": "2025-05-16T17:48:22.304000Z",
+      "cloud_cover": 24.458589,
+      "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2A_13QDD_20250516_2_L2A/TCI.tif",
+      "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2A_13QDD_20250516_2_L2A/preview.jpg"
+    },
+    {
+      "id": "S2A_13QDC_20250516_1_L2A",
+      "datetime": "2025-05-16T17:48:36.513000Z",
+      "cloud_cover": 14.821646,
+      "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2A_13QDC_20250516_1_L2A/TCI.tif",
+      "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2A_13QDC_20250516_1_L2A/preview.jpg"
+    },
+    {
+      "id": "S2B_13QDD_20250519_0_L2A",
+      "datetime": "2025-05-19T17:48:08.084000Z",
+      "cloud_cover": 24.083248,
+      "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2B_13QDD_20250519_0_L2A/TCI.tif",
+      "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2B_13QDD_20250519_0_L2A/preview.jpg"
+    }
+  ],
+  "despues": [],
+  "eo_browser": {
+    "antes_url": "https://apps.sentinel-hub.com/eo-browser/?lat=20.7714&lng=-105.5085&zoom=17&time=2025-10-31&datasetId=S2L2A&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&layerId=1_TRUE_COLOR",
+    "despues_url": "https://apps.sentinel-hub.com/eo-browser/?lat=20.7714&lng=-105.5085&zoom=17&time=2026-04-29&datasetId=S2L2A&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&layerId=1_TRUE_COLOR"
+  }
+}

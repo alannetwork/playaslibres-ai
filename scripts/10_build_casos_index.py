@@ -38,11 +38,104 @@ def to_jsonable(obj):
     return obj
 
 
+def fecha_sort_key(fecha: object) -> str:
+    """Devuelve una clave string ordenable cronológicamente (ascendente).
+    Acepta date, datetime, int (año), o string en YYYY[-MM[-DD]]. Si la fecha
+    no tiene mes/día, se rellena con 01 para ordenar consistente.
+    """
+    if isinstance(fecha, datetime):
+        return fecha.date().isoformat()
+    if isinstance(fecha, date):
+        return fecha.isoformat()
+    if isinstance(fecha, int):
+        return f"{fecha:04d}-01-01"
+    if isinstance(fecha, str):
+        parts = fecha.split("-")
+        y = parts[0].zfill(4)
+        m = (parts[1] if len(parts) > 1 else "01").zfill(2)
+        d = (parts[2] if len(parts) > 2 else "01").zfill(2)
+        return f"{y}-{m}-{d}"
+    return "9999-12-31"
+
+
+def build_timeline(fuentes: list, expedientes: list) -> list:
+    """Combina fuentes y expedientes en una línea de tiempo cronológica.
+    Cada entrada lleva `origen` ('fuente'|'expediente') para distinguirlas.
+    """
+    eventos = []
+    for f in fuentes or []:
+        eventos.append(
+            {
+                "fecha": f.get("fecha"),
+                "tipo": f.get("tipo"),
+                "titulo": f.get("titulo"),
+                "descripcion": f.get("descripcion"),
+                "url": f.get("url"),
+                "medio": f.get("medio"),
+                "autoridad": f.get("autoridad"),
+                "origen": "fuente",
+            }
+        )
+    for e in expedientes or []:
+        eventos.append(
+            {
+                "fecha": e.get("fecha"),
+                "tipo": e.get("tipo"),
+                "titulo": e.get("descripcion") or e.get("tipo"),
+                "descripcion": e.get("descripcion"),
+                "url": e.get("url"),
+                "autoridad": e.get("autoridad"),
+                "referencia": e.get("referencia"),
+                "origen": "expediente",
+            }
+        )
+    eventos.sort(key=lambda x: fecha_sort_key(x.get("fecha")))
+    return eventos
+
+
+def extract_zofemat_features(pol_path: Path) -> list[dict]:
+    """Extrae propiedades atómicas de cada feature de poligono.geojson para
+    poder mostrarlas en una tabla en el frontend (plano, capa, fecha lev., etc).
+    """
+    if not pol_path.exists():
+        return []
+    try:
+        gj = json.loads(pol_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return []
+    if gj.get("type") == "FeatureCollection":
+        feats = gj.get("features") or []
+    elif gj.get("type") == "Feature":
+        feats = [gj]
+    else:
+        return []
+    out = []
+    for f in feats:
+        props = f.get("properties") or {}
+        out.append(
+            {
+                "objectid": props.get("OBJECTID"),
+                "plano": props.get("PLANO"),
+                "layer": props.get("Layer"),
+                "fecha_lev": props.get("FECHA_LEV"),
+                "escala": props.get("ESCALA"),
+                "proyeccion": props.get("PROYECCION"),
+            }
+        )
+    return out
+
+
 def build_entry(slug_dir: Path) -> dict:
     fm = validator.validate_caso(slug_dir)
     pol_path = slug_dir / "poligono.geojson"
-    timeline_path = slug_dir / "timeline.mdx"
     cambios_path = slug_dir / "cambios.json"
+
+    cambios = None
+    if cambios_path.exists():
+        try:
+            cambios = json.loads(cambios_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            cambios = None
 
     entry = {
         "slug": fm["slug"],
@@ -56,11 +149,15 @@ def build_entry(slug_dir: Path) -> dict:
         "responsable_presunto": fm.get("responsable_presunto"),
         "expediente_oficial": fm.get("expediente_oficial", []),
         "fuentes": fm["fuentes"],
+        "marco_legal": fm.get("marco_legal", []),
         "poligono_zofemat_objectids": fm.get("poligono_zofemat_objectids", []),
+        "zofemat_features": extract_zofemat_features(pol_path),
         "coords_bbox": fm.get("coords_bbox"),
+        "timeline": build_timeline(
+            fm.get("fuentes", []), fm.get("expediente_oficial", [])
+        ),
+        "cambios": cambios,
         "has_poligono": pol_path.exists(),
-        "has_timeline": timeline_path.exists(),
-        "has_cambios": cambios_path.exists(),
         "contribuyente": fm.get("contribuyente"),
     }
     return to_jsonable(entry)

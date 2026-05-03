@@ -43,6 +43,7 @@ TIPOS_EXPEDIENTE = {
     "resolucion",
     "otro",
 }
+TIPOS_MARCO_LEGAL = {"constitucion", "ley", "reglamento", "norma", "tratado", "otro"}
 
 FRONTMATTER_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
 
@@ -134,6 +135,22 @@ def validate_expediente(items: object, ctx: str) -> None:
         check_date(require(e, "fecha", c), f"{c}.fecha")
 
 
+def validate_marco_legal(items: object, ctx: str) -> None:
+    if items in (None, []):
+        return
+    if not isinstance(items, list):
+        raise CasoError(f"{ctx}: debe ser lista")
+    for i, m in enumerate(items):
+        c = f"{ctx}[{i}]"
+        if not isinstance(m, dict):
+            raise CasoError(f"{c}: debe ser objeto")
+        tipo = require(m, "tipo", c)
+        if tipo not in TIPOS_MARCO_LEGAL:
+            raise CasoError(f"{c}.tipo: '{tipo}' no en {sorted(TIPOS_MARCO_LEGAL)}")
+        require(m, "titulo", c)
+        check_url(require(m, "url", c), f"{c}.url")
+
+
 def validate_caso(slug_dir: Path) -> dict:
     caso_path = slug_dir / "caso.mdx"
     if not caso_path.exists():
@@ -182,6 +199,7 @@ def validate_caso(slug_dir: Path) -> dict:
 
     validate_fuentes(require(fm, "fuentes", ctx), ctx)
     validate_expediente(fm.get("expediente_oficial"), f"{ctx}.expediente_oficial")
+    validate_marco_legal(fm.get("marco_legal"), f"{ctx}.marco_legal")
 
     bbox = fm.get("coords_bbox")
     if bbox is not None:
