@@ -66,9 +66,28 @@
         "url": "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/"
       }
     ],
+    "marco_legal": [],
     "poligono_zofemat_objectids": [
       344,
       358
+    ],
+    "zofemat_features": [
+      {
+        "objectid": 344,
+        "plano": "F13C58-49",
+        "layer": "TERRENOS GANADOS MAR",
+        "fecha_lev": "2021",
+        "escala": "1:1000",
+        "proyeccion": "ITRF_2008_Z13"
+      },
+      {
+        "objectid": 358,
+        "plano": "F13C58-50",
+        "layer": "TERRENOS GANADOS MAR",
+        "fecha_lev": "2021",
+        "escala": "1:1000",
+        "proyeccion": "ITRF_2008_Z13"
+      }
     ],
     "coords_bbox": [
       -105.5063,
@@ -76,9 +95,125 @@
       -105.5062,
       20.771
     ],
+    "timeline": [
+      {
+        "fecha": 2021,
+        "tipo": "oficial",
+        "titulo": "Capa 220 ZOFEMAT B_BANDERAS_2021 — MapServer SEMARNAT",
+        "descripcion": "OBJECTIDs 344 y 358 categorizados como TERRENOS GANADOS MAR.",
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220",
+        "medio": null,
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "origen": "fuente"
+      },
+      {
+        "fecha": 2021,
+        "tipo": "oficial",
+        "titulo": "OBJECTID 344 — F13C58-49",
+        "descripcion": null,
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D344&outFields=*&f=geojson&outSR=4326",
+        "medio": null,
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "origen": "fuente"
+      },
+      {
+        "fecha": 2021,
+        "tipo": "oficial",
+        "titulo": "OBJECTID 358 — F13C58-50",
+        "descripcion": null,
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D358&outFields=*&f=geojson&outSR=4326",
+        "medio": null,
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "origen": "fuente"
+      },
+      {
+        "fecha": "2026-04",
+        "tipo": "suspension_temporal",
+        "titulo": "Suspensión temporal del proyecto reportada por prensa tras denuncia ciudadana.",
+        "descripcion": "Suspensión temporal del proyecto reportada por prensa tras denuncia ciudadana.",
+        "url": null,
+        "autoridad": "SEMARNAT",
+        "referencia": null,
+        "origen": "expediente"
+      },
+      {
+        "fecha": "2026-04-20",
+        "tipo": "prensa",
+        "titulo": "Persiste la denuncia de ciudadanos para clausurar desarrollo inmobiliario en Playa Las Cocinas",
+        "descripcion": null,
+        "url": "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/",
+        "medio": "Vallarta Independiente",
+        "autoridad": null,
+        "origen": "fuente"
+      },
+      {
+        "fecha": "2026-04-28",
+        "tipo": "prensa",
+        "titulo": "La naturaleza no se privatiza — En Bahía de Banderas se oponen al despojo de Playa Las Cocinas",
+        "descripcion": null,
+        "url": "https://www.jornada.com.mx/noticia/2026/04/28/estados/la-naturaleza-no-se-privatiza-en-bahia-de-banderas-se-oponen-al-despojo-de-playa-las-cocinas",
+        "medio": "La Jornada",
+        "autoridad": null,
+        "origen": "fuente"
+      }
+    ],
+    "cambios": {
+      "queried_at": "2026-05-03T23:36:41.913086+00:00",
+      "bbox": [
+        -105.5063,
+        20.7706,
+        -105.5062,
+        20.771
+      ],
+      "ventana": {
+        "antes_dias": 365,
+        "despues_dias": 90,
+        "max_cloud_cover": 30.0
+      },
+      "antes": [
+        {
+          "id": "S2C_13QDD_20250514_0_L2A",
+          "datetime": "2025-05-14T17:48:23.932000Z",
+          "cloud_cover": 8.787018,
+          "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2C_13QDD_20250514_0_L2A/TCI.tif",
+          "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2C_13QDD_20250514_0_L2A/preview.jpg"
+        },
+        {
+          "id": "S2C_13QDC_20250514_0_L2A",
+          "datetime": "2025-05-14T17:48:38.132000Z",
+          "cloud_cover": 5.44778,
+          "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2C_13QDC_20250514_0_L2A/TCI.tif",
+          "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2C_13QDC_20250514_0_L2A/preview.jpg"
+        },
+        {
+          "id": "S2A_13QDD_20250516_2_L2A",
+          "datetime": "2025-05-16T17:48:22.304000Z",
+          "cloud_cover": 24.458589,
+          "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2A_13QDD_20250516_2_L2A/TCI.tif",
+          "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2A_13QDD_20250516_2_L2A/preview.jpg"
+        },
+        {
+          "id": "S2A_13QDC_20250516_1_L2A",
+          "datetime": "2025-05-16T17:48:36.513000Z",
+          "cloud_cover": 14.821646,
+          "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2A_13QDC_20250516_1_L2A/TCI.tif",
+          "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DC/2025/5/S2A_13QDC_20250516_1_L2A/preview.jpg"
+        },
+        {
+          "id": "S2B_13QDD_20250519_0_L2A",
+          "datetime": "2025-05-19T17:48:08.084000Z",
+          "cloud_cover": 24.083248,
+          "visual_cog": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2B_13QDD_20250519_0_L2A/TCI.tif",
+          "thumbnail": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/13/Q/DD/2025/5/S2B_13QDD_20250519_0_L2A/preview.jpg"
+        }
+      ],
+      "despues": [],
+      "eo_browser": {
+        "antes_url": "https://apps.sentinel-hub.com/eo-browser/?lat=20.7714&lng=-105.5085&zoom=17&time=2025-10-31&datasetId=S2L2A&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&layerId=1_TRUE_COLOR",
+        "despues_url": "https://apps.sentinel-hub.com/eo-browser/?lat=20.7714&lng=-105.5085&zoom=17&time=2026-04-29&datasetId=S2L2A&visualizationUrl=https%3A%2F%2Fservices.sentinel-hub.com%2Fogc%2Fwms%2Fbd86bcc0-f318-402b-a145-015f85b9427e&layerId=1_TRUE_COLOR"
+      }
+    },
     "has_poligono": true,
-    "has_timeline": false,
-    "has_cambios": false,
     "contribuyente": "@playaslibres-mx"
   }
 ]

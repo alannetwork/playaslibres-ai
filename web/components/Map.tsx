@@ -9,6 +9,7 @@ import { TideSlider } from "./TideSlider";
 import { LegalDisclaimer } from "./LegalDisclaimer";
 import { Attribution } from "./Attribution";
 import { InfoPanel } from "./InfoPanel";
+import type { Caso, EstadoCaso } from "@/lib/casos";
 
 export type SentinelBase = {
   id: string;
@@ -17,27 +18,34 @@ export type SentinelBase = {
   visual_cog: string;
 };
 
-export type Disputa = {
-  id: string;
-  name: string;
-  coords: [number, number];
-  status: "en_conflicto" | "resuelto" | "monitoreo";
-  summary: string;
-  evidence?: {
-    title: string;
-    intro: string;
-    features: {
-      objectid: number;
-      plano: string;
-      layer: string;
-      fecha_lev: string;
-      escala: string;
-      proyeccion: string;
-    }[];
-    verify_links: { label: string; url: string }[];
-  };
-  links: { label: string; url: string }[];
-  legal_refs?: { label: string; url: string }[];
+const MARKER_BY_ESTADO: Record<
+  EstadoCaso,
+  { bg: string; ring: string; border: string; icon: string }
+> = {
+  en_conflicto: {
+    bg: "#dc2626",
+    ring: "rgba(252,165,165,.45)",
+    border: "#fecaca",
+    icon: "⚠",
+  },
+  suspendido: {
+    bg: "#f59e0b",
+    ring: "rgba(252,211,77,.35)",
+    border: "#fcd34d",
+    icon: "⚠",
+  },
+  resuelto: {
+    bg: "#10b981",
+    ring: "rgba(110,231,183,.35)",
+    border: "#a7f3d0",
+    icon: "✓",
+  },
+  archivado: {
+    bg: "#64748b",
+    ring: "rgba(148,163,184,.35)",
+    border: "#cbd5e1",
+    icon: "i",
+  },
 };
 
 const CENTER: [number, number] = [-105.5085, 20.7714];
@@ -79,8 +87,8 @@ export function Map() {
   const [styleReady, setStyleReady] = useState(false);
 
   const [sentinel, setSentinel] = useState<SentinelBase | null>(null);
-  const [disputas, setDisputas] = useState<Disputa[]>([]);
-  const [activeDisputa, setActiveDisputa] = useState<Disputa | null>(null);
+  const [casos, setCasos] = useState<Caso[]>([]);
+  const [activeCaso, setActiveCaso] = useState<Caso | null>(null);
 
   const [layers, setLayers] = useState<LayerVisibility>({
     sentinel: true,
@@ -105,10 +113,10 @@ export function Map() {
       .then((r) => r.json())
       .then(setSentinel)
       .catch(() => setSentinel(null));
-    fetch("/data/disputas.json")
+    fetch("/data/casos.json")
       .then((r) => (r.ok ? r.json() : []))
-      .then(setDisputas)
-      .catch(() => setDisputas([]));
+      .then(setCasos)
+      .catch(() => setCasos([]));
   }, []);
 
   // Inicialización del mapa (una sola vez).
@@ -504,24 +512,23 @@ export function Map() {
     map.setFilter("pleamar-dynamic", ["==", ["get", "tide_m"], safe]);
   }, [tideHeight, styleReady]);
 
-  // Markers de disputas. MapLibre no requiere style cargado para markers,
+  // Markers de casos. MapLibre no requiere style cargado para markers,
   // y usamos un ref persistente para evitar el bug donde el cleanup async
   // remueve markers que se acaban de crear.
   const markersRef = useRef<maplibregl.Marker[]>([]);
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || disputas.length === 0) return;
+    if (!map || casos.length === 0) return;
     markersRef.current.forEach((m) => m.remove());
     markersRef.current = [];
 
-    disputas.forEach((d) => {
-      // Wrapper externo: MapLibre aplica `transform: translate(...)` aquí.
+    casos.forEach((c) => {
+      const style = MARKER_BY_ESTADO[c.estado];
       const wrapper = document.createElement("div");
       wrapper.style.cssText = "cursor: pointer;";
-      // Inner: aquí aplicamos hover scale sin chocar con el translate.
       const inner = document.createElement("button");
-      inner.title = d.name;
-      inner.innerHTML = "⚠";
+      inner.title = c.name;
+      inner.innerHTML = style.icon;
       inner.style.cssText = `
         display: flex;
         align-items: center;
@@ -530,14 +537,14 @@ export function Map() {
         height: 38px;
         padding: 0;
         border-radius: 9999px;
-        border: 2px solid #fcd34d;
-        background: #f59e0b;
-        color: #1e293b;
+        border: 2px solid ${style.border};
+        background: ${style.bg};
+        color: #fff;
         font-size: 22px;
         font-weight: 900;
         line-height: 1;
         cursor: pointer;
-        box-shadow: 0 4px 12px rgba(0,0,0,.4), 0 0 0 4px rgba(252,211,77,.35);
+        box-shadow: 0 4px 12px rgba(0,0,0,.4), 0 0 0 4px ${style.ring};
         transition: transform .15s ease;
         transform: scale(1);
       `.replace(/\s+/g, " ");
@@ -549,15 +556,15 @@ export function Map() {
       });
       inner.addEventListener("click", (ev) => {
         ev.stopPropagation();
-        setActiveDisputa(d);
+        setActiveCaso(c);
       });
       wrapper.appendChild(inner);
       const marker = new maplibregl.Marker({ element: wrapper, anchor: "center" })
-        .setLngLat(d.coords)
+        .setLngLat(c.coords)
         .addTo(map);
       markersRef.current.push(marker);
     });
-  }, [disputas]);
+  }, [casos]);
 
   useEffect(() => {
     return () => {
@@ -621,10 +628,7 @@ export function Map() {
       </div>
 
       <LegalDisclaimer />
-      <InfoPanel
-        disputa={activeDisputa}
-        onClose={() => setActiveDisputa(null)}
-      />
+      <InfoPanel caso={activeCaso} onClose={() => setActiveCaso(null)} />
     </div>
   );
 }
