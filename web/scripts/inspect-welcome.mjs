@@ -44,17 +44,29 @@ const playaLibreState = await page.evaluate(() => {
 });
 console.log("Capa Playa Libre:", playaLibreState);
 
-// 3. Marker Las Cocinas: debe estar en (-105.5085, 20.7714)
-const lcCoords = await page.evaluate(() => {
-  // Encontrar el botón con title "Playa Las Cocinas"
-  const btn = [...document.querySelectorAll("button")].find(
-    (b) => b.title === "Playa Las Cocinas",
-  );
-  if (!btn) return null;
-  const rect = btn.getBoundingClientRect();
-  return { x: rect.left, y: rect.top };
+// 3. Esperar a que disputas se cargue + marker aparezca
+await page.waitForFunction(
+  () => document.querySelectorAll(".maplibregl-marker").length > 0,
+  { timeout: 15_000 },
+).catch(() => console.log("⚠ No apareció ningún marker tras 15s"));
+
+const lcInfo = await page.evaluate(() => {
+  const markers = document.querySelectorAll(".maplibregl-marker");
+  const out = [];
+  markers.forEach((m) => {
+    const rect = m.getBoundingClientRect();
+    const btn = m.querySelector("button");
+    out.push({
+      title: btn?.title ?? null,
+      x: Math.round(rect.left),
+      y: Math.round(rect.top),
+      visible: rect.width > 0 && rect.height > 0,
+      transform: m.style.transform,
+    });
+  });
+  return out;
 });
-console.log("Marker Las Cocinas pos:", lcCoords);
+console.log("Markers MapLibre detectados:", lcInfo);
 
 await page.screenshot({ path: "/tmp/playas_main.png" });
 
