@@ -1,0 +1,84 @@
+[
+  {
+    "slug": "las-cocinas",
+    "name": "Playa Las Cocinas",
+    "estado": "suspendido",
+    "coords": [
+      -105.5085,
+      20.7714
+    ],
+    "ubicacion": {
+      "lat": 20.7714,
+      "lon": -105.5085,
+      "municipio": "Bahía de Banderas",
+      "estado_mx": "Nayarit"
+    },
+    "summary": "Vecinos de Punta de Mita denuncian invasión de zona federal por desarrollo hotelero Cantiles de Mita / Montage. SEMARNAT impuso suspensión temporal en abril 2026.",
+    "fecha_apertura": "2026-04-29",
+    "ultima_actualizacion": "2026-04-30",
+    "responsable_presunto": {
+      "nombre": "Cantiles de Mita / Montage",
+      "tipo": "desarrollo_inmobiliario"
+    },
+    "expediente_oficial": [
+      {
+        "tipo": "suspension_temporal",
+        "autoridad": "SEMARNAT",
+        "fecha": "2026-04",
+        "descripcion": "Suspensión temporal del proyecto reportada por prensa tras denuncia ciudadana."
+      }
+    ],
+    "fuentes": [
+      {
+        "tipo": "oficial",
+        "titulo": "Capa 220 ZOFEMAT B_BANDERAS_2021 — MapServer SEMARNAT",
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "fecha": 2021,
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220",
+        "descripcion": "OBJECTIDs 344 y 358 categorizados como TERRENOS GANADOS MAR."
+      },
+      {
+        "tipo": "oficial",
+        "titulo": "OBJECTID 344 — F13C58-49",
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "fecha": 2021,
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D344&outFields=*&f=geojson&outSR=4326"
+      },
+      {
+        "tipo": "oficial",
+        "titulo": "OBJECTID 358 — F13C58-50",
+        "autoridad": "SEMARNAT DGZFMTAC",
+        "fecha": 2021,
+        "url": "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D358&outFields=*&f=geojson&outSR=4326"
+      },
+      {
+        "tipo": "prensa",
+        "titulo": "La naturaleza no se privatiza — En Bahía de Banderas se oponen al despojo de Playa Las Cocinas",
+        "medio": "La Jornada",
+        "fecha": "2026-04-28",
+        "url": "https://www.jornada.com.mx/noticia/2026/04/28/estados/la-naturaleza-no-se-privatiza-en-bahia-de-banderas-se-oponen-al-despojo-de-playa-las-cocinas"
+      },
+      {
+        "tipo": "prensa",
+        "titulo": "Persiste la denuncia de ciudadanos para clausurar desarrollo inmobiliario en Playa Las Cocinas",
+        "medio": "Vallarta Independiente",
+        "fecha": "2026-04-20",
+        "url": "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/"
+      }
+    ],
+    "poligono_zofemat_objectids": [
+      344,
+      358
+    ],
+    "coords_bbox": [
+      -105.5063,
+      20.7706,
+      -105.5062,
+      20.771
+    ],
+    "has_poligono": true,
+    "has_timeline": false,
+    "has_cambios": false,
+    "contribuyente": "@playaslibres-mx"
+  }
+]

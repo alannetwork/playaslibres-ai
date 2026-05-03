@@ -1,0 +1,43 @@
+name: validate-casos
+
+on:
+  pull_request:
+    paths:
+      - "casos/**"
+      - "scripts/09_validate_casos.py"
+      - "scripts/10_build_casos_index.py"
+      - ".github/workflows/validate-casos.yml"
+  push:
+    branches: [main]
+    paths:
+      - "casos/**"
+      - "scripts/09_validate_casos.py"
+      - "scripts/10_build_casos_index.py"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install minimal deps
+        run: pip install "pyyaml>=6"
+
+      - name: Validate schemas
+        run: python scripts/09_validate_casos.py
+
+      - name: Build index (smoke test)
+        run: python scripts/10_build_casos_index.py
+
+      - name: Verify index is in sync (if committed)
+        run: |
+          if [ -f web/public/data/casos.json ]; then
+            git diff --exit-code web/public/data/casos.json || (
+              echo "::error::casos.json está desincronizado. Corre: python scripts/10_build_casos_index.py"
+              exit 1
+            )
+          fi

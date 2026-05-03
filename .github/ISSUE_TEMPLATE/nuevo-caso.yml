@@ -1,0 +1,97 @@
+name: "Reportar caso de invasión"
+description: "Documentar una zona costera donde se denuncia invasión de zona federal o modificación irregular del litoral."
+title: "[caso] <nombre de la playa>"
+labels: ["caso", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por contribuir. Antes de seguir, leé las **reglas no negociables** en `casos/README.md`:
+
+        - Cita obligatoria con URL verificable (oficial o periodística).
+        - Sin datos personales sin consentimiento.
+        - Sin acusaciones sin sustento documental.
+
+        Si te sentís cómodo abriendo un PR directo, mejor — hacelo siguiendo `casos/SCHEMA.md`. Este formulario es para reporte estructurado que un mantenedor convertirá en PR.
+
+  - type: input
+    id: nombre
+    attributes:
+      label: "Nombre de la playa o zona"
+      placeholder: "Ej: Playa Bucerías Norte"
+    validations:
+      required: true
+
+  - type: input
+    id: ubicacion
+    attributes:
+      label: "Ubicación aproximada (lat, lon)"
+      description: "Coordenadas en EPSG:4326. Podés sacarlas de Google Maps haciendo click derecho."
+      placeholder: "20.7714, -105.5085"
+    validations:
+      required: true
+
+  - type: input
+    id: municipio
+    attributes:
+      label: "Municipio y estado"
+      placeholder: "Bahía de Banderas, Nayarit"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: estado
+    attributes:
+      label: "Estado del caso"
+      options:
+        - en_conflicto
+        - suspendido
+        - resuelto
+        - archivado
+    validations:
+      required: true
+
+  - type: textarea
+    id: resumen
+    attributes:
+      label: "Resumen (1–3 oraciones)"
+      description: "Qué pasa, quién lo denuncia, qué autoridad se ha pronunciado (si aplica)."
+    validations:
+      required: true
+
+  - type: input
+    id: responsable
+    attributes:
+      label: "Responsable presunto (opcional)"
+      placeholder: "Nombre del desarrollo / concesionario / 'desconocido'"
+
+  - type: textarea
+    id: fuentes
+    attributes:
+      label: "Fuentes verificables (al menos una)"
+      description: |
+        Una por línea, con URL. Idealmente nota de prensa firmada o documento oficial.
+        Formato sugerido: `[tipo] [medio/autoridad] [fecha] URL`
+      placeholder: |
+        prensa | La Jornada | 2026-04-28 | https://...
+        oficial | SEMARNAT | 2026-04 | https://...
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: "Contexto adicional"
+      description: "Antecedentes, fotos enlazadas, expediente oficial si lo conocés. Sin datos personales de terceros."
+
+  - type: checkboxes
+    id: confirmaciones
+    attributes:
+      label: "Confirmo que"
+      options:
+        - label: "Las fuentes son verificables públicamente."
+          required: true
+        - label: "No incluí datos personales de terceros sin consentimiento."
+          required: true
+        - label: "Entiendo que este sitio no produce efectos jurídicos y los casos son herramienta de transparencia, no prueba pericial."
+          required: true

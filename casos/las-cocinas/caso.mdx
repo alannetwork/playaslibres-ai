@@ -1,0 +1,90 @@
+---
+slug: las-cocinas
+nombre: "Playa Las Cocinas"
+estado: suspendido
+ubicacion:
+  lat: 20.7714
+  lon: -105.5085
+  municipio: "Bahía de Banderas"
+  estado_mx: "Nayarit"
+fecha_apertura: 2026-04-29
+ultima_actualizacion: 2026-04-30
+resumen: "Vecinos de Punta de Mita denuncian invasión de zona federal por desarrollo hotelero Cantiles de Mita / Montage. SEMARNAT impuso suspensión temporal en abril 2026."
+responsable_presunto:
+  nombre: "Cantiles de Mita / Montage"
+  tipo: desarrollo_inmobiliario
+poligono_zofemat_objectids: [344, 358]
+coords_bbox: [-105.5063, 20.7706, -105.5062, 20.7710]
+expediente_oficial:
+  - tipo: suspension_temporal
+    autoridad: "SEMARNAT"
+    fecha: 2026-04
+    descripcion: "Suspensión temporal del proyecto reportada por prensa tras denuncia ciudadana."
+fuentes:
+  - tipo: oficial
+    titulo: "Capa 220 ZOFEMAT B_BANDERAS_2021 — MapServer SEMARNAT"
+    autoridad: "SEMARNAT DGZFMTAC"
+    fecha: 2021
+    url: "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220"
+    descripcion: "OBJECTIDs 344 y 358 categorizados como TERRENOS GANADOS MAR."
+  - tipo: oficial
+    titulo: "OBJECTID 344 — F13C58-49"
+    autoridad: "SEMARNAT DGZFMTAC"
+    fecha: 2021
+    url: "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D344&outFields=*&f=geojson&outSR=4326"
+  - tipo: oficial
+    titulo: "OBJECTID 358 — F13C58-50"
+    autoridad: "SEMARNAT DGZFMTAC"
+    fecha: 2021
+    url: "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query?where=OBJECTID%3D358&outFields=*&f=geojson&outSR=4326"
+  - tipo: prensa
+    titulo: "La naturaleza no se privatiza — En Bahía de Banderas se oponen al despojo de Playa Las Cocinas"
+    medio: "La Jornada"
+    fecha: 2026-04-28
+    url: "https://www.jornada.com.mx/noticia/2026/04/28/estados/la-naturaleza-no-se-privatiza-en-bahia-de-banderas-se-oponen-al-despojo-de-playa-las-cocinas"
+  - tipo: prensa
+    titulo: "Persiste la denuncia de ciudadanos para clausurar desarrollo inmobiliario en Playa Las Cocinas"
+    medio: "Vallarta Independiente"
+    fecha: 2026-04-20
+    url: "https://vallartaindependiente.com/2026/04/20/persiste-la-denuncia-de-ciudadanos-para-clausurar-desarrollo-inmobiliario-en-playa-las-cocinas-en-punta-de-mita/"
+contribuyente: "@playaslibres-mx"
+---
+
+# Caso Playa Las Cocinas
+
+> Migración del dossier publicado en `docs/CASO_LAS_COCINAS.md` al formato estándar de casos. Mantiene la información verificable contra fuentes oficiales y prensa pública.
+
+## Cronología pública
+
+| Fecha | Hito |
+|---|---|
+| **2021** | SEMARNAT realiza el levantamiento topográfico oficial de la ZOFEMAT en Bahía de Banderas. El catastro registra dos polígonos en Las Cocinas con categoría `TERRENOS GANADOS MAR` (OBJECTID 344 y 358). |
+| **2026-04-20** | *Vallarta Independiente* publica seguimiento a la denuncia ciudadana. |
+| **2026-04-28** | *La Jornada* documenta la oposición vecinal al desarrollo Cantiles de Mita / Montage. |
+| **2026-04** | SEMARNAT impone suspensión temporal del proyecto. |
+| **2026-04-29** | Lanzamiento de Playas Libres con snapshot del MapServer capturado. |
+
+## Evidencia documental — registro SEMARNAT 2021
+
+El catastro oficial publicado por la **DGZFMTAC** documenta, desde el levantamiento 2021, que en Las Cocinas existe un **terreno ganado al mar**.
+
+| OBJECTID | Plano | Capa | Fecha | Escala | Proyección |
+|---|---|---|---|---|---|
+| **344** | F13C58-49 | TERRENOS GANADOS MAR | 2021 | 1:1000 | ITRF2008 Z13 |
+| **358** | F13C58-50 | TERRENOS GANADOS MAR | 2021 | 1:1000 | ITRF2008 Z13 |
+
+Bbox geográfico: `(-105.5063, 20.7706) → (-105.5062, 20.7710)`. La geometría está en `poligono.geojson`.
+
+## La denuncia ciudadana
+
+Vecinos de Punta de Mita, organizados a través de comités vecinales y respaldados por colectivos ambientalistas, sostienen que el desarrollo **extendió la incursión más allá de lo registrado en 2021**:
+
+1. Construcciones nuevas dentro de la franja federal, posteriores al levantamiento SEMARNAT.
+2. Bloqueo del acceso público a la playa a través de áreas previamente abiertas.
+3. Modificaciones del perfil costero no contempladas en concesiones existentes.
+
+## Tres distinciones importantes
+
+1. **Datos oficiales vs plano peritado**: la capa que muestra Playas Libres es la publicación oficial digital del catastro SEMARNAT — referencia válida para periodismo, investigación y denuncia ciudadana. Para procesos judiciales, la NOM-146 requiere el plano original peritado.
+2. **Registro vs concesión**: que un polígono aparezca como `TERRENOS GANADOS MAR` no implica que la modificación tenga concesión vigente.
+3. **2021 vs hoy**: el catastro es del levantamiento 2021. Modificaciones posteriores no aparecen — la denuncia 2026 sostiene que se construyó después.

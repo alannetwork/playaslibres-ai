@@ -1,0 +1,79 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 344,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -105.50617449214128,
+            20.770615194899957
+          ],
+          [
+            -105.50616845320815,
+            20.770697126057097
+          ],
+          [
+            -105.50620081261911,
+            20.77092461369757
+          ],
+          [
+            -105.50627064555263,
+            20.77063449174233
+          ],
+          [
+            -105.5062695763097,
+            20.770622388963243
+          ],
+          [
+            -105.50617449214128,
+            20.770615194899957
+          ]
+        ]
+      },
+      "properties": {
+        "OBJECTID": 344,
+        "Layer": "TERRENOS GANADOS MAR",
+        "PLANO": "F13C58-49",
+        "PROYECTO": "49 DE 105",
+        "ESCALA": "1:1000",
+        "FECHA_LEV": "2021",
+        "PROYECCION": "ITRF_2008_Z13",
+        "Shape_Length": 78.68529003440884
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 358,
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -105.5062695763097,
+            20.770622388963243
+          ],
+          [
+            -105.50627064555263,
+            20.77063449174233
+          ],
+          [
+            -105.50620081261911,
+            20.77092461369757
+          ]
+        ]
+      },
+      "properties": {
+        "OBJECTID": 358,
+        "Layer": "TERRENOS GANADOS MAR",
+        "PLANO": "F13C58-50",
+        "PROYECTO": "50 DE 105",
+        "ESCALA": "1:1000",
+        "FECHA_LEV": "2021",
+        "PROYECCION": "ITRF_2008_Z13",
+        "Shape_Length": 34.265412028401805
+      }
+    }
+  ]
+}
