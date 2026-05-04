@@ -198,6 +198,46 @@ Algoritmo:
 
 ---
 
+### `12_detect_invasiones.py`
+
+Detecta **candidatos de construcción dentro de la franja federal "playa libre"** para nutrir nuevos casos. Es una herramienta de _triage_ — la salida requiere verificación humana antes de promover a `casos/`.
+
+Pipeline:
+1. Descarga huellas de edificios desde **OpenStreetMap (Overpass API)** para el bbox indicado. Cachea la respuesta cruda en `data/raw/buildings/`.
+2. Reproyecta a UTM 13N (EPSG:32613) y descarta edificios con área < `--min-area` (default 25 m², filtra palapas y kioscos).
+3. Calcula la intersección con cada polígono de `data/processed/playa_libre_bb.geojson` (la franja de 20 m calculada en el paso 08), expandida con un buffer de `--buffer` metros (default 10 m) para absorber error de georreferencia.
+4. Clasifica severidad por porcentaje del edificio dentro de la franja:
+   - **roja**: `pct >= 50`
+   - **ámbar**: `10 <= pct < 50`, o ≥ 95 % dentro del buffer
+   - **verde**: descartado (no se publica)
+
+**Salidas**:
+- `data/processed/invasiones_candidatas.geojson` — candidatos rojo + ámbar con metadata OSM (`name`, `building`, `amenity`, etc.) y métricas (`area_total_m2`, `area_invadida_m2`, `pct_invadido`).
+- `data/processed/invasiones_candidatas.html` — reporte estático con un card por candidato: thumbnail Esri World Imagery, enlaces a Google Maps, Street View y OSM. Pensado para revisión humana en navegador.
+
+**Uso**:
+```bash
+python scripts/12_detect_invasiones.py                                    # bbox PoC: Punta de Mita
+python scripts/12_detect_invasiones.py --bbox -105.65 20.50 -105.15 20.85 # toda la bahía
+python scripts/12_detect_invasiones.py --min-area 50 --buffer 5           # más estricto
+```
+
+**Limitaciones conocidas (PoC)**:
+- Sólo OSM. La cobertura es buena en zonas turísticas pero pobre en playas remotas. La opción `--include-ms` (Microsoft Building Footprints) está reservada para una segunda iteración.
+- No procesa relaciones OSM (multipolígonos); cubre < 1 % de edificios costeros típicos.
+- Falsos positivos esperados: palapas grandes, restaurantes con palapa, infraestructura turística autorizada con concesión vigente. La revisión humana es obligatoria.
+- El polígono de franja federal viene del paso 08, que usa la línea PLEAMAR MAXIMA del catastro 2021. **No detecta** invasiones donde la pleamar real haya migrado posterior al 2021 ni donde la línea oficial nunca se haya levantado.
+
+**Workflow sugerido para nutrir casos**:
+1. Correr el detector con el bbox de interés.
+2. Abrir `invasiones_candidatas.html` en navegador.
+3. Para cada candidato rojo/ámbar: cruzar con prensa local, denuncias ciudadanas, expediente SEMARNAT (concesiones vigentes en el MapServer ZOFEMAT).
+4. Si el caso es real y verificable: crear `casos/<slug>/caso.mdx` siguiendo `casos/SCHEMA.md` y validar con `python scripts/09_validate_casos.py <slug>`.
+
+**Validación PoC** (Punta de Mita, mayo 2026): 42 candidatos detectados (27 rojos / 15 ámbar). Las dos torres de _El Faro Real I_ aparecen como rojas (72 % y 65 %), coherente con el caso `las-cocinas` ya documentado. _El Faro Real II_ aparece como ámbar (48 %).
+
+---
+
 ### `run_all.sh`
 
 Orquestador. Ejecuta todos los scripts en orden con `set -euo pipefail` (fail-fast).

@@ -1,0 +1,128 @@
+[
+  {
+    "id": "way-376733443",
+    "osm_id": "way/376733443",
+    "name": "Estrella",
+    "coords": [
+      -105.529548,
+      20.783118
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 829.8,
+    "area_invadida_m2": 487.1,
+    "pct_invadido": 58.7
+  },
+  {
+    "id": "way-359188604",
+    "osm_id": "way/359188604",
+    "name": "El Faro Real I (tower one)",
+    "coords": [
+      -105.514146,
+      20.772133
+    ],
+    "severidad": "roja",
+    "building": "hotel",
+    "area_total_m2": 568.7,
+    "area_invadida_m2": 409.3,
+    "pct_invadido": 72.0
+  },
+  {
+    "id": "way-376795584",
+    "osm_id": "way/376795584",
+    "name": null,
+    "coords": [
+      -105.518723,
+      20.771434
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 309.9,
+    "area_invadida_m2": 309.6,
+    "pct_invadido": 99.9
+  },
+  {
+    "id": "way-376701710",
+    "osm_id": "way/376701710",
+    "name": null,
+    "coords": [
+      -105.496927,
+      20.787882
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 224.0,
+    "area_invadida_m2": 150.3,
+    "pct_invadido": 67.1
+  },
+  {
+    "id": "way-376701744",
+    "osm_id": "way/376701744",
+    "name": null,
+    "coords": [
+      -105.484652,
+      20.758862
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 168.8,
+    "area_invadida_m2": 129.8,
+    "pct_invadido": 76.9
+  },
+  {
+    "id": "way-1037202085",
+    "osm_id": "way/1037202085",
+    "name": "Xiobella Luxury Hotel Boutique",
+    "coords": [
+      -105.494717,
+      20.788624
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 804.2,
+    "area_invadida_m2": 335.8,
+    "pct_invadido": 41.8
+  },
+  {
+    "id": "way-376771104",
+    "osm_id": "way/376771104",
+    "name": null,
+    "coords": [
+      -105.350733,
+      20.761067
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 824.3,
+    "area_invadida_m2": 558.3,
+    "pct_invadido": 67.7
+  },
+  {
+    "id": "way-376735410",
+    "osm_id": "way/376735410",
+    "name": null,
+    "coords": [
+      -105.363552,
+      20.762497
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 966.4,
+    "area_invadida_m2": 554.8,
+    "pct_invadido": 57.4
+  },
+  {
+    "id": "way-376609598",
+    "osm_id": "way/376609598",
+    "name": null,
+    "coords": [
+      -105.299972,
+      20.716169
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 280.6,
+    "area_invadida_m2": 184.7,
+    "pct_invadido": 65.8
+  }
+]

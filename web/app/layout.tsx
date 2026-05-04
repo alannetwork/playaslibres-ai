@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { CloudflareAnalytics } from "@/components/CloudflareAnalytics";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
@@ -60,6 +61,7 @@ export default function RootLayout({
     <html lang="es-MX">
       <body className={`${inter.className} bg-slate-950 text-slate-100`}>
         {children}
+        <CloudflareAnalytics />
       </body>
     </html>
   );

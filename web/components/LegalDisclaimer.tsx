@@ -1,19 +1,26 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { AlertTriangle, ChevronRight } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  Building2,
+  ChevronLeft,
+  Landmark,
+  Scale,
+  Waves,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogHeader,
   DialogTitle,
-  DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-const COOKIE_NAME = "playas-libres-welcome-v2";
+const COOKIE_NAME = "playas-libres-welcome-v3";
+const TOTAL_SLIDES = 4;
 
 function hasAccepted(): boolean {
   if (typeof document === "undefined") return true;
@@ -26,132 +33,217 @@ function setAccepted() {
   document.cookie = `${COOKIE_NAME}=1; path=/; max-age=${oneYear}; SameSite=Lax`;
 }
 
+type SlideId = "bienvenida" | "capas" | "fuente" | "legal";
+
+type SlideDef = {
+  id: SlideId;
+  eyebrow: string;
+  title: string;
+  icon: typeof Waves;
+  iconBg: string;
+  iconFg: string;
+  body: React.ReactNode;
+};
+
 export function LegalDisclaimer() {
   const [open, setOpen] = useState(false);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     if (!hasAccepted()) setOpen(true);
   }, []);
 
-  const accept = () => {
+  const accept = useCallback(() => {
     setAccepted();
     setOpen(false);
-  };
+  }, []);
 
-  return (
-    <Dialog open={open} onOpenChange={(v) => (v ? setOpen(v) : accept())}>
-      <DialogContent className="max-w-2xl border-slate-800 bg-slate-950 text-slate-100">
-        <DialogHeader>
-          <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-              Playas Libres · Bahía de Banderas
-            </span>
-          </div>
-          <DialogTitle className="text-2xl">
-            ¿Hasta dónde llega tu playa?
-          </DialogTitle>
-          <DialogDescription className="text-slate-300">
-            Una herramienta ciudadana para visualizar la Zona Federal
-            Marítimo-Terrestre (ZOFEMAT) en Bahía de Banderas, Nayarit.
-          </DialogDescription>
-        </DialogHeader>
+  const next = useCallback(() => {
+    setStep((s) => (s < TOTAL_SLIDES - 1 ? s + 1 : s));
+  }, []);
 
-        <div className="space-y-4 text-sm leading-relaxed text-slate-300">
-          <div>
-            <div className="mb-1 font-semibold text-slate-100">
-              Qué muestra el mapa
-            </div>
-            <ul className="ml-1 space-y-1">
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden
-                  style={{
-                    display: "inline-block",
-                    width: 12,
-                    height: 8,
-                    background: "#22c55e",
-                    opacity: 0.55,
-                    border: "1px solid #86efac",
-                    borderRadius: 2,
-                    marginTop: 6,
-                  }}
-                />
-                <span>
-                  <strong>Playa libre</strong> — la franja verde entre la
-                  pleamar máxima y la zona federal (≈ 20 m). Uso público
-                  inalienable por mandato del Art. 27 constitucional.
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden
-                  style={{
-                    display: "inline-block",
-                    width: 14,
-                    height: 0,
-                    borderTop: "3px solid #0ea5e9",
-                    marginTop: 10,
-                  }}
-                />
-                <span>
-                  <strong>Pleamar máxima</strong> — línea oficial SEMARNAT (cyan).
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span
-                  aria-hidden
-                  style={{
-                    display: "inline-block",
-                    width: 14,
-                    height: 0,
-                    borderTop: "3px solid #dc2626",
-                    marginTop: 10,
-                  }}
-                />
-                <span>
-                  <strong>Zona federal</strong> — borde interno de la
-                  ZOFEMAT (rojo).
-                </span>
-              </li>
-            </ul>
-          </div>
+  const back = useCallback(() => {
+    setStep((s) => (s > 0 ? s - 1 : s));
+  }, []);
 
-          <div className="rounded-md border border-emerald-700/40 bg-emerald-900/15 p-3">
-            <div className="mb-1 font-semibold text-emerald-200">
-              Fuente oficial: SEMARNAT
-            </div>
+  // Keyboard navigation: ← → para moverse, Enter en última slide para aceptar.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        if (step === TOTAL_SLIDES - 1) accept();
+        else next();
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        back();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open, step, next, back, accept]);
+
+  const slides: SlideDef[] = useMemo(
+    () => [
+      {
+        id: "bienvenida",
+        eyebrow: "Playas Libres · Bahía de Banderas",
+        title: "¿Hasta dónde llega tu playa?",
+        icon: Waves,
+        iconBg: "bg-sky-500/15",
+        iconFg: "text-sky-300",
+        body: (
+          <div className="space-y-3 text-slate-300">
             <p>
-              Las líneas de pleamar máxima, zona federal y demás capas
-              SEMARNAT que muestra el mapa son los{" "}
-              <strong>datos oficiales publicados por la Dirección
-              General de Zona Federal Marítimo-Terrestre y Ambientes
-              Costeros (DGZFMTAC)</strong>, descargados directamente del
-              MapServer ArcGIS de SEMARNAT. Son la referencia
-              gubernamental para Bahía de Banderas: planos a escala
-              1:1000, ITRF2008 Z13, levantamiento 2021. La franja
-              &ldquo;Playa libre&rdquo; se deriva geométricamente de
-              esos mismos datos oficiales.
+              Una herramienta ciudadana para visualizar la{" "}
+              <strong className="text-slate-100">
+                Zona Federal Marítimo-Terrestre
+              </strong>{" "}
+              (ZOFEMAT) en Bahía de Banderas, Nayarit, sobre imagen aérea
+              y datos oficiales de SEMARNAT.
+            </p>
+            <p className="text-slate-400">
+              Te tomará 30 segundos entender qué estás viendo y los límites
+              legales de la información.
             </p>
           </div>
-
-          <div>
-            <div className="mb-1 font-semibold text-slate-100">
-              Metodología
-            </div>
+        ),
+      },
+      {
+        id: "capas",
+        eyebrow: "Paso 1 · Qué muestra el mapa",
+        title: "Tres capas, un mismo objetivo",
+        icon: Building2,
+        iconBg: "bg-emerald-500/15",
+        iconFg: "text-emerald-300",
+        body: (
+          <ul className="space-y-3 text-slate-300">
+            <li className="flex items-start gap-3">
+              <span
+                aria-hidden
+                className="mt-1.5 inline-block shrink-0 rounded-sm"
+                style={{
+                  width: 16,
+                  height: 12,
+                  background: "#22c55e",
+                  opacity: 0.55,
+                  border: "1px solid #86efac",
+                }}
+              />
+              <span>
+                <strong className="text-slate-100">Playa libre</strong> —
+                franja verde entre la pleamar máxima y la zona federal
+                (≈ 20 m). Uso público inalienable por el Art. 27
+                constitucional.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span
+                aria-hidden
+                className="mt-2 inline-block shrink-0"
+                style={{
+                  width: 18,
+                  height: 0,
+                  borderTop: "3px solid #0ea5e9",
+                }}
+              />
+              <span>
+                <strong className="text-slate-100">Pleamar máxima</strong> —
+                línea oficial publicada por SEMARNAT (cyan).
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span
+                aria-hidden
+                className="mt-2 inline-block shrink-0"
+                style={{
+                  width: 18,
+                  height: 0,
+                  borderTop: "3px solid #dc2626",
+                }}
+              />
+              <span>
+                <strong className="text-slate-100">Zona federal</strong> —
+                borde interno de la ZOFEMAT (rojo), 20 m tierra adentro.
+              </span>
+            </li>
+          </ul>
+        ),
+      },
+      {
+        id: "fuente",
+        eyebrow: "Paso 2 · De dónde vienen los datos",
+        title: "Fuente oficial: SEMARNAT",
+        icon: Landmark,
+        iconBg: "bg-emerald-500/15",
+        iconFg: "text-emerald-300",
+        body: (
+          <div className="space-y-3 text-slate-300">
             <p>
-              Encima de los datos SEMARNAT mostramos imagen aérea Esri
-              World Imagery y el modelo digital de elevación Copernicus
-              30 m. La capa &ldquo;pleamar estimada&rdquo; (experimental,
-              desactivada por defecto) deriva del DEM y un modelo
-              armónico de marea.{" "}
+              Las líneas de pleamar máxima y zona federal son los{" "}
+              <strong className="text-slate-100">
+                datos oficiales publicados por la DGZFMTAC
+              </strong>{" "}
+              (Dirección General de Zona Federal Marítimo-Terrestre y
+              Ambientes Costeros), descargados directamente del MapServer
+              ArcGIS de SEMARNAT.
+            </p>
+            <dl className="grid grid-cols-3 gap-2 rounded-md border border-emerald-700/40 bg-emerald-900/15 p-3 text-xs">
+              <div>
+                <dt className="text-emerald-300/70">Escala</dt>
+                <dd className="font-semibold text-emerald-100">1:1000</dd>
+              </div>
+              <div>
+                <dt className="text-emerald-300/70">Datum</dt>
+                <dd className="font-semibold text-emerald-100">
+                  ITRF2008 Z13
+                </dd>
+              </div>
+              <div>
+                <dt className="text-emerald-300/70">Levantamiento</dt>
+                <dd className="font-semibold text-emerald-100">2021</dd>
+              </div>
+            </dl>
+            <p className="text-slate-400">
+              La franja “Playa libre” se deriva geométricamente de esos
+              mismos datos oficiales.
+            </p>
+          </div>
+        ),
+      },
+      {
+        id: "legal",
+        eyebrow: "Paso 3 · Antes de empezar",
+        title: "Descargo de responsabilidad",
+        icon: Scale,
+        iconBg: "bg-amber-500/15",
+        iconFg: "text-amber-300",
+        body: (
+          <div className="space-y-3 text-slate-300">
+            <div className="rounded-md border border-amber-700/40 bg-amber-900/15 p-3">
+              <div className="mb-1 flex items-center gap-1.5 font-semibold text-amber-200">
+                <AlertTriangle className="h-4 w-4" />
+                Alcance legal
+              </div>
+              <p className="text-sm text-amber-100/90">
+                Datos con fines{" "}
+                <strong>informativos y de transparencia</strong>. Para
+                procesos judiciales, la NOM-146-SEMARNAT-2017 requiere el
+                plano original firmado por perito autorizado y validado
+                por la DGZFMTAC. Los datos del MapServer corresponden al
+                levantamiento 2021 y pueden no reflejar cambios o
+                concesiones posteriores.
+              </p>
+            </div>
+            <p className="text-sm text-slate-400">
+              Más detalle en{" "}
               <Link
                 href="/metodologia"
                 className="text-blue-300 underline-offset-2 hover:underline"
               >
-                Detalle completo
+                Metodología
               </Link>{" "}
-              ·{" "}
+              y{" "}
               <Link
                 href="/validacion"
                 className="text-blue-300 underline-offset-2 hover:underline"
@@ -161,35 +253,120 @@ export function LegalDisclaimer() {
               .
             </p>
           </div>
+        ),
+      },
+    ],
+    [],
+  );
 
-          <div className="rounded-md border border-amber-700/40 bg-amber-900/15 p-3">
-            <div className="mb-1 flex items-center gap-1.5 font-semibold text-amber-200">
-              <AlertTriangle className="h-4 w-4" />
-              Alcance legal
-            </div>
-            <p className="text-amber-100/90">
-              Los datos son la <strong>publicación oficial</strong> de
-              SEMARNAT con fines informativos. Para procesos judiciales,
-              la NOM-146-SEMARNAT-2017 requiere el plano original
-              firmado por perito autorizado y validado por la DGZFMTAC.
-              Los datos del MapServer son del levantamiento 2021 y
-              pueden no reflejar cambios o concesiones posteriores.
-            </p>
+  const current = slides[step];
+  const Icon = current.icon;
+  const isFirst = step === 0;
+  const isLast = step === TOTAL_SLIDES - 1;
+
+  return (
+    <Dialog open={open} onOpenChange={(v) => (v ? setOpen(v) : accept())}>
+      <DialogContent
+        className="max-w-2xl gap-0 overflow-hidden border-slate-800 bg-slate-950 p-0 text-slate-100 sm:max-w-2xl"
+        showCloseButton={false}
+      >
+        {/* Cabecera con eyebrow + dots */}
+        <div className="flex items-center justify-between border-b border-slate-800 px-5 py-3">
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+            {current.eyebrow}
+          </div>
+          <div
+            className="flex items-center gap-1.5"
+            role="tablist"
+            aria-label="Progreso del tutorial"
+          >
+            {slides.map((s, i) => (
+              <button
+                key={s.id}
+                type="button"
+                role="tab"
+                aria-selected={i === step}
+                aria-label={`Ir al paso ${i + 1}: ${s.title}`}
+                onClick={() => setStep(i)}
+                className={
+                  "h-1.5 rounded-full transition-all " +
+                  (i === step
+                    ? "w-6 bg-emerald-400"
+                    : i < step
+                      ? "w-1.5 bg-emerald-700 hover:bg-emerald-500"
+                      : "w-1.5 bg-slate-700 hover:bg-slate-500")
+                }
+              />
+            ))}
           </div>
         </div>
 
-        <DialogFooter className="gap-2">
-          <Link
-            href="/acerca"
-            className="hidden h-9 items-center justify-center gap-1 rounded-md border border-slate-700 bg-slate-800 px-3 text-sm font-medium text-slate-100 hover:bg-slate-700 sm:inline-flex"
+        {/* Cuerpo */}
+        <div className="min-h-[340px] px-6 py-6">
+          <div className="mb-4 flex items-start gap-3">
+            <div
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg ${current.iconBg}`}
+            >
+              <Icon className={`h-5 w-5 ${current.iconFg}`} />
+            </div>
+            <div className="flex-1">
+              <DialogTitle className="text-2xl font-semibold leading-tight text-slate-50">
+                {current.title}
+              </DialogTitle>
+              <DialogDescription className="sr-only">
+                {current.eyebrow}
+              </DialogDescription>
+            </div>
+          </div>
+          <div
+            key={current.id}
+            className="text-sm leading-relaxed animate-in fade-in-0 duration-200"
           >
-            Más información
-            <ChevronRight className="h-4 w-4" />
-          </Link>
-          <Button onClick={accept} className="w-full sm:w-auto">
-            Entendido, abrir el mapa
-          </Button>
-        </DialogFooter>
+            {current.body}
+          </div>
+        </div>
+
+        {/* Pie con navegación */}
+        <div className="flex items-center justify-between gap-2 border-t border-slate-800 bg-slate-900/40 px-5 py-3">
+          <div className="flex items-center gap-2">
+            {!isFirst && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={back}
+                className="text-slate-300 hover:bg-slate-800 hover:text-slate-100"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Atrás
+              </Button>
+            )}
+            {!isLast && (
+              <button
+                type="button"
+                onClick={accept}
+                className="text-xs text-slate-500 underline-offset-2 hover:text-slate-300 hover:underline"
+              >
+                Saltar tutorial
+              </button>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="hidden text-xs text-slate-500 sm:inline">
+              {step + 1} / {TOTAL_SLIDES}
+            </span>
+            {isLast ? (
+              <Button onClick={accept} size="lg">
+                Entendido, abrir el mapa
+              </Button>
+            ) : (
+              <Button onClick={next} size="lg">
+                Continuar
+                <ArrowRight className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -9,6 +9,7 @@ import { TideSlider } from "./TideSlider";
 import { LegalDisclaimer } from "./LegalDisclaimer";
 import { Attribution } from "./Attribution";
 import { InfoPanel } from "./InfoPanel";
+import { BrandMark } from "./BrandMark";
 import type { Caso, EstadoCaso } from "@/lib/casos";
 
 export type SentinelBase = {
@@ -16,6 +17,18 @@ export type SentinelBase = {
   datetime: string;
   cloud_cover: number;
   visual_cog: string;
+};
+
+export type Candidato = {
+  id: string;
+  osm_id: string;
+  name: string | null;
+  coords: [number, number];
+  severidad: "roja" | "ambar";
+  building: string;
+  area_total_m2: number;
+  area_invadida_m2: number;
+  pct_invadido: number;
 };
 
 const MARKER_BY_ESTADO: Record<
@@ -89,11 +102,13 @@ export function Map() {
   const [sentinel, setSentinel] = useState<SentinelBase | null>(null);
   const [casos, setCasos] = useState<Caso[]>([]);
   const [activeCaso, setActiveCaso] = useState<Caso | null>(null);
+  const [candidatos, setCandidatos] = useState<Candidato[]>([]);
 
   const [layers, setLayers] = useState<LayerVisibility>({
     sentinel: true,
     zofemat: true,
     pleamar: false, // experimental — ver /validacion
+    candidatos: true, // candidatos automáticos visibles por default (PoC)
     zofematSub: {
       playaLibre: true,
       pleamarMaxima: true,
@@ -117,6 +132,10 @@ export function Map() {
       .then((r) => (r.ok ? r.json() : []))
       .then(setCasos)
       .catch(() => setCasos([]));
+    fetch("/data/candidatos.json")
+      .then((r) => (r.ok ? r.json() : []))
+      .then(setCandidatos)
+      .catch(() => setCandidatos([]));
   }, []);
 
   // Inicialización del mapa (una sola vez).
@@ -587,6 +606,90 @@ export function Map() {
     };
   }, []);
 
+  // Markers de candidatos automáticos. Estilo distinto (aro hueco amarillo
+  // con "?") para no confundirlos con casos verificados. Se muestran sólo
+  // cuando el toggle "candidatos" está activo.
+  const candidatoMarkersRef = useRef<maplibregl.Marker[]>([]);
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    candidatoMarkersRef.current.forEach((m) => m.remove());
+    candidatoMarkersRef.current = [];
+    if (!layers.candidatos || candidatos.length === 0) return;
+
+    candidatos.forEach((c) => {
+      const wrapper = document.createElement("div");
+      wrapper.style.cssText = "cursor: pointer;";
+      const inner = document.createElement("button");
+      inner.title = `${c.name ?? "(sin nombre)"} — candidato automático sin verificar`;
+      inner.innerHTML = "?";
+      inner.style.cssText = `
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border-radius: 9999px;
+        border: 3px dashed #f59e0b;
+        background: rgba(15, 23, 42, 0.7);
+        color: #fcd34d;
+        font-size: 14px;
+        font-weight: 800;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0,0,0,.4);
+        transition: transform .15s ease;
+        transform: scale(1);
+      `.replace(/\s+/g, " ");
+      inner.addEventListener("mouseenter", () => {
+        inner.style.transform = "scale(1.2)";
+      });
+      inner.addEventListener("mouseleave", () => {
+        inner.style.transform = "scale(1)";
+      });
+      inner.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        const html = `
+          <div style="font-size:12px;line-height:1.5;max-width:240px;">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+              <span style="background:#f59e0b;color:#0f172a;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Sin verificar</span>
+              <span style="font-weight:600;">${c.name ?? "(sin nombre)"}</span>
+            </div>
+            <div style="color:#64748b;margin-bottom:6px;font-size:11px;">
+              Candidato automático detectado por intersección OSM × franja federal.
+            </div>
+            <div><span style="color:#94a3b8;">Tipo OSM:</span> ${c.building}</div>
+            <div><span style="color:#94a3b8;">Área del edificio:</span> ${Math.round(c.area_total_m2)} m²</div>
+            <div><span style="color:#94a3b8;">Dentro de franja federal:</span> ${Math.round(c.area_invadida_m2)} m² (${c.pct_invadido.toFixed(1)}%)</div>
+            <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;">
+              <a href="https://www.openstreetmap.org/${c.osm_id}" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:underline;font-size:11px;">Ver en OpenStreetMap →</a>
+            </div>
+            <div style="margin-top:6px;padding:6px 8px;background:rgba(245,158,11,.1);border-left:3px solid #f59e0b;color:#fef3c7;font-size:10px;line-height:1.4;">
+              <strong>No es un caso confirmado.</strong> Pendiente de verificación periodística.
+              Puede ser una construcción autorizada con concesión vigente o un error de georreferencia.
+            </div>
+          </div>`;
+        new maplibregl.Popup({ closeButton: true, maxWidth: "260px" })
+          .setLngLat(c.coords)
+          .setHTML(html)
+          .addTo(map);
+      });
+      wrapper.appendChild(inner);
+      const marker = new maplibregl.Marker({ element: wrapper, anchor: "center" })
+        .setLngLat(c.coords)
+        .addTo(map);
+      candidatoMarkersRef.current.push(marker);
+    });
+  }, [candidatos, layers.candidatos]);
+
+  useEffect(() => {
+    return () => {
+      candidatoMarkersRef.current.forEach((m) => m.remove());
+      candidatoMarkersRef.current = [];
+    };
+  }, []);
+
   const onTideChange = useCallback((h: number) => setTideHeight(h), []);
 
   const headerLabel = useMemo(() => {
@@ -621,8 +724,8 @@ export function Map() {
       />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-2 pr-12 sm:p-4 sm:pr-16">
-        <div className="pointer-events-auto inline-flex w-fit max-w-full items-center gap-2 rounded-md bg-slate-950/80 px-2.5 py-1 text-[11px] font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur sm:px-3 sm:py-1.5 sm:text-xs">
-          <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
+        <div className="pointer-events-auto inline-flex w-fit max-w-full items-center gap-2 rounded-md bg-slate-950/80 px-2 py-1 text-[11px] font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur sm:px-2.5 sm:py-1.5 sm:text-xs">
+          <BrandMark size={18} className="shrink-0" title="Playas Libres" />
           <span className="truncate">
             <span className="sm:hidden">Playas Libres</span>
             <span className="hidden sm:inline">

@@ -23,16 +23,36 @@ export default function OpengraphImage() {
             "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
           <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: 999,
-              background: "#34d399",
+              width: 56,
+              height: 56,
+              borderRadius: 12,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background:
+                "linear-gradient(135deg, #0c4a6e 0%, #082f49 100%)",
+              boxShadow: "0 0 0 1px rgba(255,255,255,0.06)",
             }}
-          />
-          <div style={{ fontSize: 26, opacity: 0.9 }}>Playas Libres</div>
+          >
+            <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+              <path
+                d="M 6 22 Q 19 12 32 22 T 58 22"
+                stroke="#fbbf24"
+                strokeWidth="4"
+                strokeLinecap="round"
+              />
+              <path
+                d="M 6 42 Q 19 32 32 42 T 58 42"
+                stroke="#34d399"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
+          <div style={{ fontSize: 30, opacity: 0.9 }}>Playas Libres</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>

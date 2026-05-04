@@ -6,19 +6,34 @@ const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1400, height: 1100 } });
 const page = await ctx.newPage();
 
-// 1. Cargar SIN cookie de welcome → debe aparecer modal
+// 1. Cargar SIN cookie de welcome → debe aparecer tutorial (4 slides)
 await page.goto(URL, { waitUntil: "networkidle", timeout: 60_000 });
-await page.waitForSelector('button:has-text("Entendido")', { timeout: 30_000 });
+await page.waitForSelector('button:has-text("Continuar")', { timeout: 30_000 });
 
-const welcomeOpen = await page.evaluate(() =>
-  document.body.innerText.includes("¿Hasta dónde llega tu playa?") &&
+const slide1Visible = await page.evaluate(() =>
+  document.body.innerText.includes("¿Hasta dónde llega tu playa?"),
+);
+console.log("Slide 1 visible (bienvenida):", slide1Visible);
+await page.screenshot({ path: "/tmp/playas_welcome_1.png" });
+
+// Avanzar slides 1 → 4 con el botón Continuar
+for (let i = 1; i <= 3; i++) {
+  await page.evaluate(() => {
+    const btn = [...document.querySelectorAll("button")].find((b) =>
+      b.textContent?.trim().startsWith("Continuar"),
+    );
+    btn?.click();
+  });
+  await page.waitForTimeout(250);
+  await page.screenshot({ path: `/tmp/playas_welcome_${i + 1}.png` });
+}
+
+const slide4Visible = await page.evaluate(() =>
   document.body.innerText.includes("Descargo de responsabilidad"),
 );
-console.log("Modal bienvenida visible:", welcomeOpen);
+console.log("Slide 4 visible (legal):", slide4Visible);
 
-await page.screenshot({ path: "/tmp/playas_welcome.png" });
-
-// Aceptar (dialog ocupa más alto que viewport — clickear por JS)
+// Aceptar tutorial
 await page.evaluate(() => {
   const btn = [...document.querySelectorAll("button")].find((b) =>
     b.textContent?.includes("Entendido"),

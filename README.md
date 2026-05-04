@@ -1,6 +1,10 @@
-# Playas Libres
+<p align="center">
+  <img src="docs/brand/icon.svg" width="96" height="96" alt="Playas Libres" />
+</p>
 
-> *La playa es de todos sólo si todos podemos verla.*
+<h1 align="center">Playas Libres</h1>
+
+<p align="center"><em>La playa es de todos sólo si todos podemos verla.</em></p>
 
 Plataforma ciudadana para visualizar la **Zona Federal Marítimo-Terrestre** (ZOFEMAT) en Bahía de Banderas, Nayarit, sobre imagen aérea de alta resolución. Reorganiza datos públicos del catastro oficial de SEMARNAT — que existen pero casi nadie consulta — en un mapa interactivo verificable.
 
@@ -17,6 +21,7 @@ Surge a raíz del conflicto en **Playa Las Cocinas** (Punta de Mita, abril 2026)
 | **[docs/DATASETS.md](docs/DATASETS.md)** | Inventario de todos los datasets con licencias, fuentes, vigencia, incertidumbres |
 | **[scripts/README.md](scripts/README.md)** | Referencia del pipeline Python: qué hace cada script, en qué orden, qué produce |
 | **[data/README.md](data/README.md)** | Qué hay en cada subcarpeta de datos |
+| **[docs/CLOUDFLARE_SETUP.md](docs/CLOUDFLARE_SETUP.md)** | Setup operativo de Cloudflare: DNS, WAF, rate limiting, cache de PMTiles, Web Analytics sin cookies |
 | **CLAUDE.md** | Guía operativa para futuras instancias de Claude Code |
 | **RESUMEN_SESION.md** | Bitácora de la sesión inicial de construcción |
 
@@ -57,7 +62,9 @@ playaslibres-ai/
 ├── docs/
 │   ├── PROCESO.md               ← el storytelling técnico
 │   ├── CASO_LAS_COCINAS.md      ← el dossier del caso
-│   └── DATASETS.md              ← inventario de fuentes
+│   ├── DATASETS.md              ← inventario de fuentes
+│   └── brand/
+│       └── icon.svg             ← logo (favicon, OG, header)
 ├── scripts/
 │   ├── README.md                ← referencia del pipeline
 │   ├── 01_download_zofemat.py

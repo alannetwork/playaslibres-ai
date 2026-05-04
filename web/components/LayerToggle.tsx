@@ -19,6 +19,7 @@ export type LayerVisibility = {
   sentinel: boolean;
   zofemat: boolean;
   pleamar: boolean; // pleamar estimada (experimental)
+  candidatos: boolean; // candidatos automáticos sin verificar
   zofematSub: ZofematSubLayers;
 };
 
@@ -259,6 +260,22 @@ export function LayerToggle({
             >
               ver validación
             </a>
+          </label>
+
+          <label className="flex cursor-pointer flex-wrap items-center gap-2">
+            <Switch
+              checked={value.candidatos}
+              onCheckedChange={(v) =>
+                onChange({ ...value, candidatos: Boolean(v) })
+              }
+            />
+            <span className="font-medium">Candidatos automáticos</span>
+            <span className="rounded bg-amber-500/15 px-1 py-0.5 text-[9px] font-semibold uppercase text-amber-300">
+              Sin verificar
+            </span>
+            <span className="hidden text-[10px] text-slate-500 sm:inline">
+              Detectados por OSM × franja federal
+            </span>
           </label>
         </div>
 
