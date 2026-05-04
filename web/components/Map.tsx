@@ -129,6 +129,7 @@ export function Map() {
       style: BASEMAP_STYLE,
       center: CENTER,
       zoom: INITIAL_ZOOM,
+      maxZoom: 20,
       maxBounds: MAX_BOUNDS,
       attributionControl: false,
     });
@@ -150,6 +151,34 @@ export function Map() {
     }
 
     map.on("load", () => {
+      // Tooltip helpers — clamp position al viewport para no salirse en mobile.
+      const showTooltip = (
+        e: MapMouseEvent & { features?: maplibregl.MapGeoJSONFeature[] },
+        title: string,
+        body: string,
+      ) => {
+        const tip = tooltipRef.current;
+        if (!tip) return;
+        tip.innerHTML = `<div style="font-weight:600;margin-bottom:2px;">${title}</div><div style="color:#cbd5e1;">${body}</div>`;
+        tip.style.display = "block";
+        // Posicionar tentativo y luego clamp al viewport del canvas.
+        tip.style.left = e.point.x + 14 + "px";
+        tip.style.top = e.point.y + 14 + "px";
+        const cw = map.getCanvas().clientWidth;
+        const ch = map.getCanvas().clientHeight;
+        const r = tip.getBoundingClientRect();
+        if (r.right > cw - 8) {
+          tip.style.left = Math.max(8, cw - r.width - 8) + "px";
+        }
+        if (r.bottom > ch - 8) {
+          tip.style.top = Math.max(8, ch - r.height - 8) + "px";
+        }
+      };
+      const hideTooltip = () => {
+        const tip = tooltipRef.current;
+        if (tip) tip.style.display = "none";
+      };
+
       // Playa Libre (polígono pintado, debajo de las líneas).
       map.addSource("playa-libre", {
         type: "vector",
@@ -180,17 +209,16 @@ export function Map() {
         "mousemove",
         "playa-libre-fill",
         (e) => {
-          const tip = tooltipRef.current;
-          if (!tip) return;
-          tip.innerHTML = `<div style="font-weight:600;margin-bottom:2px;">Playa libre (ZOFEMAT)</div><div style="color:#cbd5e1;">Franja pública de 20 m entre la pleamar máxima y la línea de zona federal. Uso público inalienable (Art. 27 Const., LGBN art. 119).</div>`;
-          tip.style.display = "block";
-          tip.style.left = e.point.x + 14 + "px";
-          tip.style.top = e.point.y + 14 + "px";
+          showTooltip(
+            e,
+            "Playa libre (ZOFEMAT)",
+            "Franja pública de 20 m entre la pleamar máxima y la línea de zona federal. Uso público inalienable (Art. 27 Const., LGBN art. 119).",
+          );
           map.getCanvas().style.cursor = "help";
         },
       );
       map.on("mouseleave", "playa-libre-fill", () => {
-        if (tooltipRef.current) tooltipRef.current.style.display = "none";
+        hideTooltip();
         map.getCanvas().style.cursor = "";
       });
 
@@ -237,23 +265,6 @@ export function Map() {
           width: 3,
         },
       ];
-      const showTooltip = (
-        e: MapMouseEvent & { features?: maplibregl.MapGeoJSONFeature[] },
-        title: string,
-        body: string,
-      ) => {
-        const tip = tooltipRef.current;
-        if (!tip) return;
-        tip.innerHTML = `<div style="font-weight:600;margin-bottom:2px;">${title}</div><div style="color:#cbd5e1;">${body}</div>`;
-        tip.style.display = "block";
-        tip.style.left = e.point.x + 14 + "px";
-        tip.style.top = e.point.y + 14 + "px";
-      };
-      const hideTooltip = () => {
-        const tip = tooltipRef.current;
-        if (tip) tip.style.display = "none";
-      };
-
       for (const sl of subLayers) {
         map.addLayer({
           id: sl.id,
@@ -396,7 +407,10 @@ export function Map() {
           type: "raster",
           tiles: [ESRI_WORLD_IMAGERY],
           tileSize: 256,
-          maxzoom: 19,
+          // Esri tiene cobertura nativa hasta ~z18 en esta zona; con maxzoom
+          // bajo, MapLibre hace overzoom (upscale) en vez de pedir tiles
+          // inexistentes que devuelven el placeholder "Map data not yet available".
+          maxzoom: 18,
           attribution: "© Esri World Imagery",
         });
         map.addLayer(
@@ -602,20 +616,27 @@ export function Map() {
 
       <div
         ref={tooltipRef}
-        className="pointer-events-none absolute z-30 max-w-xs rounded-md border border-slate-700 bg-slate-950/95 px-2.5 py-1.5 text-[11px] leading-snug text-slate-100 shadow-xl backdrop-blur"
+        className="pointer-events-none absolute z-30 max-w-[min(20rem,calc(100vw-1rem))] rounded-md border border-slate-700 bg-slate-950/95 px-2.5 py-1.5 text-[11px] leading-snug text-slate-100 shadow-xl backdrop-blur"
         style={{ display: "none" }}
       />
 
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-3 sm:p-4">
-        <div className="pointer-events-auto inline-flex w-fit items-center gap-2 rounded-md bg-slate-950/80 px-3 py-1.5 text-xs font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur">
-          <span className="h-2 w-2 rounded-full bg-emerald-400" />
-          Playas Libres · Bahía de Banderas
-          <span className="text-slate-400">· {headerLabel}</span>
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-2 pr-12 sm:p-4 sm:pr-16">
+        <div className="pointer-events-auto inline-flex w-fit max-w-full items-center gap-2 rounded-md bg-slate-950/80 px-2.5 py-1 text-[11px] font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur sm:px-3 sm:py-1.5 sm:text-xs">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-400" />
+          <span className="truncate">
+            <span className="sm:hidden">Playas Libres</span>
+            <span className="hidden sm:inline">
+              Playas Libres · Bahía de Banderas
+            </span>
+          </span>
+          <span className="hidden truncate text-slate-400 md:inline">
+            · {headerLabel}
+          </span>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 p-3 sm:p-4">
-        <div className="pointer-events-auto flex flex-wrap items-end gap-2">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 p-2 sm:p-4">
+        <div className="pointer-events-auto flex w-full flex-wrap items-end gap-2">
           <LayerToggle
             value={layers}
             onChange={setLayers}

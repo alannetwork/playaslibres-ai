@@ -156,7 +156,7 @@ export function LayerToggle({
   }
 
   return (
-    <Card className="w-full max-w-md border-slate-700 bg-slate-950/90 text-slate-100 shadow-xl backdrop-blur">
+    <Card className="w-full max-w-[calc(100vw-1rem)] border-slate-700 bg-slate-950/90 text-slate-100 shadow-xl backdrop-blur sm:max-w-md">
       <div className="flex flex-col gap-2 p-3">
         <div className="flex items-center justify-between gap-3">
           <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
@@ -215,11 +215,11 @@ export function LayerToggle({
               </button>
             </div>
             {zofematDetail && value.zofemat && (
-              <div className="ml-9 mt-1 flex flex-col gap-1 border-l border-slate-700 pl-3">
+              <div className="ml-6 mt-1 flex flex-col gap-1 border-l border-slate-700 pl-2 sm:ml-9 sm:pl-3">
                 {ZOFEMAT_SUBS.map((sub) => (
                   <label
                     key={sub.key}
-                    className="flex cursor-pointer items-center gap-2 text-xs"
+                    className="flex cursor-pointer flex-wrap items-center gap-2 text-xs"
                   >
                     <Switch
                       checked={value.zofematSub[sub.key]}

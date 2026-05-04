@@ -155,7 +155,7 @@ export function TideSlider({ onHeightChange }: Props) {
   });
 
   return (
-    <Card className="border-slate-700 bg-slate-950/85 text-slate-100 shadow-xl backdrop-blur">
+    <Card className="w-full max-w-[calc(100vw-1rem)] border-slate-700 bg-slate-950/85 text-slate-100 shadow-xl backdrop-blur sm:max-w-lg">
       <div className="flex flex-col gap-2 p-3">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div className="flex items-baseline gap-2">
