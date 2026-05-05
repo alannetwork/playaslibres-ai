@@ -9,6 +9,7 @@ import {
   ChevronLeft,
   Landmark,
   Scale,
+  Sparkles,
   Waves,
 } from "lucide-react";
 
@@ -33,7 +34,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 const COOKIE_NAME = "playas-libres-welcome-v3";
-const TOTAL_SLIDES = 4;
+const TOTAL_SLIDES = 5;
 
 function hasAccepted(): boolean {
   if (typeof document === "undefined") return true;
@@ -46,7 +47,7 @@ function setAccepted() {
   document.cookie = `${COOKIE_NAME}=1; path=/; max-age=${oneYear}; SameSite=Lax`;
 }
 
-type SlideId = "bienvenida" | "capas" | "fuente" | "legal";
+type SlideId = "bienvenida" | "capas" | "fuente" | "legal" | "futuro";
 
 type SlideDef = {
   id: SlideId;
@@ -280,6 +281,25 @@ export function LegalDisclaimer() {
           </div>
         ),
       },
+      {
+        id: "futuro",
+        eyebrow: "Próximamente",
+        title: "Pronto disponible para todo México",
+        icon: Sparkles,
+        iconBg: "bg-amber-500/15",
+        iconFg: "text-amber-300",
+        body: (
+          <div className="space-y-3 text-slate-300">
+            <p>
+              Empezamos por Bahía de Banderas porque ahí está el caso de
+              Playa Las Cocinas, pero la <strong className="text-slate-100">
+              ZOFEMAT existe en cada playa del país</strong>. Estamos trabajando
+              para extender el mapa a todo el litoral mexicano: Pacífico,
+              Golfo y Caribe.
+            </p>
+          </div>
+        ),
+      },
     ],
     [],
   );
@@ -382,7 +402,7 @@ export function LegalDisclaimer() {
             </span>
             {isLast ? (
               <Button onClick={accept} size="lg">
-                Entendido, abrir el mapa
+                Abrir el mapa
               </Button>
             ) : (
               <Button onClick={next} size="lg">
