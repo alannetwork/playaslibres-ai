@@ -7,7 +7,7 @@ import { CloudflareAnalytics } from "@/components/CloudflareAnalytics";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://playas-libres.mx";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://playaslibres.ai";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

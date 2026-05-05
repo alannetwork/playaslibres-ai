@@ -1,0 +1,13 @@
+name = "playaslibres-mirror"
+main = "src/index.js"
+compatibility_date = "2026-05-01"
+account_id = "aa1bfe7d5c6437d6f466a3e6d95f462e"
+
+# R2 bucket binding: el código accede al bucket vía env.MIRROR
+[[r2_buckets]]
+binding = "MIRROR"
+bucket_name = "delimitacioneszofemat"
+
+# Defaults útiles
+[observability]
+enabled = true

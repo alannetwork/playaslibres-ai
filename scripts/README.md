@@ -42,6 +42,7 @@ Descarga la capa **220 `B_BANDERAS_2021`** del MapServer ArcGIS de SEMARNAT.
 
 - Endpoint: `https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/Delimitaciones_ZOFEMAT/MapServer/220/query`
 - Si la capa 220 retorna 404, lista las capas (`?f=json`) y busca por nombre `BANDERAS`.
+- **Fallback automático al mirror R2**: si SEMARNAT está caído o inalcanzable, baja la capa BB del espejo público (ver `scripts/mirror/`). Override con env var `ZOFEMAT_MIRROR_BASE` para apuntar a otro hosting.
 - Reproyecta a EPSG:4326 con `ogr2ogr`.
 
 **Salidas**:
@@ -278,6 +279,51 @@ Esto re-descarga las fuentes externas y recalcula todo. Útil cuando SEMARNAT pu
    }
    ```
 3. Para incluir dossier completo, agregar también `evidence` (con OBJECTIDs SEMARNAT) y `legal_refs`. Ver el ejemplo de Las Cocinas.
+
+## Mirror cívico ZOFEMAT (`scripts/mirror/`)
+
+Pipeline separada que mantiene un espejo público de las **414 delimitaciones ZOFEMAT** publicadas por SEMARNAT en `geomaticasig1.semarnat.gob.mx`. Sirve para resiliencia (que el proyecto siga corriendo si SEMARNAT cae) y reproducibilidad.
+
+### Scripts
+
+| Script | Propósito |
+|---|---|
+| `00_inventory.py` | Crawler paralelo del MapServer (folders → services → layers). Produce `data/processed/semarnat-mirror/inventory.json`. |
+| `01_download.py` | Descarga capas vectoriales en paralelo con shrink adaptativo de page_size. Idempotente con `--skip-existing`. |
+| `01b_retry_objectid.py` | Fallback feature-por-feature (`?objectIds=N`) para capas con respuestas JSON gigantes/truncadas. |
+| `02_upload_r2.sh` | Sincroniza a R2 con `rclone sync`, sube manifest filtrado y `MIRROR_README.md`. |
+| `03_make_index_html.py` | Genera `index.html` navegable agrupado por estado → municipio. |
+| `04_classify_by_state.py` | Spatial join contra polígonos INEGI (capa `Estados` de SEMARNAT) para asignar `state_name`/`state_code` a cada capa. |
+| `05_capture_hierarchy.py` | Captura la estructura `parent`/`subLayers` del MapServer y la añade al inventory. |
+
+### URL pública del mirror
+
+`https://pub-9b3bf89406004e68bcece40ce907acaf.r2.dev/semarnat/index.html`
+
+Ejemplo capa Bahía de Banderas:
+```
+https://pub-9b3bf89406004e68bcece40ce907acaf.r2.dev/semarnat/zofem/zofem__Delimitaciones_ZOFEMAT/0220__B_BANDERAS_2021.geojson.gz
+```
+
+### Worker (auto-resolución de `/semarnat/`)
+
+Ver [`infra/worker/`](../infra/worker/). R2 público no autosirve `index.html` cuando se navega a la "carpeta", el Worker resuelve eso + maneja CORS y range requests. Deploy: `cd infra/worker && npx wrangler deploy`.
+
+### Pipeline completo (todo el país)
+
+```bash
+source .venv/bin/activate
+python scripts/mirror/00_inventory.py --workers 12
+python scripts/mirror/01_download.py  --workers 8 --only-folder zofem
+# Si quedan errores residuales (geometrías extremas):
+python scripts/mirror/01b_retry_objectid.py --layer-url ... --layer-id ... --layer-name ...
+python scripts/mirror/04_classify_by_state.py
+python scripts/mirror/05_capture_hierarchy.py
+python scripts/mirror/03_make_index_html.py
+bash   scripts/mirror/02_upload_r2.sh
+```
+
+---
 
 ## Tests de QA con Playwright
 

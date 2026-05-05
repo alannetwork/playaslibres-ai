@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import {
   Building2,
   Camera,
+  Check,
   ExternalLink,
   FileText,
   MapPin,
   Newspaper,
   Satellite,
   Scale,
+  Share2,
 } from "lucide-react";
 import {
   Dialog,
@@ -61,6 +64,36 @@ export function InfoPanel({
   caso: Caso | null;
   onClose: () => void;
 }) {
+  const [copied, setCopied] = useState(false);
+
+  async function onShare() {
+    if (!caso) return;
+    const url = `${window.location.origin}/c/${caso.slug}`;
+    const shareData = {
+      title: `Playas Libres · ${caso.name}`,
+      text: caso.summary,
+      url,
+    };
+    try {
+      const nav = navigator as Navigator & {
+        share?: (data: ShareData) => Promise<void>;
+      };
+      if (typeof nav.share === "function") {
+        await nav.share(shareData);
+        return;
+      }
+    } catch {
+      // El usuario canceló el share nativo; caemos al copy-to-clipboard.
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.prompt("Copia este enlace:", url);
+    }
+  }
+
   return (
     <Dialog open={!!caso} onOpenChange={(v) => (!v ? onClose() : null)}>
       <DialogContent className="max-h-[90vh] max-w-2xl overflow-y-auto border-slate-800 bg-slate-950 text-slate-100">
@@ -82,7 +115,27 @@ export function InfoPanel({
                   </span>
                 )}
               </div>
-              <DialogTitle className="text-xl">{caso.name}</DialogTitle>
+              <div className="flex items-start justify-between gap-3">
+                <DialogTitle className="text-xl">{caso.name}</DialogTitle>
+                <button
+                  type="button"
+                  onClick={onShare}
+                  className="mt-0.5 inline-flex shrink-0 items-center gap-1.5 rounded-md border border-blue-500/40 bg-blue-500/10 px-2.5 py-1 text-xs font-medium text-blue-200 transition hover:bg-blue-500/20"
+                  title={`Compartir /c/${caso.slug}`}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-3.5 w-3.5" />
+                      Copiado
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="h-3.5 w-3.5" />
+                      Compartir
+                    </>
+                  )}
+                </button>
+              </div>
               <DialogDescription className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
                 <span className="inline-flex items-center gap-1">
                   <MapPin className="h-3 w-3" />

@@ -16,7 +16,7 @@
 | Estado | Nayarit |
 | Hoja topográfica SEMARNAT | F13C58 (planos 49 y 50) |
 
-[Ver en Google Maps](https://maps.app.goo.gl/6NfvSTRzPWNTHF7u5) · [Ver en Playas Libres](https://playas-libres.mx/)
+[Ver en Google Maps](https://maps.app.goo.gl/6NfvSTRzPWNTHF7u5) · [Ver en Playas Libres](https://playaslibres.ai/)
 
 ---
 
@@ -137,7 +137,7 @@ jq '[.features[] | select(.properties.OBJECTID == 344 or .properties.OBJECTID ==
 # 3. O abrir el GeoJSON en QGIS, ArcGIS, geojson.io, kepler.gl, etc.
 ```
 
-O simplemente abrir el sitio: https://playas-libres.mx/, hacer click en el marcador ⚠ amarillo de Las Cocinas, y desde el panel verificar contra cualquiera de los 3 links a SEMARNAT, los 2 links de prensa y los 3 links de marco legal.
+O simplemente abrir el sitio: https://playaslibres.ai/, hacer click en el marcador ⚠ amarillo de Las Cocinas, y desde el panel verificar contra cualquiera de los 3 links a SEMARNAT, los 2 links de prensa y los 3 links de marco legal.
 
 ---
 

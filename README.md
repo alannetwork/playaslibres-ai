@@ -67,7 +67,7 @@ playaslibres-ai/
 │       └── icon.svg             ← logo (favicon, OG, header)
 ├── scripts/
 │   ├── README.md                ← referencia del pipeline
-│   ├── 01_download_zofemat.py
+│   ├── 01_download_zofemat.py   ← con fallback al mirror R2 si SEMARNAT cae
 │   ├── 02_download_dem.py
 │   ├── 03_find_sentinel.py
 │   ├── 03b_download_sentinel_cog.py
@@ -77,7 +77,10 @@ playaslibres-ai/
 │   ├── 06_compute_floodlines.py
 │   ├── 07_validate.py
 │   ├── 08_compute_playa_libre.py
-│   └── run_all.sh
+│   ├── run_all.sh
+│   └── mirror/                  ← pipeline del mirror cívico ZOFEMAT (ver scripts/README.md)
+├── infra/
+│   └── worker/                  ← Cloudflare Worker que sirve el mirror con auto-index
 ├── data/
 │   ├── README.md                ← qué hay aquí
 │   ├── raw/

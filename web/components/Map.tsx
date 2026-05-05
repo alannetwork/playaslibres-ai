@@ -93,7 +93,12 @@ function whenStyleReady(map: MlMap, fn: () => void) {
 
 export type SatelliteSource = "esri" | "sentinel";
 
-export function Map() {
+export type MapProps = {
+  /** Si se pasa, al cargar el mapa se hace flyTo al caso y se abre el panel. */
+  focusSlug?: string;
+};
+
+export function Map({ focusSlug }: MapProps = {}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MlMap | null>(null);
@@ -103,6 +108,7 @@ export function Map() {
   const [casos, setCasos] = useState<Caso[]>([]);
   const [activeCaso, setActiveCaso] = useState<Caso | null>(null);
   const [candidatos, setCandidatos] = useState<Candidato[]>([]);
+  const focusedRef = useRef(false);
 
   const [layers, setLayers] = useState<LayerVisibility>({
     sentinel: true,
@@ -689,6 +695,45 @@ export function Map() {
       candidatoMarkersRef.current = [];
     };
   }, []);
+
+  // Foco automático cuando llega `focusSlug` (deep-link `/c/<slug>`).
+  // Espera a que el mapa esté listo y los casos cargados.
+  useEffect(() => {
+    if (focusedRef.current) return;
+    if (!focusSlug) return;
+    const map = mapRef.current;
+    if (!map || casos.length === 0) return;
+    const caso = casos.find((c) => c.slug === focusSlug);
+    if (!caso) return;
+    focusedRef.current = true;
+    if (caso.coords_bbox) {
+      const [w, s, e, n] = caso.coords_bbox;
+      map.fitBounds(
+        [
+          [w, s],
+          [e, n],
+        ],
+        { padding: 80, maxZoom: 18, duration: 800 },
+      );
+    } else {
+      map.flyTo({ center: caso.coords, zoom: 17, duration: 800 });
+    }
+    setActiveCaso(caso);
+  }, [focusSlug, casos, styleReady]);
+
+  // Sincroniza la URL del browser al abrir/cerrar un caso, sin recargar.
+  // Permite copiar el link directo desde la home cuando se abre un marker.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (activeCaso) {
+      const target = `/c/${activeCaso.slug}`;
+      if (window.location.pathname !== target) {
+        window.history.replaceState({}, "", target);
+      }
+    } else if (window.location.pathname.startsWith("/c/")) {
+      window.history.replaceState({}, "", "/");
+    }
+  }, [activeCaso]);
 
   const onTideChange = useCallback((h: number) => setTideHeight(h), []);
 

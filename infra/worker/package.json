@@ -1,0 +1,14 @@
+{
+  "name": "playaslibres-mirror-worker",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cloudflare Worker que sirve el mirror SEMARNAT desde R2 con auto-index y CORS.",
+  "scripts": {
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "tail": "npx wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}

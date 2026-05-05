@@ -8,7 +8,9 @@ Uso:
 
 from __future__ import annotations
 
+import gzip
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -24,6 +26,14 @@ MAPSERVER = (
 )
 TARGET_LAYER_ID = 220
 TARGET_LAYER_NAME_HINT = "BANDERAS"
+
+# Mirror público en R2 (fallback cuando SEMARNAT está caído).
+# Override con la env var ZOFEMAT_MIRROR_BASE si se aloja en otro dominio.
+MIRROR_BASE = os.environ.get(
+    "ZOFEMAT_MIRROR_BASE",
+    "https://pub-9b3bf89406004e68bcece40ce907acaf.r2.dev/semarnat",
+)
+MIRROR_LAYER_PATH = "zofem/zofem__Delimitaciones_ZOFEMAT/0220__B_BANDERAS_2021.geojson.gz"
 
 
 def fetch_geojson(layer_id: int) -> dict:
@@ -102,18 +112,54 @@ def feature_collection_stats(fc: dict) -> tuple[int, list[float], float]:
     return n, bbox, total_area_ha
 
 
+def fetch_from_mirror() -> dict | None:
+    """Fallback: baja la capa Bahía de Banderas desde el mirror R2.
+
+    Devuelve None si no es alcanzable. Útil cuando SEMARNAT está caído
+    o el endpoint cambió.
+    """
+    if "PLACEHOLDER" in MIRROR_BASE:
+        return None
+    url = f"{MIRROR_BASE}/{MIRROR_LAYER_PATH}"
+    print(f"Fallback mirror: GET {url}")
+    try:
+        r = requests.get(url, timeout=120)
+        r.raise_for_status()
+        payload = gzip.decompress(r.content)
+        return json.loads(payload)
+    except Exception as e:
+        print(f"  ! mirror también falló: {e}", file=sys.stderr)
+        return None
+
+
 def main() -> None:
     RAW.parent.mkdir(parents=True, exist_ok=True)
     PROCESSED.parent.mkdir(parents=True, exist_ok=True)
 
+    fc: dict | None = None
     try:
         fc = fetch_geojson(TARGET_LAYER_ID)
     except requests.HTTPError as e:
         if e.response is not None and e.response.status_code == 404:
-            layer_id = find_layer_by_name()
-            fc = fetch_geojson(layer_id)
+            try:
+                layer_id = find_layer_by_name()
+                fc = fetch_geojson(layer_id)
+            except Exception as ee:
+                print(f"  ! SEMARNAT no responde: {ee}", file=sys.stderr)
         else:
-            raise
+            print(f"  ! SEMARNAT HTTP {e}", file=sys.stderr)
+    except requests.RequestException as e:
+        print(f"  ! SEMARNAT inalcanzable: {e}", file=sys.stderr)
+
+    if fc is None:
+        print("Intentando mirror público...")
+        fc = fetch_from_mirror()
+        if fc is None:
+            sys.exit(
+                "No fue posible obtener la capa ni desde SEMARNAT ni desde el mirror.\n"
+                "Revisar manualmente: " + MAPSERVER + "?f=json\n"
+                "O setear ZOFEMAT_MIRROR_BASE con un endpoint alternativo."
+            )
 
     if not fc.get("features"):
         sys.exit("Respuesta sin features. Revisar manualmente.")

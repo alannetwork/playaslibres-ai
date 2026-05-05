@@ -5,7 +5,7 @@ analítica sin cookies, mitigación de DDoS/bots, rate limiting y cache agresivo
 para los `.pmtiles`.
 
 > **Antes de empezar.** Necesitas (1) acceso al registrador del dominio
-> `playas-libres.mx` para cambiar nameservers, (2) una cuenta gratis en
+> `playaslibres.ai` para cambiar nameservers, (2) una cuenta gratis en
 > [cloudflare.com](https://cloudflare.com), (3) la URL de hosting actual
 > — este proyecto se despliega en **AWS Amplify Hosting** (ver `amplify.yml`),
 > que expone un dominio del tipo `main.dXXXXXX.amplifyapp.com`.
@@ -14,14 +14,14 @@ para los `.pmtiles`.
 
 ## 1. Activar Cloudflare como proxy DNS
 
-1. En el dashboard de Cloudflare → **Add a site** → `playas-libres.mx` → plan
+1. En el dashboard de Cloudflare → **Add a site** → `playaslibres.ai` → plan
    **Free**.
 2. Cloudflare escanea registros DNS existentes. Verifica que estén:
    - `CNAME` raíz (o `www`) apuntando al dominio Amplify del proyecto
      (`main.dXXXXXX.amplifyapp.com`). En Amplify → **Domain management** →
      "Add domain" — el wizard genera el certificado ACM y los registros DNS
      a copiar.
-   - Si Amplify pide validación con un registro `_<hash>.playas-libres.mx`
+   - Si Amplify pide validación con un registro `_<hash>.playaslibres.ai`
      CNAME, créalo en Cloudflare con la nube **gris ⚪** (DNS only) — es solo
      validación, no debe ir proxied.
    - Cualquier `MX` / `TXT` (SPF, DKIM) que ya uses para email — todos en
@@ -32,7 +32,7 @@ para los `.pmtiles`.
 4. Copia los dos nameservers que te asigna Cloudflare y cámbialos en tu
    registrador. Propagación: minutos a 24 h.
 5. Espera al email "Cloudflare is now protecting your site". Verifica en
-   `dig NS playas-libres.mx`.
+   `dig NS playaslibres.ai`.
 
 ---
 
@@ -69,7 +69,7 @@ Dashboard → **Security**:
   |---|--------|-----------|--------|
   | 1 | Bloquear países con tráfico de scraping conocido (opcional) | `(ip.geoip.country in {"RU" "CN" "KP"})` | Managed Challenge |
   | 2 | Permitir Googlebot/Bingbot legítimos | `(cf.client.bot)` | Skip → Bot Fight Mode |
-  | 3 | Bloquear hotlink a tiles desde dominios ajenos | `(http.request.uri.path contains "/tiles/" and not http.referer contains "playas-libres.mx" and not http.referer eq "")` | Block |
+  | 3 | Bloquear hotlink a tiles desde dominios ajenos | `(http.request.uri.path contains "/tiles/" and not http.referer contains "playaslibres.ai" and not http.referer eq "")` | Block |
 
   > Las dos primeras son opcionales y dependen de quién quieras dejar entrar.
   > La #3 evita que terceros se cuelguen de tu CDN para servir los PMTiles
@@ -88,7 +88,7 @@ Dashboard → **Security → Rate limiting rules** → **Create rule**:
 
 - **Nombre**: `general-throttle`
 - **Match**: `(http.request.uri.path eq "/")` o más amplio
-  `(http.host eq "playas-libres.mx")`.
+  `(http.host eq "playaslibres.ai")`.
 - **Counting characteristics**: IP address.
 - **Period**: 10 segundos.
 - **Requests**: 20.
@@ -178,23 +178,23 @@ Después del setup, valida con:
 
 ```bash
 # DNS apunta a Cloudflare
-dig +short playas-libres.mx
+dig +short playaslibres.ai
 # Debe devolver IPs en rangos 104.16.x.x / 172.64.x.x / 198.41.x.x
 
 # HTTPS forzado
-curl -I http://playas-libres.mx
+curl -I http://playaslibres.ai
 # Debe devolver 301 → https://...
 
 # HSTS activo
-curl -sI https://playas-libres.mx | grep -i strict-transport
+curl -sI https://playaslibres.ai | grep -i strict-transport
 # strict-transport-security: max-age=15552000; includeSubDomains
 
 # Tiles cacheados en edge
-curl -sI https://playas-libres.mx/tiles/playa_libre_bb.pmtiles | grep -i cf-cache
+curl -sI https://playaslibres.ai/tiles/playa_libre_bb.pmtiles | grep -i cf-cache
 # cf-cache-status: HIT (tras la segunda request)
 
 # Beacon de analítica cargando
-# Abrir https://playas-libres.mx en incógnito + DevTools, buscar:
+# Abrir https://playaslibres.ai en incógnito + DevTools, buscar:
 # - GET https://static.cloudflareinsights.com/beacon.min.js → 200
 # - POST https://cloudflareinsights.com/cdn-cgi/rum → 204
 ```
