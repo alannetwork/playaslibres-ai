@@ -534,6 +534,76 @@ export default function MetodologiaPage() {
             </table>
           </div>
         </div>
+
+        {/* 9. Detección automatizada de candidatos */}
+        <div>
+          <h2 className="mb-2 text-xl font-semibold text-slate-100">
+            9. Detección automatizada de candidatos a invasión
+          </h2>
+          <p className="text-sm">
+            Cruzamos las geometrías de OpenStreetMap (huellas de
+            edificios) sobre la franja oficial de zona federal de
+            SEMARNAT, en metros reales (proyectadas a UTM 13N), y
+            calculamos el porcentaje de cada construcción que cae
+            dentro de la franja.
+          </p>
+          <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm">
+            <li>
+              Descargamos las huellas <code>building=*</code> de
+              Bahía de Banderas vía Overpass API.
+            </li>
+            <li>
+              Reproyectamos a UTM 13N e intersectamos con la franja
+              ZOFEMAT pública (capa 220 SEMARNAT).
+            </li>
+            <li>
+              Para cada huella calculamos{" "}
+              <code>area_invadida_m2 / area_total_m2</code>.
+            </li>
+            <li>
+              Clasificamos por severidad: <strong>roja</strong> ≥ 50%
+              dentro de la zona federal,{" "}
+              <strong>ámbar</strong> entre el umbral mínimo y 50%.
+            </li>
+          </ol>
+          <div className="mt-3 rounded-md border border-amber-700/40 bg-amber-900/15 p-3 text-sm">
+            <strong className="text-amber-200">
+              Cifras y alcance.
+            </strong>{" "}
+            El análisis preliminar identificó cerca de{" "}
+            <strong>107 construcciones candidatas</strong> dentro o
+            sobre la ZOFEMAT en toda la bahía. Esta primera versión
+            publica las <strong>47 con mayor confianza geométrica</strong>{" "}
+            (25 rojas con ≥ 50% de su área dentro de zona federal y 22
+            ámbar con afectación parcial significativa). El resto se
+            está revisando manualmente — geometrías OSM de baja
+            calidad, construcciones demolidas, falsos positivos en
+            muelles y palapas — y se irá publicando en lotes conforme
+            se validen.
+          </div>
+          <p className="mt-2 text-sm">
+            <strong>
+              Cada candidato es una señal para investigación, no una
+              acusación.
+            </strong>{" "}
+            La huella OSM puede estar mal alineada, la construcción
+            puede contar con concesión vigente, o la franja SEMARNAT
+            del levantamiento 2021 puede no reflejar deslindes
+            posteriores. Antes de tratar un caso como invasión hay
+            que cruzar con el plano peritado original, el catastro
+            municipal y el expediente de concesiones de la DGZFMTAC.
+          </p>
+          <p className="mt-2 text-xs text-slate-400">
+            Datos:{" "}
+            <a
+              href="/data/candidatos.json"
+              className="text-blue-300 underline-offset-2 hover:underline"
+            >
+              candidatos.json
+            </a>{" "}
+            · Script: <code>scripts/12_detect_invasiones.py</code>.
+          </p>
+        </div>
       </section>
     </main>
   );

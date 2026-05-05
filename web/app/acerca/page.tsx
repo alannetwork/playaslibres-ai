@@ -29,11 +29,25 @@ export default function AcercaPage() {
         <h2 className="text-xl font-semibold text-slate-100">Qué es</h2>
         <p>
           Playas Libres muestra sobre un mapa satelital de Bahía de Banderas
-          dos cosas: una estimación visual aproximada de la línea de pleamar,
-          y la delimitación oficial de la Zona Federal Marítimo-Terrestre
-          (ZOFEMAT) publicada por SEMARNAT. La idea es que cualquier persona
-          pueda comparar visualmente las dos capas y entender hasta dónde, en
-          principio, llega la franja federal en una playa.
+          la delimitación oficial de la Zona Federal Marítimo-Terrestre
+          (ZOFEMAT) publicada por SEMARNAT y, sobre ella, una capa de{" "}
+          <strong>candidatos automatizados a invasión</strong> derivada de
+          cruzar las huellas de construcciones de OpenStreetMap contra la
+          franja oficial. Cualquier persona puede ver hasta dónde llega la
+          zona federal en una playa concreta y qué construcciones aparecen,
+          según los datos públicos, dentro o sobre esa franja.
+        </p>
+        <p>
+          El mapa principal usa{" "}
+          <strong>tres capas oficiales SEMARNAT</strong>: la línea de pleamar
+          máxima, la línea de zona federal (20 m tierra adentro de la
+          pleamar) y la franja entre ambas, que es la “playa libre” de uso
+          público. De forma opcional puede activarse una{" "}
+          <strong>capa experimental de pleamar estimada</strong> a partir de
+          imágenes Sentinel-2, modelo digital de elevación Copernicus DEM y
+          un modelo de marea (FES2014 cuando está disponible, fallback
+          armónico en esta versión); esa capa sirve solo como contexto
+          visual y nunca como referencia legal.
         </p>
 
         <h2 className="text-xl font-semibold text-slate-100">Por qué existe</h2>
@@ -52,6 +66,34 @@ export default function AcercaPage() {
           de la DGZFMTAC. Sirve para hacer visible un conflicto y para
           empoderar al periodismo, a abogados y a las propias comunidades
           costeras.
+        </p>
+
+        <h2 className="text-xl font-semibold text-slate-100">
+          Detecciones automatizadas
+        </h2>
+        <p>
+          El análisis preliminar de OpenStreetMap × ZOFEMAT identificó cerca
+          de <strong>107 construcciones candidatas</strong> dentro o sobre la
+          zona federal en toda Bahía de Banderas. Esta primera versión
+          publica las <strong>47 con mayor confianza geométrica</strong>{" "}
+          (25 rojas con ≥ 50% de su área dentro de zona federal y 22 ámbar
+          con afectación parcial). El resto se está revisando manualmente
+          y se irá publicando en lotes conforme se validen las geometrías.
+        </p>
+        <p>
+          <strong>
+            Cada candidato es una señal para investigación, no una acusación.
+          </strong>{" "}
+          La huella de OSM puede estar mal alineada, la construcción puede
+          contar con concesión vigente, o el levantamiento SEMARNAT 2021
+          puede no reflejar deslindes posteriores. Detalles en{" "}
+          <Link
+            href="/metodologia"
+            className="text-blue-300 underline-offset-2 hover:underline"
+          >
+            Metodología (sección 9)
+          </Link>
+          .
         </p>
 
         <h2 className="text-xl font-semibold text-slate-100">Marco legal</h2>
@@ -80,8 +122,13 @@ export default function AcercaPage() {
         </ul>
 
         <h2 className="text-xl font-semibold text-slate-100">
-          Limitaciones técnicas (honestas)
+          Limitaciones de la capa experimental de pleamar estimada
         </h2>
+        <p className="text-sm text-slate-400">
+          Estas limitaciones aplican únicamente a la capa opcional de
+          pleamar estimada (off por defecto), no a las capas oficiales de
+          SEMARNAT.
+        </p>
         <ul className="list-disc space-y-2 pl-5">
           <li>
             La capa de pleamar estimada usa un DEM de 30 m de resolución y un
@@ -100,12 +147,51 @@ export default function AcercaPage() {
             simplificada (M2/S2/K1/O1) con constantes de tabla, y queda
             marcado en el JSON como <code>harmonic_fallback</code>.
           </li>
+        </ul>
+        <p className="text-sm text-slate-400">
+          Nota sobre las capas oficiales: lo que mostramos es la publicación
+          de SEMARNAT en su ArcGIS REST al momento del último{" "}
+          <em>snapshot</em>. Si SEMARNAT actualiza la capa, este sitio queda
+          desactualizado hasta que regeneremos los tiles.
+        </p>
+
+        <h2 className="text-xl font-semibold text-slate-100">
+          Correcciones y derecho de réplica
+        </h2>
+        <p>
+          Si una persona, empresa, autoridad o cualquier interesado considera
+          que la información publicada en este sitio sobre un caso, una
+          construcción o una concesión es errónea, incompleta o injusta, puede
+          solicitar corrección o ejercer su derecho de réplica escribiendo a{" "}
+          <a
+            href="mailto:hola@cloudmex.io"
+            className="text-blue-300 underline-offset-2 hover:underline"
+          >
+            hola@cloudmex.io
+          </a>
+          . Nos comprometemos a:
+        </p>
+        <ul className="list-disc space-y-2 pl-5">
+          <li>Responder en un plazo prudente.</li>
           <li>
-            La capa ZOFEMAT que se muestra es la publicada por SEMARNAT en su
-            ArcGIS REST. Si SEMARNAT actualiza la capa, este sitio queda
-            desactualizado hasta que regeneremos los tiles.
+            Corregir cualquier error verificado contra fuente oficial o
+            documentación pertinente, dejando registro público del cambio.
+          </li>
+          <li>
+            Publicar la réplica fundamentada junto al caso impugnado cuando
+            la persona o entidad interesada así lo solicite.
+          </li>
+          <li>
+            Retirar de la capa de candidatos cualquier construcción que
+            acredite concesión vigente, deslinde posterior al levantamiento
+            2021 u otra circunstancia que descarte la presunción de invasión.
           </li>
         </ul>
+        <p>
+          Las correcciones técnicas (errores de geometría, scripts, datos)
+          también pueden discutirse abiertamente vía{" "}
+          <em>issues</em> en el repositorio de GitHub.
+        </p>
 
         <h2 className="text-xl font-semibold text-slate-100">Cómo contribuir</h2>
         <p>

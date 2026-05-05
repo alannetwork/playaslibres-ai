@@ -11,6 +11,7 @@ import { Attribution } from "./Attribution";
 import { InfoPanel } from "./InfoPanel";
 import { BrandMark } from "./BrandMark";
 import { ShareViewButton } from "./ShareViewButton";
+import { CasosListButton } from "./CasosListButton";
 import type { Caso, EstadoCaso } from "@/lib/casos";
 
 export type SentinelBase = {
@@ -90,6 +91,33 @@ const ZOFEMAT_DESCRIPTIONS: Record<string, string> = {
 function whenStyleReady(map: MlMap, fn: () => void) {
   if (map.isStyleLoaded()) fn();
   else map.once("load", fn);
+}
+
+function openCandidatoPopup(map: MlMap, c: Candidato) {
+  const html = `
+    <div style="font-size:12px;line-height:1.5;max-width:240px;">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+        <span style="background:#f59e0b;color:#0f172a;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Sin verificar</span>
+        <span style="font-weight:600;">${c.name ?? "(sin nombre)"}</span>
+      </div>
+      <div style="color:#64748b;margin-bottom:6px;font-size:11px;">
+        Candidato automático detectado por intersección OSM × franja federal.
+      </div>
+      <div><span style="color:#94a3b8;">Tipo OSM:</span> ${c.building}</div>
+      <div><span style="color:#94a3b8;">Área del edificio:</span> ${Math.round(c.area_total_m2)} m²</div>
+      <div><span style="color:#94a3b8;">Dentro de franja federal:</span> ${Math.round(c.area_invadida_m2)} m² (${c.pct_invadido.toFixed(1)}%)</div>
+      <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;">
+        <a href="https://www.openstreetmap.org/${c.osm_id}" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:underline;font-size:11px;">Ver en OpenStreetMap →</a>
+      </div>
+      <div style="margin-top:6px;padding:6px 8px;background:rgba(245,158,11,.1);border-left:3px solid #f59e0b;color:#fef3c7;font-size:10px;line-height:1.4;">
+        <strong>No es un caso confirmado.</strong> Pendiente de verificación periodística.
+        Puede ser una construcción autorizada con concesión vigente o un error de georreferencia.
+      </div>
+    </div>`;
+  new maplibregl.Popup({ closeButton: true, maxWidth: "260px" })
+    .setLngLat(c.coords)
+    .setHTML(html)
+    .addTo(map);
 }
 
 /** Hash estilo OSM/MapLibre: `#zoom/lat/lng` (ej. `#15/20.7714/-105.5085`). */
@@ -680,30 +708,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       });
       inner.addEventListener("click", (ev) => {
         ev.stopPropagation();
-        const html = `
-          <div style="font-size:12px;line-height:1.5;max-width:240px;">
-            <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-              <span style="background:#f59e0b;color:#0f172a;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Sin verificar</span>
-              <span style="font-weight:600;">${c.name ?? "(sin nombre)"}</span>
-            </div>
-            <div style="color:#64748b;margin-bottom:6px;font-size:11px;">
-              Candidato automático detectado por intersección OSM × franja federal.
-            </div>
-            <div><span style="color:#94a3b8;">Tipo OSM:</span> ${c.building}</div>
-            <div><span style="color:#94a3b8;">Área del edificio:</span> ${Math.round(c.area_total_m2)} m²</div>
-            <div><span style="color:#94a3b8;">Dentro de franja federal:</span> ${Math.round(c.area_invadida_m2)} m² (${c.pct_invadido.toFixed(1)}%)</div>
-            <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;">
-              <a href="https://www.openstreetmap.org/${c.osm_id}" target="_blank" rel="noopener" style="color:#60a5fa;text-decoration:underline;font-size:11px;">Ver en OpenStreetMap →</a>
-            </div>
-            <div style="margin-top:6px;padding:6px 8px;background:rgba(245,158,11,.1);border-left:3px solid #f59e0b;color:#fef3c7;font-size:10px;line-height:1.4;">
-              <strong>No es un caso confirmado.</strong> Pendiente de verificación periodística.
-              Puede ser una construcción autorizada con concesión vigente o un error de georreferencia.
-            </div>
-          </div>`;
-        new maplibregl.Popup({ closeButton: true, maxWidth: "260px" })
-          .setLngLat(c.coords)
-          .setHTML(html)
-          .addTo(map);
+        openCandidatoPopup(map, c);
       });
       wrapper.appendChild(inner);
       const marker = new maplibregl.Marker({ element: wrapper, anchor: "center" })
@@ -795,6 +800,32 @@ export function Map({ focusSlug }: MapProps = {}) {
 
   const onTideChange = useCallback((h: number) => setTideHeight(h), []);
 
+  const onCasoSelect = useCallback((c: Caso) => {
+    const map = mapRef.current;
+    if (map) {
+      if (c.coords_bbox) {
+        const [w, s, e, n] = c.coords_bbox;
+        map.fitBounds(
+          [
+            [w, s],
+            [e, n],
+          ],
+          { padding: 80, maxZoom: 18, duration: 800 },
+        );
+      } else {
+        map.flyTo({ center: c.coords, zoom: 17, duration: 800 });
+      }
+    }
+    setActiveCaso(c);
+  }, []);
+
+  const onCandidatoSelect = useCallback((c: Candidato) => {
+    const map = mapRef.current;
+    if (!map) return;
+    map.flyTo({ center: c.coords, zoom: 18, duration: 800 });
+    map.once("moveend", () => openCandidatoPopup(map, c));
+  }, []);
+
   const headerLabel = useMemo(() => {
     if (satSource === "esri") return "Esri World Imagery";
     if (sentinel) {
@@ -852,7 +883,13 @@ export function Map({ focusSlug }: MapProps = {}) {
             satSource={satSource}
             onSatSourceChange={setSatSource}
           />
-          <TideSlider onHeightChange={onTideChange} />
+          {layers.pleamar && <TideSlider onHeightChange={onTideChange} />}
+          <CasosListButton
+            casos={casos}
+            candidatos={candidatos}
+            onCasoSelect={onCasoSelect}
+            onCandidatoSelect={onCandidatoSelect}
+          />
           <Attribution />
         </div>
       </div>

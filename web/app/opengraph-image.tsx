@@ -67,8 +67,8 @@ export default function OpengraphImage() {
             ¿Hasta dónde llega tu playa?
           </div>
           <div style={{ fontSize: 30, color: "#cbd5e1", maxWidth: 950 }}>
-            Mapa público de Bahía de Banderas: pleamar estimada vs ZOFEMAT
-            oficial.
+            ZOFEMAT oficial, playa libre y detecciones automatizadas de
+            invasión en Bahía de Banderas.
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export default function OpengraphImage() {
             color: "#94a3b8",
           }}
         >
-          <div>Sentinel-2 · Copernicus DEM · FES2014 · SEMARNAT</div>
+          <div>SEMARNAT · OpenStreetMap · Detección automatizada</div>
           <div>Punta de Mita, Nayarit · 2026</div>
         </div>
       </div>

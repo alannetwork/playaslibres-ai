@@ -607,61 +607,46 @@
   {
     "id": "manual-manual-004",
     "osm_id": "manual/manual-004",
-    "name": "Punta de Mita — vivienda costa este (curva NE)",
+    "name": "Punta de Mita — construcción curva sobre franja",
     "coords": [
-      -105.5294,
-      20.7644
+      -105.53325,
+      20.7579
     ],
     "severidad": "ambar",
     "building": "yes",
-    "area_total_m2": 4147.4,
-    "area_invadida_m2": 1536.9,
-    "pct_invadido": 37.1,
+    "area_total_m2": 10369.0,
+    "area_invadida_m2": 3072.6,
+    "pct_invadido": 29.6,
     "source": "manual"
   },
   {
     "id": "manual-manual-005",
     "osm_id": "manual/manual-005",
-    "name": "Punta de Mita — vivienda costa norte (centro)",
+    "name": "Costa NE — construcción frente a playa",
     "coords": [
-      -105.5252,
-      20.7676
+      -105.5021,
+      20.7679
     ],
     "severidad": "ambar",
     "building": "yes",
     "area_total_m2": 4147.3,
-    "area_invadida_m2": 1579.0,
-    "pct_invadido": 38.1,
+    "area_invadida_m2": 716.2,
+    "pct_invadido": 17.3,
     "source": "manual"
   },
   {
     "id": "manual-manual-006",
     "osm_id": "manual/manual-006",
-    "name": "Punta de Mita — vivienda costa oeste",
+    "name": "Costa central — construcción frente a playa",
     "coords": [
-      -105.5375,
-      20.7644
+      -105.46665,
+      20.75615
     ],
     "severidad": "ambar",
     "building": "yes",
-    "area_total_m2": 4147.4,
-    "area_invadida_m2": 1358.2,
-    "pct_invadido": 32.7,
-    "source": "manual"
-  },
-  {
-    "id": "manual-manual-007",
-    "osm_id": "manual/manual-007",
-    "name": "Punta de Mita — vivienda sur del campo",
-    "coords": [
-      -105.5377,
-      20.7676
-    ],
-    "severidad": "ambar",
-    "building": "yes",
-    "area_total_m2": 4147.3,
-    "area_invadida_m2": 935.5,
-    "pct_invadido": 22.6,
+    "area_total_m2": 5645.3,
+    "area_invadida_m2": 1693.7,
+    "pct_invadido": 30.0,
     "source": "manual"
   }
 ]

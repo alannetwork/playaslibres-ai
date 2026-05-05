@@ -68,19 +68,19 @@
       "type": "Feature",
       "properties": {
         "manual_id": "manual-004",
-        "name": "Punta de Mita — vivienda costa este (curva NE)",
+        "name": "Punta de Mita — construcción curva sobre franja",
         "building": "yes",
-        "source": "trazo_manual_esri_z1663",
-        "notes": "Cluster de villas en la curva NE de la península, sobre la franja federal."
+        "source": "marca_usuario_z1793",
+        "notes": "Edificio curvo + linear marcado a mano por usuario en captura 2026-05-05. La franja oficial termina justo arriba; el polígono se extiende al norte para registrar la intersección."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-105.52970, 20.76470],
-          [-105.52910, 20.76470],
-          [-105.52910, 20.76410],
-          [-105.52970, 20.76410],
-          [-105.52970, 20.76470]
+          [-105.53400, 20.75820],
+          [-105.53250, 20.75820],
+          [-105.53250, 20.75760],
+          [-105.53400, 20.75760],
+          [-105.53400, 20.75820]
         ]]
       }
     },
@@ -88,19 +88,19 @@
       "type": "Feature",
       "properties": {
         "manual_id": "manual-005",
-        "name": "Punta de Mita — vivienda costa norte (centro)",
+        "name": "Costa NE — construcción frente a playa",
         "building": "yes",
-        "source": "trazo_manual_esri_z1663",
-        "notes": "Construcciones al norte del campo de golf, sobre la franja federal."
+        "source": "marca_usuario_z1816",
+        "notes": "Construcción con alberca/deck sobre franja federal, marcada a mano por usuario en captura 2026-05-05."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-105.52550, 20.76790],
-          [-105.52490, 20.76790],
-          [-105.52490, 20.76730],
-          [-105.52550, 20.76730],
-          [-105.52550, 20.76790]
+          [-105.50240, 20.76820],
+          [-105.50180, 20.76820],
+          [-105.50180, 20.76760],
+          [-105.50240, 20.76760],
+          [-105.50240, 20.76820]
         ]]
       }
     },
@@ -108,39 +108,19 @@
       "type": "Feature",
       "properties": {
         "manual_id": "manual-006",
-        "name": "Punta de Mita — vivienda costa oeste",
+        "name": "Costa central — construcción frente a playa",
         "building": "yes",
-        "source": "trazo_manual_esri_z1663",
-        "notes": "Cluster de villas en la costa oeste de la península, sobre la franja federal."
+        "source": "marca_usuario_z1786",
+        "notes": "Cluster de construcciones (con alberca) sobre franja federal. Marcado a mano por usuario en captura 2026-05-05 (#17.86/20.7555/-105.4663)."
       },
       "geometry": {
         "type": "Polygon",
         "coordinates": [[
-          [-105.53780, 20.76470],
-          [-105.53720, 20.76470],
-          [-105.53720, 20.76410],
-          [-105.53780, 20.76410],
-          [-105.53780, 20.76470]
-        ]]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "manual_id": "manual-007",
-        "name": "Punta de Mita — vivienda sur del campo",
-        "building": "yes",
-        "source": "trazo_manual_esri_z1663",
-        "notes": "Construcciones al sur del campo de golf, sobre la franja federal."
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [[
-          [-105.53800, 20.76790],
-          [-105.53740, 20.76790],
-          [-105.53740, 20.76730],
-          [-105.53800, 20.76730],
-          [-105.53800, 20.76790]
+          [-105.46700, 20.75650],
+          [-105.46630, 20.75650],
+          [-105.46630, 20.75580],
+          [-105.46700, 20.75580],
+          [-105.46700, 20.75650]
         ]]
       }
     }

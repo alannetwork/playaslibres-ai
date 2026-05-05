@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s · Playas Libres",
   },
   description:
-    "Mapa público de Bahía de Banderas que compara la pleamar estimada (Sentinel-2 + DEM + FES2014) contra la ZOFEMAT oficial publicada por SEMARNAT. Herramienta de transparencia ciudadana, no plano legal.",
+    "Mapa público de Bahía de Banderas con la ZOFEMAT oficial publicada por SEMARNAT, la franja de playa libre de uso público y la detección automatizada de construcciones que invaden la zona federal. Herramienta de transparencia ciudadana, no plano legal.",
   keywords: [
     "ZOFEMAT",
     "playa pública",
@@ -35,13 +35,13 @@ export const metadata: Metadata = {
     siteName: "Playas Libres",
     title: "Playas Libres — ¿Hasta dónde llega tu playa?",
     description:
-      "Compara la línea estimada de pleamar contra la ZOFEMAT oficial en Bahía de Banderas.",
+      "ZOFEMAT oficial, playa libre y detecciones automatizadas de invasión en Bahía de Banderas.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Playas Libres",
     description:
-      "Mapa público de Bahía de Banderas: pleamar estimada vs ZOFEMAT oficial.",
+      "Mapa público de la zona federal en Bahía de Banderas con detecciones de posibles invasiones.",
   },
 };
 
