@@ -124,5 +124,544 @@
     "area_total_m2": 280.6,
     "area_invadida_m2": 184.7,
     "pct_invadido": 65.8
+  },
+  {
+    "id": "way-376710323",
+    "osm_id": "way/376710323",
+    "name": null,
+    "coords": [
+      -105.427063,
+      20.744409
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 694.9,
+    "area_invadida_m2": 382.8,
+    "pct_invadido": 55.1
+  },
+  {
+    "id": "way-359188605",
+    "osm_id": "way/359188605",
+    "name": "El Faro Real I (tower two)",
+    "coords": [
+      -105.51453,
+      20.772073
+    ],
+    "severidad": "roja",
+    "building": "hotel",
+    "area_total_m2": 568.9,
+    "area_invadida_m2": 368.3,
+    "pct_invadido": 64.7
+  },
+  {
+    "id": "way-377538428",
+    "osm_id": "way/377538428",
+    "name": null,
+    "coords": [
+      -105.370253,
+      20.755691
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 378.5,
+    "area_invadida_m2": 361.1,
+    "pct_invadido": 95.4
+  },
+  {
+    "id": "way-376735382",
+    "osm_id": "way/376735382",
+    "name": null,
+    "coords": [
+      -105.367323,
+      20.758093
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 319.7,
+    "area_invadida_m2": 257.4,
+    "pct_invadido": 80.5
+  },
+  {
+    "id": "way-376795615",
+    "osm_id": "way/376795615",
+    "name": null,
+    "coords": [
+      -105.518988,
+      20.771473
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 259.9,
+    "area_invadida_m2": 254.3,
+    "pct_invadido": 97.8
+  },
+  {
+    "id": "way-376732664",
+    "osm_id": "way/376732664",
+    "name": null,
+    "coords": [
+      -105.368698,
+      20.757225
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 277.9,
+    "area_invadida_m2": 219.6,
+    "pct_invadido": 79.0
+  },
+  {
+    "id": "way-376590397",
+    "osm_id": "way/376590397",
+    "name": null,
+    "coords": [
+      -105.315928,
+      20.732873
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 285.1,
+    "area_invadida_m2": 199.7,
+    "pct_invadido": 70.0
+  },
+  {
+    "id": "way-376795604",
+    "osm_id": "way/376795604",
+    "name": null,
+    "coords": [
+      -105.518395,
+      20.771477
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 188.3,
+    "area_invadida_m2": 188.3,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-377280055",
+    "osm_id": "way/377280055",
+    "name": null,
+    "coords": [
+      -105.373578,
+      20.752002
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 245.9,
+    "area_invadida_m2": 181.2,
+    "pct_invadido": 73.7
+  },
+  {
+    "id": "way-376740368",
+    "osm_id": "way/376740368",
+    "name": null,
+    "coords": [
+      -105.385059,
+      20.745217
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 257.9,
+    "area_invadida_m2": 174.6,
+    "pct_invadido": 67.7
+  },
+  {
+    "id": "way-376735381",
+    "osm_id": "way/376735381",
+    "name": null,
+    "coords": [
+      -105.367169,
+      20.757804
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 210.8,
+    "area_invadida_m2": 173.9,
+    "pct_invadido": 82.5
+  },
+  {
+    "id": "way-376732663",
+    "osm_id": "way/376732663",
+    "name": null,
+    "coords": [
+      -105.36962,
+      20.756642
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 166.7,
+    "area_invadida_m2": 166.7,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376795585",
+    "osm_id": "way/376795585",
+    "name": null,
+    "coords": [
+      -105.519538,
+      20.771329
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 164.5,
+    "area_invadida_m2": 164.5,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376795617",
+    "osm_id": "way/376795617",
+    "name": null,
+    "coords": [
+      -105.520102,
+      20.771156
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 302.1,
+    "area_invadida_m2": 160.6,
+    "pct_invadido": 53.2
+  },
+  {
+    "id": "way-376795607",
+    "osm_id": "way/376795607",
+    "name": null,
+    "coords": [
+      -105.518598,
+      20.771529
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 161.4,
+    "area_invadida_m2": 159.9,
+    "pct_invadido": 99.1
+  },
+  {
+    "id": "way-377291666",
+    "osm_id": "way/377291666",
+    "name": null,
+    "coords": [
+      -105.37207,
+      20.751343
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 164.9,
+    "area_invadida_m2": 151.6,
+    "pct_invadido": 91.9
+  },
+  {
+    "id": "way-376732666",
+    "osm_id": "way/376732666",
+    "name": null,
+    "coords": [
+      -105.368974,
+      20.757119
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 257.4,
+    "area_invadida_m2": 142.8,
+    "pct_invadido": 55.5
+  },
+  {
+    "id": "way-376735472",
+    "osm_id": "way/376735472",
+    "name": null,
+    "coords": [
+      -105.421916,
+      20.741776
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 200.3,
+    "area_invadida_m2": 140.0,
+    "pct_invadido": 69.9
+  },
+  {
+    "id": "way-359204029",
+    "osm_id": "way/359204029",
+    "name": "Rocio",
+    "coords": [
+      -105.519402,
+      20.771441
+    ],
+    "severidad": "roja",
+    "building": "commercial",
+    "area_total_m2": 191.4,
+    "area_invadida_m2": 138.2,
+    "pct_invadido": 72.2
+  },
+  {
+    "id": "way-377280110",
+    "osm_id": "way/377280110",
+    "name": null,
+    "coords": [
+      -105.373594,
+      20.75176
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 144.8,
+    "area_invadida_m2": 126.6,
+    "pct_invadido": 87.4
+  },
+  {
+    "id": "way-376583879",
+    "osm_id": "way/376583879",
+    "name": null,
+    "coords": [
+      -105.328284,
+      20.745962
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 169.3,
+    "area_invadida_m2": 117.5,
+    "pct_invadido": 69.4
+  },
+  {
+    "id": "way-376795597",
+    "osm_id": "way/376795597",
+    "name": null,
+    "coords": [
+      -105.519744,
+      20.771275
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 109.1,
+    "area_invadida_m2": 109.1,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376732311",
+    "osm_id": "way/376732311",
+    "name": null,
+    "coords": [
+      -105.532193,
+      20.778006
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 104.7,
+    "area_invadida_m2": 104.7,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376795612",
+    "osm_id": "way/376795612",
+    "name": null,
+    "coords": [
+      -105.518058,
+      20.771463
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 102.7,
+    "area_invadida_m2": 102.7,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376617525",
+    "osm_id": "way/376617525",
+    "name": null,
+    "coords": [
+      -105.463728,
+      20.843163
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 102.2,
+    "area_invadida_m2": 102.2,
+    "pct_invadido": 100.0
+  },
+  {
+    "id": "way-376740284",
+    "osm_id": "way/376740284",
+    "name": null,
+    "coords": [
+      -105.385564,
+      20.745344
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 178.7,
+    "area_invadida_m2": 97.3,
+    "pct_invadido": 54.4
+  },
+  {
+    "id": "way-379406909",
+    "osm_id": "way/379406909",
+    "name": null,
+    "coords": [
+      -105.339796,
+      20.755287
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 95.9,
+    "area_invadida_m2": 94.7,
+    "pct_invadido": 98.7
+  },
+  {
+    "id": "way-376614070",
+    "osm_id": "way/376614070",
+    "name": null,
+    "coords": [
+      -105.477263,
+      20.814192
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 161.6,
+    "area_invadida_m2": 92.5,
+    "pct_invadido": 57.2
+  },
+  {
+    "id": "way-376709561",
+    "osm_id": "way/376709561",
+    "name": null,
+    "coords": [
+      -105.43041,
+      20.746625
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 1190.8,
+    "area_invadida_m2": 460.8,
+    "pct_invadido": 38.7
+  },
+  {
+    "id": "way-376710333",
+    "osm_id": "way/376710333",
+    "name": null,
+    "coords": [
+      -105.427216,
+      20.744658
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 526.2,
+    "area_invadida_m2": 85.1,
+    "pct_invadido": 16.2
+  },
+  {
+    "id": "way-376741874",
+    "osm_id": "way/376741874",
+    "name": null,
+    "coords": [
+      -105.391817,
+      20.740224
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 940.6,
+    "area_invadida_m2": 123.3,
+    "pct_invadido": 13.1
+  },
+  {
+    "id": "manual-manual-001",
+    "osm_id": "manual/manual-001",
+    "name": "Edificación costera 1 — sin OSM",
+    "coords": [
+      -105.398,
+      20.7372
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 9217.8,
+    "area_invadida_m2": 998.4,
+    "pct_invadido": 10.8,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-002",
+    "osm_id": "manual/manual-002",
+    "name": "Edificación costera 2 — sin OSM",
+    "coords": [
+      -105.394,
+      20.7392
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4839.3,
+    "area_invadida_m2": 1643.3,
+    "pct_invadido": 34.0,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-003",
+    "osm_id": "manual/manual-003",
+    "name": "Edificación costera 3 — sin OSM",
+    "coords": [
+      -105.39,
+      20.741
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4147.9,
+    "area_invadida_m2": 1293.7,
+    "pct_invadido": 31.2,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-004",
+    "osm_id": "manual/manual-004",
+    "name": "Punta de Mita — vivienda costa este (curva NE)",
+    "coords": [
+      -105.5294,
+      20.7644
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4147.4,
+    "area_invadida_m2": 1536.9,
+    "pct_invadido": 37.1,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-005",
+    "osm_id": "manual/manual-005",
+    "name": "Punta de Mita — vivienda costa norte (centro)",
+    "coords": [
+      -105.5252,
+      20.7676
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4147.3,
+    "area_invadida_m2": 1579.0,
+    "pct_invadido": 38.1,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-006",
+    "osm_id": "manual/manual-006",
+    "name": "Punta de Mita — vivienda costa oeste",
+    "coords": [
+      -105.5375,
+      20.7644
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4147.4,
+    "area_invadida_m2": 1358.2,
+    "pct_invadido": 32.7,
+    "source": "manual"
+  },
+  {
+    "id": "manual-manual-007",
+    "osm_id": "manual/manual-007",
+    "name": "Punta de Mita — vivienda sur del campo",
+    "coords": [
+      -105.5377,
+      20.7676
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 4147.3,
+    "area_invadida_m2": 935.5,
+    "pct_invadido": 22.6,
+    "source": "manual"
   }
 ]

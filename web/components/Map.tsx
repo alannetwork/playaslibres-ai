@@ -10,6 +10,7 @@ import { LegalDisclaimer } from "./LegalDisclaimer";
 import { Attribution } from "./Attribution";
 import { InfoPanel } from "./InfoPanel";
 import { BrandMark } from "./BrandMark";
+import { ShareViewButton } from "./ShareViewButton";
 import type { Caso, EstadoCaso } from "@/lib/casos";
 
 export type SentinelBase = {
@@ -91,6 +92,21 @@ function whenStyleReady(map: MlMap, fn: () => void) {
   else map.once("load", fn);
 }
 
+/** Hash estilo OSM/MapLibre: `#zoom/lat/lng` (ej. `#15/20.7714/-105.5085`). */
+function parseMapHash(): { lat: number; lng: number; zoom: number } | null {
+  if (typeof window === "undefined") return null;
+  const m = window.location.hash
+    .replace(/^#/, "")
+    .match(/^(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)$/);
+  if (!m) return null;
+  const zoom = parseFloat(m[1]);
+  const lat = parseFloat(m[2]);
+  const lng = parseFloat(m[3]);
+  if (!Number.isFinite(zoom) || !Number.isFinite(lat) || !Number.isFinite(lng))
+    return null;
+  return { zoom, lat, lng };
+}
+
 export type SatelliteSource = "esri" | "sentinel";
 
 export type MapProps = {
@@ -149,11 +165,16 @@ export function Map({ focusSlug }: MapProps = {}) {
     if (!containerRef.current || mapRef.current) return;
     ensurePmtilesProtocol();
 
+    // Si la URL trae un hash de mapa y no estamos enfocando un caso, lo
+    // usamos como vista inicial. Si hay focusSlug, el efecto de foco más
+    // abajo se encargará de fitBounds y sobrescribirá el hash.
+    const hashView = focusSlug ? null : parseMapHash();
+
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: BASEMAP_STYLE,
-      center: CENTER,
-      zoom: INITIAL_ZOOM,
+      center: hashView ? [hashView.lng, hashView.lat] : CENTER,
+      zoom: hashView ? hashView.zoom : INITIAL_ZOOM,
       maxZoom: 20,
       maxBounds: MAX_BOUNDS,
       attributionControl: false,
@@ -401,6 +422,9 @@ export function Map({ focusSlug }: MapProps = {}) {
       mapRef.current = null;
       setStyleReady(false);
     };
+    // focusSlug se lee sólo en el montaje para decidir si respetar el hash;
+    // los cambios posteriores los maneja el efecto de foco más abajo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Capa raster satelital — Esri World Imagery (alta resolución) o Sentinel-2 (vía TiTiler).
@@ -721,17 +745,51 @@ export function Map({ focusSlug }: MapProps = {}) {
     setActiveCaso(caso);
   }, [focusSlug, casos, styleReady]);
 
+  // Sincroniza el hash de la URL al pan/zoom: `#zoom/lat/lng`. Permite
+  // compartir cualquier vista del mapa con un link directo.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !styleReady) return;
+    let raf = 0;
+    const writeHash = () => {
+      const c = map.getCenter();
+      const z = map.getZoom();
+      const next = `#${z.toFixed(2)}/${c.lat.toFixed(4)}/${c.lng.toFixed(4)}`;
+      if (window.location.hash !== next) {
+        window.history.replaceState(
+          {},
+          "",
+          window.location.pathname + window.location.search + next,
+        );
+      }
+    };
+    const onMove = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(writeHash);
+    };
+    map.on("moveend", onMove);
+    // Escribir una vez al montar para que el botón "Compartir" tenga
+    // el hash incluso antes del primer pan.
+    writeHash();
+    return () => {
+      map.off("moveend", onMove);
+      cancelAnimationFrame(raf);
+    };
+  }, [styleReady]);
+
   // Sincroniza la URL del browser al abrir/cerrar un caso, sin recargar.
   // Permite copiar el link directo desde la home cuando se abre un marker.
+  // Preserva el hash de mapa para que el link siga reflejando la vista actual.
   useEffect(() => {
     if (typeof window === "undefined") return;
+    const hash = window.location.hash;
     if (activeCaso) {
       const target = `/c/${activeCaso.slug}`;
       if (window.location.pathname !== target) {
-        window.history.replaceState({}, "", target);
+        window.history.replaceState({}, "", target + hash);
       }
     } else if (window.location.pathname.startsWith("/c/")) {
-      window.history.replaceState({}, "", "/");
+      window.history.replaceState({}, "", "/" + hash);
     }
   }, [activeCaso]);
 
@@ -769,17 +827,20 @@ export function Map({ focusSlug }: MapProps = {}) {
       />
 
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-2 pr-12 sm:p-4 sm:pr-16">
-        <div className="pointer-events-auto inline-flex w-fit max-w-full items-center gap-2 rounded-md bg-slate-950/80 px-2 py-1 text-[11px] font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur sm:px-2.5 sm:py-1.5 sm:text-xs">
-          <BrandMark size={18} className="shrink-0" title="Playas Libres" />
-          <span className="truncate">
-            <span className="sm:hidden">Playas Libres</span>
-            <span className="hidden sm:inline">
-              Playas Libres · Bahía de Banderas
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="pointer-events-auto inline-flex max-w-full items-center gap-2 rounded-md bg-slate-950/80 px-2 py-1 text-[11px] font-medium tracking-wide text-slate-100 shadow-lg backdrop-blur sm:px-2.5 sm:py-1.5 sm:text-xs">
+            <BrandMark size={18} className="shrink-0" title="Playas Libres" />
+            <span className="truncate">
+              <span className="sm:hidden">Playas Libres</span>
+              <span className="hidden sm:inline">
+                Playas Libres · Bahía de Banderas
+              </span>
             </span>
-          </span>
-          <span className="hidden truncate text-slate-400 md:inline">
-            · {headerLabel}
-          </span>
+            <span className="hidden truncate text-slate-400 md:inline">
+              · {headerLabel}
+            </span>
+          </div>
+          <ShareViewButton />
         </div>
       </div>
 

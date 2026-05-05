@@ -1,0 +1,148 @@
+{
+  "type": "FeatureCollection",
+  "name": "candidatos_manuales",
+  "description": "Construcciones trazadas a mano sobre Esri/Sentinel imagery que no están cartografiadas en OpenStreetMap. El script 13_update_candidatos.py las cruza con playa_libre_bb.geojson y calcula área invadida + severidad con la misma lógica que el detector OSM. Los polígonos son aproximados — afinarlos en JOSM/QGIS si se va a publicar.",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-001",
+        "name": "Edificación costera 1 — sin OSM",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1730",
+        "notes": "Construcción visible al SO de la captura (≈20.7372, -105.398), sobre la diagonal de zona federal. No está en OSM."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.39850, 20.73760],
+          [-105.39750, 20.73760],
+          [-105.39750, 20.73680],
+          [-105.39850, 20.73680],
+          [-105.39850, 20.73760]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-002",
+        "name": "Edificación costera 2 — sin OSM",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1730",
+        "notes": "Construcción a media captura (≈20.7392, -105.394) sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.39435, 20.73950],
+          [-105.39365, 20.73950],
+          [-105.39365, 20.73890],
+          [-105.39435, 20.73890],
+          [-105.39435, 20.73950]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-003",
+        "name": "Edificación costera 3 — sin OSM",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1730",
+        "notes": "Construcción al NE de la captura (≈20.7414, -105.390) sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.39030, 20.74130],
+          [-105.38970, 20.74130],
+          [-105.38970, 20.74070],
+          [-105.39030, 20.74070],
+          [-105.39030, 20.74130]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-004",
+        "name": "Punta de Mita — vivienda costa este (curva NE)",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1663",
+        "notes": "Cluster de villas en la curva NE de la península, sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.52970, 20.76470],
+          [-105.52910, 20.76470],
+          [-105.52910, 20.76410],
+          [-105.52970, 20.76410],
+          [-105.52970, 20.76470]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-005",
+        "name": "Punta de Mita — vivienda costa norte (centro)",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1663",
+        "notes": "Construcciones al norte del campo de golf, sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.52550, 20.76790],
+          [-105.52490, 20.76790],
+          [-105.52490, 20.76730],
+          [-105.52550, 20.76730],
+          [-105.52550, 20.76790]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-006",
+        "name": "Punta de Mita — vivienda costa oeste",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1663",
+        "notes": "Cluster de villas en la costa oeste de la península, sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.53780, 20.76470],
+          [-105.53720, 20.76470],
+          [-105.53720, 20.76410],
+          [-105.53780, 20.76410],
+          [-105.53780, 20.76470]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "manual_id": "manual-007",
+        "name": "Punta de Mita — vivienda sur del campo",
+        "building": "yes",
+        "source": "trazo_manual_esri_z1663",
+        "notes": "Construcciones al sur del campo de golf, sobre la franja federal."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-105.53800, 20.76790],
+          [-105.53740, 20.76790],
+          [-105.53740, 20.76730],
+          [-105.53800, 20.76730],
+          [-105.53800, 20.76790]
+        ]]
+      }
+    }
+  ]
+}

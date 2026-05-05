@@ -1,0 +1,7 @@
+# Candidatos automáticos descartados manualmente.
+# Un id por línea. Comentarios con #.
+# El script 13_update_candidatos.py los excluye del candidatos.json final.
+
+# Eliminados durante revisión 2026-05-05 (Alan):
+way/376795593
+way/376788578
