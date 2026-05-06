@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   AlertTriangle,
   ArrowRight,
+  BookOpen,
   Building2,
   ChevronLeft,
   Landmark,
@@ -310,7 +311,18 @@ export function LegalDisclaimer() {
   const isLast = step === TOTAL_SLIDES - 1;
 
   return (
-    <Dialog open={open} onOpenChange={(v) => (v ? setOpen(v) : accept())}>
+    <>
+      <button
+        type="button"
+        aria-label="Ver tutorial de nuevo"
+        title="Ver tutorial"
+        onClick={() => { setStep(0); setOpen(true); }}
+        className="absolute bottom-2 right-2 z-20 inline-flex items-center gap-1.5 rounded-md border border-slate-700 bg-slate-950/85 px-2.5 py-1.5 text-xs text-slate-300 shadow-lg backdrop-blur transition hover:border-slate-500 hover:bg-slate-900 sm:bottom-4 sm:right-4"
+      >
+        <BookOpen className="h-3.5 w-3.5 text-slate-400" />
+        <span>Tutorial</span>
+      </button>
+      <Dialog open={open} onOpenChange={(v) => { if (v) { setOpen(true); } else { accept(); } }}>
       <DialogContent
         className="max-w-2xl gap-0 overflow-hidden border-slate-800 bg-slate-950 p-0 text-slate-100 sm:max-w-2xl"
         showCloseButton={false}
@@ -414,5 +426,6 @@ export function LegalDisclaimer() {
         </div>
       </DialogContent>
     </Dialog>
+    </>
   );
 }
