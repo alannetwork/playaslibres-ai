@@ -13,6 +13,9 @@ const Map = dynamic(() => import("@/components/Map").then((m) => m.Map), {
   ),
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://playaslibres.ai";
+
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -49,5 +52,49 @@ export function generateMetadata({
 export default function CasoPage({ params }: { params: { slug: string } }) {
   const caso = getCasoBySlug(params.slug);
   if (!caso) notFound();
-  return <Map focusSlug={params.slug} />;
+  const path = `/c/${caso.slug}`;
+  const ldJson = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: `${caso.name} — ${ESTADO_LABELS[caso.estado].label}`,
+    description: caso.summary,
+    inLanguage: "es-MX",
+    datePublished: caso.fecha_apertura,
+    dateModified: caso.ultima_actualizacion,
+    url: `${SITE_URL}${path}`,
+    mainEntityOfPage: `${SITE_URL}${path}`,
+    image: [`${SITE_URL}${path}/opengraph-image`],
+    author: { "@type": "Organization", name: "Playas Libres", url: SITE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Playas Libres",
+      url: SITE_URL,
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/icon` },
+    },
+    articleSection: "Transparencia ciudadana",
+    contentLocation: {
+      "@type": "Place",
+      name: caso.name,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: caso.coords[1],
+        longitude: caso.coords[0],
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: caso.ubicacion.municipio,
+        addressRegion: caso.ubicacion.estado_mx,
+        addressCountry: "MX",
+      },
+    },
+  };
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }}
+      />
+      <Map focusSlug={params.slug} />
+    </>
+  );
 }

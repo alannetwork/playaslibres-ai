@@ -5,6 +5,16 @@ export const metadata: Metadata = {
   title: "Acerca",
   description:
     "Qué es Playas Libres, por qué existe, marco legal y limitaciones técnicas.",
+  alternates: { canonical: "/acerca" },
+  openGraph: {
+    type: "article",
+    locale: "es_MX",
+    siteName: "Playas Libres",
+    url: "/acerca",
+    title: "Acerca · Playas Libres",
+    description:
+      "Qué es Playas Libres, por qué existe, marco legal y limitaciones técnicas.",
+  },
 };
 
 export default function AcercaPage() {

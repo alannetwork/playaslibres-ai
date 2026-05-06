@@ -7,6 +7,16 @@ export const metadata: Metadata = {
   title: "Validación científica",
   description:
     "Auditoría de la rigurosidad científica de los datos: prueba de la regla legal de 20 m, comparación pleamar estimada vs oficial, incertidumbres reales.",
+  alternates: { canonical: "/validacion" },
+  openGraph: {
+    type: "article",
+    locale: "es_MX",
+    siteName: "Playas Libres",
+    url: "/validacion",
+    title: "Validación científica · Playas Libres",
+    description:
+      "Auditoría de la rigurosidad científica de los datos: regla legal de 20 m, pleamar estimada vs oficial, incertidumbres reales.",
+  },
 };
 
 type Stats = {

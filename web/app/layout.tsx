@@ -12,37 +12,74 @@ const SITE_URL =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Playas Libres — ¿Hasta dónde llega tu playa?",
+    default:
+      "Playas Libres — ZOFEMAT y zona federal en Bahía de Banderas",
     template: "%s · Playas Libres",
   },
   description:
-    "Mapa público de Bahía de Banderas con la ZOFEMAT oficial publicada por SEMARNAT, la franja de playa libre de uso público y la detección automatizada de construcciones que invaden la zona federal. Herramienta de transparencia ciudadana, no plano legal.",
+    "Mapa público de Bahía de Banderas con la ZOFEMAT oficial de SEMARNAT, la playa libre y detecciones automatizadas de invasión a la zona federal.",
+  applicationName: "Playas Libres",
+  authors: [{ name: "Playas Libres", url: SITE_URL }],
+  creator: "Playas Libres",
+  publisher: "Playas Libres",
+  category: "Transparencia ciudadana",
   keywords: [
     "ZOFEMAT",
+    "zona federal marítimo terrestre",
     "playa pública",
     "Bahía de Banderas",
     "Punta de Mita",
     "Las Cocinas",
     "Cantiles de Mita",
+    "Nayarit",
     "SEMARNAT",
+    "DGZFMTAC",
     "Sentinel-2",
-    "marea",
     "transparencia",
+    "invasión de playa",
   ],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "es_MX",
     siteName: "Playas Libres",
+    url: "/",
     title: "Playas Libres — ¿Hasta dónde llega tu playa?",
     description:
       "ZOFEMAT oficial, playa libre y detecciones automatizadas de invasión en Bahía de Banderas.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Playas Libres",
+    title: "Playas Libres — ¿Hasta dónde llega tu playa?",
     description:
-      "Mapa público de la zona federal en Bahía de Banderas con detecciones de posibles invasiones.",
+      "ZOFEMAT oficial de SEMARNAT, playa libre y detecciones automatizadas de invasión en Bahía de Banderas.",
   },
+};
+
+const ldJson = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: "Playas Libres",
+      alternateName: "¿Hasta dónde llega tu playa?",
+      url: SITE_URL,
+      inLanguage: "es-MX",
+      publisher: { "@id": `${SITE_URL}/#org` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#org`,
+      name: "Playas Libres",
+      url: SITE_URL,
+      logo: `${SITE_URL}/icon`,
+      areaServed: {
+        "@type": "Place",
+        name: "Bahía de Banderas, Nayarit, México",
+      },
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -60,6 +97,10 @@ export default function RootLayout({
   return (
     <html lang="es-MX">
       <body className={`${inter.className} bg-slate-950 text-slate-100`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }}
+        />
         {children}
         <CloudflareAnalytics />
       </body>

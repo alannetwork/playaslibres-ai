@@ -1,20 +1,11 @@
 import { ImageResponse } from "next/og";
-import { getAllCasos, getCasoBySlug } from "@/lib/casos-data";
+import { getCasoBySlug } from "@/lib/casos-data";
 import { ESTADO_LABELS } from "@/lib/casos";
 
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Playas Libres — caso documentado";
-
-export function generateImageMetadata() {
-  return getAllCasos().map((c) => ({
-    id: c.slug,
-    alt: `Playas Libres · ${c.name}`,
-    contentType,
-    size,
-  }));
-}
+export const alt = "Playas Libres — caso documentado en Bahía de Banderas";
 
 const ESTADO_COLORS: Record<string, { bg: string; fg: string }> = {
   en_conflicto: { bg: "#dc2626", fg: "#fef2f2" },

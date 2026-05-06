@@ -5,6 +5,16 @@ export const metadata: Metadata = {
   title: "Metodología",
   description:
     "Cómo se construyen las capas del mapa, qué fuentes usamos y cómo se calcula la franja Playa Libre.",
+  alternates: { canonical: "/metodologia" },
+  openGraph: {
+    type: "article",
+    locale: "es_MX",
+    siteName: "Playas Libres",
+    url: "/metodologia",
+    title: "Metodología · Playas Libres",
+    description:
+      "Cómo se construyen las capas del mapa, qué fuentes usamos y cómo se calcula la franja Playa Libre.",
+  },
 };
 
 export default function MetodologiaPage() {
