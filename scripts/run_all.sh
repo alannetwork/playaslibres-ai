@@ -40,7 +40,7 @@ python scripts/03_find_sentinel.py
 step "03b — Descarga COG Sentinel-2 recortado a la bahía"
 python scripts/03b_download_sentinel_cog.py
 
-step "04 — Cálculo de mareas en Punta de Mita"
+step "04 — Cálculo de mareas (estación de referencia: Punta de Mita)"
 python scripts/04_compute_tides.py
 
 step "05 — Conversión a PMTiles (ZOFEMAT)"

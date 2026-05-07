@@ -12,25 +12,23 @@ import { InfoPanel } from "./InfoPanel";
 import { BrandMark } from "./BrandMark";
 import { ShareViewButton } from "./ShareViewButton";
 import { CasosListButton } from "./CasosListButton";
+import { LocalidadSelector } from "./LocalidadSelector";
 import type { Caso, EstadoCaso } from "@/lib/casos";
+import type { Candidato } from "@/lib/candidatos";
+import {
+  DEFAULT_LOCALIDAD,
+  LOCALIDAD_BY_SLUG,
+  localidadFromCoords,
+  type LocalidadSlug,
+} from "@/lib/localidades";
+
+export type { Candidato };
 
 export type SentinelBase = {
   id: string;
   datetime: string;
   cloud_cover: number;
   visual_cog: string;
-};
-
-export type Candidato = {
-  id: string;
-  osm_id: string;
-  name: string | null;
-  coords: [number, number];
-  severidad: "roja" | "ambar";
-  building: string;
-  area_total_m2: number;
-  area_invadida_m2: number;
-  pct_invadido: number;
 };
 
 const MARKER_BY_ESTADO: Record<
@@ -63,8 +61,8 @@ const MARKER_BY_ESTADO: Record<
   },
 };
 
-const CENTER: [number, number] = [-105.5085, 20.7714];
-const INITIAL_ZOOM = 14;
+const CENTER: [number, number] = DEFAULT_LOCALIDAD.center;
+const INITIAL_ZOOM = DEFAULT_LOCALIDAD.zoom;
 const MAX_BOUNDS: [[number, number], [number, number]] = [
   [-105.85, 20.35],
   [-104.95, 21.0],
@@ -171,6 +169,9 @@ export function Map({ focusSlug }: MapProps = {}) {
   });
   const [satSource, setSatSource] = useState<SatelliteSource>("esri");
   const [tideHeight, setTideHeight] = useState(0);
+  const [localidad, setLocalidad] = useState<LocalidadSlug>(
+    DEFAULT_LOCALIDAD.slug,
+  );
 
   // Carga inicial de metadata estática.
   useEffect(() => {
@@ -768,14 +769,25 @@ export function Map({ focusSlug }: MapProps = {}) {
         );
       }
     };
+    const syncLocalidad = () => {
+      const c = map.getCenter();
+      const inferred = localidadFromCoords(c.lng, c.lat);
+      if (inferred) {
+        setLocalidad((prev) => (prev === inferred.slug ? prev : inferred.slug));
+      }
+    };
     const onMove = () => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(writeHash);
+      raf = requestAnimationFrame(() => {
+        writeHash();
+        syncLocalidad();
+      });
     };
     map.on("moveend", onMove);
     // Escribir una vez al montar para que el botón "Compartir" tenga
     // el hash incluso antes del primer pan.
     writeHash();
+    syncLocalidad();
     return () => {
       map.off("moveend", onMove);
       cancelAnimationFrame(raf);
@@ -826,6 +838,21 @@ export function Map({ focusSlug }: MapProps = {}) {
     map.once("moveend", () => openCandidatoPopup(map, c));
   }, []);
 
+  const onLocalidadSelect = useCallback((slug: LocalidadSlug) => {
+    const map = mapRef.current;
+    if (!map) return;
+    const loc = LOCALIDAD_BY_SLUG[slug];
+    if (!loc) return;
+    setLocalidad(slug);
+    setActiveCaso(null);
+    map.flyTo({
+      center: loc.center,
+      zoom: loc.zoom,
+      essential: true,
+      duration: 1200,
+    });
+  }, []);
+
   const headerLabel = useMemo(() => {
     if (satSource === "esri") return "Esri World Imagery";
     if (sentinel) {
@@ -871,7 +898,24 @@ export function Map({ focusSlug }: MapProps = {}) {
               · {headerLabel}
             </span>
           </div>
+          {(() => {
+            const trz = LOCALIDAD_BY_SLUG[localidad]?.trazado_semarnat;
+            if (!trz) return null;
+            return (
+              <span
+                className="pointer-events-auto inline-flex shrink-0 items-center gap-1 rounded-md border border-slate-700 bg-slate-950/85 px-2 py-1 text-[10px] font-medium uppercase tracking-wider text-slate-300 shadow-lg backdrop-blur sm:text-[11px]"
+                title={`Plano SEMARNAT vigente para esta localidad: ${trz.plano} (capa ${trz.fuente_capa}). Las líneas roja (zona federal) y celeste (pleamar máxima) reflejan este plano.`}
+              >
+                <span className="text-slate-500">SEMARNAT</span>
+                <span className="font-mono text-slate-100">{trz.fecha}</span>
+              </span>
+            );
+          })()}
           <ShareViewButton />
+          <LocalidadSelector
+            current={localidad}
+            onSelect={onLocalidadSelect}
+          />
         </div>
       </div>
 

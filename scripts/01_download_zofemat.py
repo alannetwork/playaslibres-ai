@@ -1,6 +1,26 @@
 #!/usr/bin/env python3
-"""Descarga la capa 220 (B_BANDERAS_2021) del MapServer SEMARNAT y la prepara
-en EPSG:4326 para tippecanoe. Idempotente: vuelve a correr sin romper nada.
+"""Descarga las capas SEMARNAT que cubren Bahía de Banderas y las mergea en
+un solo GeoJSON EPSG:4326 para tippecanoe. Idempotente.
+
+Capas usadas:
+    - 220 B_BANDERAS_2021    (Nayarit: Punta de Mita, Bucerías-Mezcales).
+                              Plano único vigente 2021.
+    - 202 14067_2016_01      (Jalisco: Puerto Vallarta, planos 2016).
+                              38 planos numerados consecutivos del mismo
+                              proyecto. Cobertura de la mancha urbana de
+                              PV (Marina Vallarta a Boca de Tomatlán
+                              parcial); Mismaloya al sur queda fuera.
+
+Decisión de selección PV: la capa 201 "Puerto Vallarta" del MapServer es
+un archivo histórico con 5 sublayers (2014, 2016, 2017, 2019, 2022) que
+cubren EL MISMO TRAMO geográfico en distintas fechas, sin marcar cuál
+es vigente. Mergearlos produce duplicación de líneas paralelas y pareos
+inválidos en `08_compute_playa_libre`. Se elige 202 por ser el plano
+integral más detallado (38 planos) y suficientemente reciente. Las
+versiones 2017/2019 son revisiones puntuales mini; el 2022 sólo cubre
+una sección (P16); el 2014 es más amplio al sur pero con menos detalle.
+Cambiar a otro sublayer requiere editar PV_LAYER_IDS y re-correr todo
+el pipeline.
 
 Uso:
     python scripts/01_download_zofemat.py
@@ -19,6 +39,7 @@ import requests
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw" / "zofemat_bb_raw.geojson"
+RAW_DIR = ROOT / "data" / "raw" / "zofemat_layers"
 PROCESSED = ROOT / "data" / "processed" / "zofemat_bb.geojson"
 MAPSERVER = (
     "https://geomaticasig1.semarnat.gob.mx/arcgis/rest/services/zofem/"
@@ -26,6 +47,9 @@ MAPSERVER = (
 )
 TARGET_LAYER_ID = 220
 TARGET_LAYER_NAME_HINT = "BANDERAS"
+
+# Sublayer único elegido para Puerto Vallarta (Jalisco). Ver docstring.
+PV_LAYER_IDS = [202]
 
 # Mirror público en R2 (fallback cuando SEMARNAT está caído).
 # Override con la env var ZOFEMAT_MIRROR_BASE si se aloja en otro dominio.
@@ -132,8 +156,38 @@ def fetch_from_mirror() -> dict | None:
         return None
 
 
+def fetch_pv_layer(layer_id: int) -> dict | None:
+    """Descarga un sublayer de la capa 201 (Puerto Vallarta). Cachea en disco."""
+    cache = RAW_DIR / f"layer_{layer_id}.geojson"
+    if cache.exists() and cache.stat().st_size > 200:
+        print(f"  cache hit: {cache.relative_to(ROOT)}")
+        return json.loads(cache.read_text())
+    try:
+        fc = fetch_geojson(layer_id)
+    except (requests.RequestException, ValueError) as e:
+        print(f"  ! capa {layer_id} no respondió: {e}", file=sys.stderr)
+        return None
+    if not fc.get("features"):
+        print(f"  capa {layer_id}: vacía")
+        return fc
+    cache.write_text(json.dumps(fc, ensure_ascii=False))
+    print(f"  capa {layer_id}: {len(fc['features'])} features → {cache.relative_to(ROOT)}")
+    return fc
+
+
+def normalize_pv_features(fc: dict, layer_id: int) -> list[dict]:
+    """Anota provenance en cada feature del sublayer PV."""
+    out: list[dict] = []
+    for feat in fc.get("features", []):
+        props = dict(feat.get("properties") or {})
+        props["_source_layer_id"] = layer_id
+        out.append({**feat, "properties": props})
+    return out
+
+
 def main() -> None:
     RAW.parent.mkdir(parents=True, exist_ok=True)
+    RAW_DIR.mkdir(parents=True, exist_ok=True)
     PROCESSED.parent.mkdir(parents=True, exist_ok=True)
 
     fc: dict | None = None
@@ -164,8 +218,26 @@ def main() -> None:
     if not fc.get("features"):
         sys.exit("Respuesta sin features. Revisar manualmente.")
 
+    # Anotar provenance en las features de Bahía de Banderas / Nayarit.
+    for feat in fc["features"]:
+        feat.setdefault("properties", {})
+        feat["properties"]["_source_layer_id"] = TARGET_LAYER_ID
+
+    # Descargar capas PV (Jalisco) y mergear.
+    print(f"\nDescargando capas Puerto Vallarta: {PV_LAYER_IDS}")
+    pv_added = 0
+    for lid in PV_LAYER_IDS:
+        pv_fc = fetch_pv_layer(lid)
+        if pv_fc is None:
+            continue
+        norm = normalize_pv_features(pv_fc, lid)
+        fc["features"].extend(norm)
+        pv_added += len(norm)
+        print(f"  capa {lid}: {len(norm)} features incorporadas (post-normalización)")
+    print(f"Total PV agregado: {pv_added} features")
+
     RAW.write_text(json.dumps(fc, ensure_ascii=False))
-    print(f"Crudo guardado: {RAW.relative_to(ROOT)} ({RAW.stat().st_size/1024:.1f} KB)")
+    print(f"Crudo combinado: {RAW.relative_to(ROOT)} ({RAW.stat().st_size/1024:.1f} KB)")
 
     print("Reproyectando a EPSG:4326 con ogr2ogr (no-op si ya está)...")
     if PROCESSED.exists():

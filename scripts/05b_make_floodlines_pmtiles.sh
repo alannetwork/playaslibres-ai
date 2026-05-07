@@ -24,7 +24,10 @@ tippecanoe \
   --layer=floodlines \
   --minimum-zoom=8 \
   --maximum-zoom=16 \
+  --base-zoom=8 \
   --extend-zooms-if-still-dropping \
+  --no-tile-size-limit \
+  --no-feature-limit \
   --force \
   "$SRC"
 

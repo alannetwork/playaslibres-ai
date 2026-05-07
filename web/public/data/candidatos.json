@@ -1,87 +1,51 @@
 [
   {
-    "id": "way-376733443",
-    "osm_id": "way/376733443",
-    "name": "Estrella",
-    "coords": [
-      -105.529548,
-      20.783118
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 829.8,
-    "area_invadida_m2": 487.1,
-    "pct_invadido": 58.7
-  },
-  {
-    "id": "way-359188604",
-    "osm_id": "way/359188604",
-    "name": "El Faro Real I (tower one)",
-    "coords": [
-      -105.514146,
-      20.772133
-    ],
-    "severidad": "roja",
-    "building": "hotel",
-    "area_total_m2": 568.7,
-    "area_invadida_m2": 409.3,
-    "pct_invadido": 72.0
-  },
-  {
-    "id": "way-376795584",
-    "osm_id": "way/376795584",
+    "id": "way-376580930",
+    "osm_id": "way/376580930",
     "name": null,
     "coords": [
-      -105.518723,
-      20.771434
+      -105.249361,
+      20.573508
     ],
     "severidad": "roja",
     "building": "yes",
-    "area_total_m2": 309.9,
-    "area_invadida_m2": 309.6,
-    "pct_invadido": 99.9
+    "area_total_m2": 1798.2,
+    "area_invadida_m2": 1121.2,
+    "pct_invadido": 62.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
   },
   {
-    "id": "way-376701710",
-    "osm_id": "way/376701710",
+    "id": "way-376660567",
+    "osm_id": "way/376660567",
     "name": null,
     "coords": [
-      -105.496927,
-      20.787882
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 224.0,
-    "area_invadida_m2": 150.3,
-    "pct_invadido": 67.1
-  },
-  {
-    "id": "way-376701744",
-    "osm_id": "way/376701744",
-    "name": null,
-    "coords": [
-      -105.484652,
-      20.758862
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 168.8,
-    "area_invadida_m2": 129.8,
-    "pct_invadido": 76.9
-  },
-  {
-    "id": "way-1037202085",
-    "osm_id": "way/1037202085",
-    "name": "Xiobella Luxury Hotel Boutique",
-    "coords": [
-      -105.494717,
-      20.788624
+      -105.244676,
+      20.586058
     ],
     "severidad": "ambar",
     "building": "yes",
-    "area_total_m2": 804.2,
-    "area_invadida_m2": 335.8,
-    "pct_invadido": 41.8
+    "area_total_m2": 1606.3,
+    "area_invadida_m2": 733.3,
+    "pct_invadido": 45.7,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376735384",
+    "osm_id": "way/376735384",
+    "name": null,
+    "coords": [
+      -105.366239,
+      20.758672
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 1478.7,
+    "area_invadida_m2": 616.3,
+    "pct_invadido": 41.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
     "id": "way-376771104",
@@ -95,7 +59,9 @@
     "building": "residential",
     "area_total_m2": 824.3,
     "area_invadida_m2": 558.3,
-    "pct_invadido": 67.7
+    "pct_invadido": 67.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
     "id": "way-376735410",
@@ -109,413 +75,41 @@
     "building": "residential",
     "area_total_m2": 966.4,
     "area_invadida_m2": 554.8,
-    "pct_invadido": 57.4
+    "pct_invadido": 57.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
-    "id": "way-376609598",
-    "osm_id": "way/376609598",
+    "id": "way-376732684",
+    "osm_id": "way/376732684",
     "name": null,
     "coords": [
-      -105.299972,
-      20.716169
+      -105.53165,
+      20.778136
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 1044.0,
+    "area_invadida_m2": 504.0,
+    "pct_invadido": 48.3,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376733443",
+    "osm_id": "way/376733443",
+    "name": "Estrella",
+    "coords": [
+      -105.529548,
+      20.783118
     ],
     "severidad": "roja",
     "building": "yes",
-    "area_total_m2": 280.6,
-    "area_invadida_m2": 184.7,
-    "pct_invadido": 65.8
-  },
-  {
-    "id": "way-376710323",
-    "osm_id": "way/376710323",
-    "name": null,
-    "coords": [
-      -105.427063,
-      20.744409
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 694.9,
-    "area_invadida_m2": 382.8,
-    "pct_invadido": 55.1
-  },
-  {
-    "id": "way-359188605",
-    "osm_id": "way/359188605",
-    "name": "El Faro Real I (tower two)",
-    "coords": [
-      -105.51453,
-      20.772073
-    ],
-    "severidad": "roja",
-    "building": "hotel",
-    "area_total_m2": 568.9,
-    "area_invadida_m2": 368.3,
-    "pct_invadido": 64.7
-  },
-  {
-    "id": "way-377538428",
-    "osm_id": "way/377538428",
-    "name": null,
-    "coords": [
-      -105.370253,
-      20.755691
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 378.5,
-    "area_invadida_m2": 361.1,
-    "pct_invadido": 95.4
-  },
-  {
-    "id": "way-376735382",
-    "osm_id": "way/376735382",
-    "name": null,
-    "coords": [
-      -105.367323,
-      20.758093
-    ],
-    "severidad": "roja",
-    "building": "residential",
-    "area_total_m2": 319.7,
-    "area_invadida_m2": 257.4,
-    "pct_invadido": 80.5
-  },
-  {
-    "id": "way-376795615",
-    "osm_id": "way/376795615",
-    "name": null,
-    "coords": [
-      -105.518988,
-      20.771473
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 259.9,
-    "area_invadida_m2": 254.3,
-    "pct_invadido": 97.8
-  },
-  {
-    "id": "way-376732664",
-    "osm_id": "way/376732664",
-    "name": null,
-    "coords": [
-      -105.368698,
-      20.757225
-    ],
-    "severidad": "roja",
-    "building": "residential",
-    "area_total_m2": 277.9,
-    "area_invadida_m2": 219.6,
-    "pct_invadido": 79.0
-  },
-  {
-    "id": "way-376590397",
-    "osm_id": "way/376590397",
-    "name": null,
-    "coords": [
-      -105.315928,
-      20.732873
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 285.1,
-    "area_invadida_m2": 199.7,
-    "pct_invadido": 70.0
-  },
-  {
-    "id": "way-376795604",
-    "osm_id": "way/376795604",
-    "name": null,
-    "coords": [
-      -105.518395,
-      20.771477
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 188.3,
-    "area_invadida_m2": 188.3,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-377280055",
-    "osm_id": "way/377280055",
-    "name": null,
-    "coords": [
-      -105.373578,
-      20.752002
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 245.9,
-    "area_invadida_m2": 181.2,
-    "pct_invadido": 73.7
-  },
-  {
-    "id": "way-376740368",
-    "osm_id": "way/376740368",
-    "name": null,
-    "coords": [
-      -105.385059,
-      20.745217
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 257.9,
-    "area_invadida_m2": 174.6,
-    "pct_invadido": 67.7
-  },
-  {
-    "id": "way-376735381",
-    "osm_id": "way/376735381",
-    "name": null,
-    "coords": [
-      -105.367169,
-      20.757804
-    ],
-    "severidad": "roja",
-    "building": "residential",
-    "area_total_m2": 210.8,
-    "area_invadida_m2": 173.9,
-    "pct_invadido": 82.5
-  },
-  {
-    "id": "way-376732663",
-    "osm_id": "way/376732663",
-    "name": null,
-    "coords": [
-      -105.36962,
-      20.756642
-    ],
-    "severidad": "roja",
-    "building": "residential",
-    "area_total_m2": 166.7,
-    "area_invadida_m2": 166.7,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376795585",
-    "osm_id": "way/376795585",
-    "name": null,
-    "coords": [
-      -105.519538,
-      20.771329
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 164.5,
-    "area_invadida_m2": 164.5,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376795617",
-    "osm_id": "way/376795617",
-    "name": null,
-    "coords": [
-      -105.520102,
-      20.771156
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 302.1,
-    "area_invadida_m2": 160.6,
-    "pct_invadido": 53.2
-  },
-  {
-    "id": "way-376795607",
-    "osm_id": "way/376795607",
-    "name": null,
-    "coords": [
-      -105.518598,
-      20.771529
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 161.4,
-    "area_invadida_m2": 159.9,
-    "pct_invadido": 99.1
-  },
-  {
-    "id": "way-377291666",
-    "osm_id": "way/377291666",
-    "name": null,
-    "coords": [
-      -105.37207,
-      20.751343
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 164.9,
-    "area_invadida_m2": 151.6,
-    "pct_invadido": 91.9
-  },
-  {
-    "id": "way-376732666",
-    "osm_id": "way/376732666",
-    "name": null,
-    "coords": [
-      -105.368974,
-      20.757119
-    ],
-    "severidad": "roja",
-    "building": "residential",
-    "area_total_m2": 257.4,
-    "area_invadida_m2": 142.8,
-    "pct_invadido": 55.5
-  },
-  {
-    "id": "way-376735472",
-    "osm_id": "way/376735472",
-    "name": null,
-    "coords": [
-      -105.421916,
-      20.741776
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 200.3,
-    "area_invadida_m2": 140.0,
-    "pct_invadido": 69.9
-  },
-  {
-    "id": "way-359204029",
-    "osm_id": "way/359204029",
-    "name": "Rocio",
-    "coords": [
-      -105.519402,
-      20.771441
-    ],
-    "severidad": "roja",
-    "building": "commercial",
-    "area_total_m2": 191.4,
-    "area_invadida_m2": 138.2,
-    "pct_invadido": 72.2
-  },
-  {
-    "id": "way-377280110",
-    "osm_id": "way/377280110",
-    "name": null,
-    "coords": [
-      -105.373594,
-      20.75176
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 144.8,
-    "area_invadida_m2": 126.6,
-    "pct_invadido": 87.4
-  },
-  {
-    "id": "way-376583879",
-    "osm_id": "way/376583879",
-    "name": null,
-    "coords": [
-      -105.328284,
-      20.745962
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 169.3,
-    "area_invadida_m2": 117.5,
-    "pct_invadido": 69.4
-  },
-  {
-    "id": "way-376795597",
-    "osm_id": "way/376795597",
-    "name": null,
-    "coords": [
-      -105.519744,
-      20.771275
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 109.1,
-    "area_invadida_m2": 109.1,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376732311",
-    "osm_id": "way/376732311",
-    "name": null,
-    "coords": [
-      -105.532193,
-      20.778006
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 104.7,
-    "area_invadida_m2": 104.7,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376795612",
-    "osm_id": "way/376795612",
-    "name": null,
-    "coords": [
-      -105.518058,
-      20.771463
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 102.7,
-    "area_invadida_m2": 102.7,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376617525",
-    "osm_id": "way/376617525",
-    "name": null,
-    "coords": [
-      -105.463728,
-      20.843163
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 102.2,
-    "area_invadida_m2": 102.2,
-    "pct_invadido": 100.0
-  },
-  {
-    "id": "way-376740284",
-    "osm_id": "way/376740284",
-    "name": null,
-    "coords": [
-      -105.385564,
-      20.745344
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 178.7,
-    "area_invadida_m2": 97.3,
-    "pct_invadido": 54.4
-  },
-  {
-    "id": "way-379406909",
-    "osm_id": "way/379406909",
-    "name": null,
-    "coords": [
-      -105.339796,
-      20.755287
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 95.9,
-    "area_invadida_m2": 94.7,
-    "pct_invadido": 98.7
-  },
-  {
-    "id": "way-376614070",
-    "osm_id": "way/376614070",
-    "name": null,
-    "coords": [
-      -105.477263,
-      20.814192
-    ],
-    "severidad": "roja",
-    "building": "yes",
-    "area_total_m2": 161.6,
-    "area_invadida_m2": 92.5,
-    "pct_invadido": 57.2
+    "area_total_m2": 829.8,
+    "area_invadida_m2": 487.1,
+    "pct_invadido": 58.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
   },
   {
     "id": "way-376709561",
@@ -529,21 +123,905 @@
     "building": "yes",
     "area_total_m2": 1190.8,
     "area_invadida_m2": 460.8,
-    "pct_invadido": 38.7
+    "pct_invadido": 38.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
-    "id": "way-376710333",
-    "osm_id": "way/376710333",
+    "id": "way-1320420285",
+    "osm_id": "way/1320420285",
     "name": null,
     "coords": [
-      -105.427216,
-      20.744658
+      -105.232011,
+      20.628993
+    ],
+    "severidad": "ambar",
+    "building": "apartments",
+    "area_total_m2": 1736.2,
+    "area_invadida_m2": 450.1,
+    "pct_invadido": 25.9,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-1320420286",
+    "osm_id": "way/1320420286",
+    "name": null,
+    "coords": [
+      -105.231655,
+      20.629083
+    ],
+    "severidad": "ambar",
+    "building": "apartments",
+    "area_total_m2": 1766.4,
+    "area_invadida_m2": 449.1,
+    "pct_invadido": 25.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660553",
+    "osm_id": "way/376660553",
+    "name": null,
+    "coords": [
+      -105.246692,
+      20.578105
     ],
     "severidad": "ambar",
     "building": "yes",
-    "area_total_m2": 526.2,
-    "area_invadida_m2": 85.1,
-    "pct_invadido": 16.2
+    "area_total_m2": 896.4,
+    "area_invadida_m2": 413.6,
+    "pct_invadido": 46.1,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-359188604",
+    "osm_id": "way/359188604",
+    "name": "El Faro Real I (tower one)",
+    "coords": [
+      -105.514146,
+      20.772133
+    ],
+    "severidad": "roja",
+    "building": "hotel",
+    "area_total_m2": 568.7,
+    "area_invadida_m2": 409.3,
+    "pct_invadido": 72.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376580931",
+    "osm_id": "way/376580931",
+    "name": null,
+    "coords": [
+      -105.249724,
+      20.572403
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 828.6,
+    "area_invadida_m2": 405.8,
+    "pct_invadido": 49.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660562",
+    "osm_id": "way/376660562",
+    "name": null,
+    "coords": [
+      -105.244728,
+      20.586669
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 966.8,
+    "area_invadida_m2": 385.2,
+    "pct_invadido": 39.8,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376710323",
+    "osm_id": "way/376710323",
+    "name": null,
+    "coords": [
+      -105.427063,
+      20.744409
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 694.9,
+    "area_invadida_m2": 382.8,
+    "pct_invadido": 55.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376711438",
+    "osm_id": "way/376711438",
+    "name": null,
+    "coords": [
+      -105.246507,
+      20.579052
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 876.1,
+    "area_invadida_m2": 374.9,
+    "pct_invadido": 42.8,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-359188605",
+    "osm_id": "way/359188605",
+    "name": "El Faro Real I (tower two)",
+    "coords": [
+      -105.51453,
+      20.772073
+    ],
+    "severidad": "roja",
+    "building": "hotel",
+    "area_total_m2": 568.9,
+    "area_invadida_m2": 368.3,
+    "pct_invadido": 64.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377538428",
+    "osm_id": "way/377538428",
+    "name": null,
+    "coords": [
+      -105.370253,
+      20.755691
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 378.5,
+    "area_invadida_m2": 361.1,
+    "pct_invadido": 95.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376731860",
+    "osm_id": "way/376731860",
+    "name": "Playa Dorada",
+    "coords": [
+      -105.232697,
+      20.615497
+    ],
+    "severidad": "roja",
+    "building": "apartments",
+    "area_total_m2": 591.0,
+    "area_invadida_m2": 348.3,
+    "pct_invadido": 58.9,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-1037202085",
+    "osm_id": "way/1037202085",
+    "name": "Xiobella Luxury Hotel Boutique",
+    "coords": [
+      -105.494717,
+      20.788624
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 804.2,
+    "area_invadida_m2": 335.8,
+    "pct_invadido": 41.8,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-359188606",
+    "osm_id": "way/359188606",
+    "name": "El Faro Real II",
+    "coords": [
+      -105.513758,
+      20.772221
+    ],
+    "severidad": "ambar",
+    "building": "hotel",
+    "area_total_m2": 700.4,
+    "area_invadida_m2": 334.2,
+    "pct_invadido": 47.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795584",
+    "osm_id": "way/376795584",
+    "name": null,
+    "coords": [
+      -105.518723,
+      20.771434
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 309.9,
+    "area_invadida_m2": 309.6,
+    "pct_invadido": 99.9,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-226078095",
+    "osm_id": "way/226078095",
+    "name": "Sol",
+    "coords": [
+      -105.529459,
+      20.783545
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 1175.5,
+    "area_invadida_m2": 301.6,
+    "pct_invadido": 25.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376577965",
+    "osm_id": "way/376577965",
+    "name": null,
+    "coords": [
+      -105.255398,
+      20.561478
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 2832.2,
+    "area_invadida_m2": 287.5,
+    "pct_invadido": 10.2,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660574",
+    "osm_id": "way/376660574",
+    "name": null,
+    "coords": [
+      -105.230948,
+      20.628374
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 2203.1,
+    "area_invadida_m2": 280.1,
+    "pct_invadido": 12.7,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376711436",
+    "osm_id": "way/376711436",
+    "name": null,
+    "coords": [
+      -105.246563,
+      20.578779
+    ],
+    "severidad": "roja",
+    "building": "house",
+    "area_total_m2": 376.0,
+    "area_invadida_m2": 278.6,
+    "pct_invadido": 74.1,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376583023",
+    "osm_id": "way/376583023",
+    "name": null,
+    "coords": [
+      -105.249137,
+      20.574573
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 1094.5,
+    "area_invadida_m2": 270.8,
+    "pct_invadido": 24.7,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-1320783367",
+    "osm_id": "way/1320783367",
+    "name": null,
+    "coords": [
+      -105.24795,
+      20.576726
+    ],
+    "severidad": "ambar",
+    "building": "apartments",
+    "area_total_m2": 603.3,
+    "area_invadida_m2": 270.7,
+    "pct_invadido": 44.9,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376620376",
+    "osm_id": "way/376620376",
+    "name": null,
+    "coords": [
+      -105.238404,
+      20.602613
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 276.3,
+    "area_invadida_m2": 269.4,
+    "pct_invadido": 97.5,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376732606",
+    "osm_id": "way/376732606",
+    "name": null,
+    "coords": [
+      -105.232139,
+      20.61982
+    ],
+    "severidad": "roja",
+    "building": "commercial",
+    "area_total_m2": 258.8,
+    "area_invadida_m2": 258.8,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376735382",
+    "osm_id": "way/376735382",
+    "name": null,
+    "coords": [
+      -105.367323,
+      20.758093
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 319.7,
+    "area_invadida_m2": 257.4,
+    "pct_invadido": 80.5,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376581277",
+    "osm_id": "way/376581277",
+    "name": null,
+    "coords": [
+      -105.251364,
+      20.568121
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 680.5,
+    "area_invadida_m2": 254.5,
+    "pct_invadido": 37.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376795615",
+    "osm_id": "way/376795615",
+    "name": null,
+    "coords": [
+      -105.518988,
+      20.771473
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 259.9,
+    "area_invadida_m2": 254.3,
+    "pct_invadido": 97.8,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376732605",
+    "osm_id": "way/376732605",
+    "name": null,
+    "coords": [
+      -105.232104,
+      20.619264
+    ],
+    "severidad": "roja",
+    "building": "commercial",
+    "area_total_m2": 374.5,
+    "area_invadida_m2": 251.5,
+    "pct_invadido": 67.2,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376732664",
+    "osm_id": "way/376732664",
+    "name": null,
+    "coords": [
+      -105.368698,
+      20.757225
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 277.9,
+    "area_invadida_m2": 219.6,
+    "pct_invadido": 79.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-377307216",
+    "osm_id": "way/377307216",
+    "name": null,
+    "coords": [
+      -105.338597,
+      20.754141
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 432.3,
+    "area_invadida_m2": 205.3,
+    "pct_invadido": 47.5,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376653754",
+    "osm_id": "way/376653754",
+    "name": null,
+    "coords": [
+      -105.241342,
+      20.594355
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 207.7,
+    "area_invadida_m2": 204.4,
+    "pct_invadido": 98.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376760590",
+    "osm_id": "way/376760590",
+    "name": "Quinta Maria Cortez",
+    "coords": [
+      -105.244007,
+      20.590875
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 288.0,
+    "area_invadida_m2": 202.9,
+    "pct_invadido": 70.5,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376590397",
+    "osm_id": "way/376590397",
+    "name": null,
+    "coords": [
+      -105.315928,
+      20.732873
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 285.1,
+    "area_invadida_m2": 199.7,
+    "pct_invadido": 70.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376623880",
+    "osm_id": "way/376623880",
+    "name": null,
+    "coords": [
+      -105.444974,
+      20.748626
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 755.6,
+    "area_invadida_m2": 197.4,
+    "pct_invadido": 26.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376795604",
+    "osm_id": "way/376795604",
+    "name": null,
+    "coords": [
+      -105.518395,
+      20.771477
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 188.3,
+    "area_invadida_m2": 188.3,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-303736674",
+    "osm_id": "way/303736674",
+    "name": null,
+    "coords": [
+      -105.237039,
+      20.606496
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 431.4,
+    "area_invadida_m2": 185.8,
+    "pct_invadido": 43.1,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376609598",
+    "osm_id": "way/376609598",
+    "name": null,
+    "coords": [
+      -105.299972,
+      20.716169
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 280.6,
+    "area_invadida_m2": 184.7,
+    "pct_invadido": 65.8,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377280055",
+    "osm_id": "way/377280055",
+    "name": null,
+    "coords": [
+      -105.373578,
+      20.752002
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 245.9,
+    "area_invadida_m2": 181.2,
+    "pct_invadido": 73.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376740368",
+    "osm_id": "way/376740368",
+    "name": null,
+    "coords": [
+      -105.385059,
+      20.745217
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 257.9,
+    "area_invadida_m2": 174.6,
+    "pct_invadido": 67.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376735381",
+    "osm_id": "way/376735381",
+    "name": null,
+    "coords": [
+      -105.367169,
+      20.757804
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 210.8,
+    "area_invadida_m2": 173.9,
+    "pct_invadido": 82.5,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376732663",
+    "osm_id": "way/376732663",
+    "name": null,
+    "coords": [
+      -105.36962,
+      20.756642
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 166.7,
+    "area_invadida_m2": 166.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376795585",
+    "osm_id": "way/376795585",
+    "name": null,
+    "coords": [
+      -105.519538,
+      20.771329
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 164.5,
+    "area_invadida_m2": 164.5,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795617",
+    "osm_id": "way/376795617",
+    "name": null,
+    "coords": [
+      -105.520102,
+      20.771156
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 302.1,
+    "area_invadida_m2": 160.6,
+    "pct_invadido": 53.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795607",
+    "osm_id": "way/376795607",
+    "name": null,
+    "coords": [
+      -105.518598,
+      20.771529
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 161.4,
+    "area_invadida_m2": 159.9,
+    "pct_invadido": 99.1,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376565112",
+    "osm_id": "way/376565112",
+    "name": null,
+    "coords": [
+      -105.242558,
+      20.593575
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 235.7,
+    "area_invadida_m2": 157.7,
+    "pct_invadido": 66.9,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377291666",
+    "osm_id": "way/377291666",
+    "name": null,
+    "coords": [
+      -105.37207,
+      20.751343
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 164.9,
+    "area_invadida_m2": 151.6,
+    "pct_invadido": 91.9,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376701710",
+    "osm_id": "way/376701710",
+    "name": null,
+    "coords": [
+      -105.496927,
+      20.787882
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 224.0,
+    "area_invadida_m2": 150.3,
+    "pct_invadido": 67.1,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376735468",
+    "osm_id": "way/376735468",
+    "name": null,
+    "coords": [
+      -105.422124,
+      20.741958
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 563.1,
+    "area_invadida_m2": 146.6,
+    "pct_invadido": 26.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376732666",
+    "osm_id": "way/376732666",
+    "name": null,
+    "coords": [
+      -105.368974,
+      20.757119
+    ],
+    "severidad": "roja",
+    "building": "residential",
+    "area_total_m2": 257.4,
+    "area_invadida_m2": 142.8,
+    "pct_invadido": 55.5,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376735472",
+    "osm_id": "way/376735472",
+    "name": null,
+    "coords": [
+      -105.421916,
+      20.741776
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 200.3,
+    "area_invadida_m2": 140.0,
+    "pct_invadido": 69.9,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-359204029",
+    "osm_id": "way/359204029",
+    "name": "Rocio",
+    "coords": [
+      -105.519402,
+      20.771441
+    ],
+    "severidad": "roja",
+    "building": "commercial",
+    "area_total_m2": 191.4,
+    "area_invadida_m2": 138.2,
+    "pct_invadido": 72.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376565345",
+    "osm_id": "way/376565345",
+    "name": null,
+    "coords": [
+      -105.240856,
+      20.594987
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 179.7,
+    "area_invadida_m2": 137.1,
+    "pct_invadido": 76.3,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660545",
+    "osm_id": "way/376660545",
+    "name": null,
+    "coords": [
+      -105.248825,
+      20.575262
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 604.0,
+    "area_invadida_m2": 135.3,
+    "pct_invadido": 22.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376912670",
+    "osm_id": "way/376912670",
+    "name": null,
+    "coords": [
+      -105.25061,
+      20.570592
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 134.5,
+    "area_invadida_m2": 134.5,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376577967",
+    "osm_id": "way/376577967",
+    "name": null,
+    "coords": [
+      -105.254992,
+      20.562336
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 635.7,
+    "area_invadida_m2": 133.4,
+    "pct_invadido": 21.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660547",
+    "osm_id": "way/376660547",
+    "name": null,
+    "coords": [
+      -105.246957,
+      20.57735
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 249.3,
+    "area_invadida_m2": 133.2,
+    "pct_invadido": 53.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376701744",
+    "osm_id": "way/376701744",
+    "name": null,
+    "coords": [
+      -105.484652,
+      20.758862
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 168.8,
+    "area_invadida_m2": 129.8,
+    "pct_invadido": 76.9,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377280110",
+    "osm_id": "way/377280110",
+    "name": null,
+    "coords": [
+      -105.373594,
+      20.75176
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 144.8,
+    "area_invadida_m2": 126.6,
+    "pct_invadido": 87.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
     "id": "way-376741874",
@@ -557,7 +1035,1321 @@
     "building": "yes",
     "area_total_m2": 940.6,
     "area_invadida_m2": 123.3,
-    "pct_invadido": 13.1
+    "pct_invadido": 13.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376731846",
+    "osm_id": "way/376731846",
+    "name": null,
+    "coords": [
+      -105.23311,
+      20.614241
+    ],
+    "severidad": "roja",
+    "building": "commercial",
+    "area_total_m2": 168.2,
+    "area_invadida_m2": 120.6,
+    "pct_invadido": 71.7,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376711432",
+    "osm_id": "way/376711432",
+    "name": null,
+    "coords": [
+      -105.246551,
+      20.57851
+    ],
+    "severidad": "ambar",
+    "building": "house",
+    "area_total_m2": 342.5,
+    "area_invadida_m2": 120.0,
+    "pct_invadido": 35.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377051295",
+    "osm_id": "way/377051295",
+    "name": null,
+    "coords": [
+      -105.495099,
+      20.76516
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 872.9,
+    "area_invadida_m2": 119.6,
+    "pct_invadido": 13.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376583879",
+    "osm_id": "way/376583879",
+    "name": null,
+    "coords": [
+      -105.328284,
+      20.745962
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 169.3,
+    "area_invadida_m2": 117.5,
+    "pct_invadido": 69.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-359204028",
+    "osm_id": "way/359204028",
+    "name": "Hotel CINCO",
+    "coords": [
+      -105.519901,
+      20.771407
+    ],
+    "severidad": "ambar",
+    "building": "hotel",
+    "area_total_m2": 843.4,
+    "area_invadida_m2": 115.3,
+    "pct_invadido": 13.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376610525",
+    "osm_id": "way/376610525",
+    "name": null,
+    "coords": [
+      -105.251154,
+      20.658004
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 431.1,
+    "area_invadida_m2": 113.7,
+    "pct_invadido": 26.4,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660554",
+    "osm_id": "way/376660554",
+    "name": null,
+    "coords": [
+      -105.24858,
+      20.575739
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 695.9,
+    "area_invadida_m2": 111.1,
+    "pct_invadido": 16.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376795597",
+    "osm_id": "way/376795597",
+    "name": null,
+    "coords": [
+      -105.519744,
+      20.771275
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 109.1,
+    "area_invadida_m2": 109.1,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376701616",
+    "osm_id": "way/376701616",
+    "name": "Hotel Basalto",
+    "coords": [
+      -105.497784,
+      20.787355
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 532.8,
+    "area_invadida_m2": 107.5,
+    "pct_invadido": 20.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376732311",
+    "osm_id": "way/376732311",
+    "name": null,
+    "coords": [
+      -105.532193,
+      20.778006
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 104.7,
+    "area_invadida_m2": 104.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376735391",
+    "osm_id": "way/376735391",
+    "name": null,
+    "coords": [
+      -105.365902,
+      20.760109
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 362.1,
+    "area_invadida_m2": 103.5,
+    "pct_invadido": 28.6,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376795612",
+    "osm_id": "way/376795612",
+    "name": null,
+    "coords": [
+      -105.518058,
+      20.771463
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 102.7,
+    "area_invadida_m2": 102.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376617525",
+    "osm_id": "way/376617525",
+    "name": null,
+    "coords": [
+      -105.463728,
+      20.843163
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 102.2,
+    "area_invadida_m2": 102.2,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376740284",
+    "osm_id": "way/376740284",
+    "name": null,
+    "coords": [
+      -105.385564,
+      20.745344
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 178.7,
+    "area_invadida_m2": 97.3,
+    "pct_invadido": 54.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376615188",
+    "osm_id": "way/376615188",
+    "name": null,
+    "coords": [
+      -105.356043,
+      20.762254
+    ],
+    "severidad": "ambar",
+    "building": "commercial",
+    "area_total_m2": 917.0,
+    "area_invadida_m2": 96.5,
+    "pct_invadido": 10.5,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376567753",
+    "osm_id": "way/376567753",
+    "name": null,
+    "coords": [
+      -105.241466,
+      20.594197
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 95.9,
+    "area_invadida_m2": 95.9,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-379406909",
+    "osm_id": "way/379406909",
+    "name": null,
+    "coords": [
+      -105.339796,
+      20.755287
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 95.9,
+    "area_invadida_m2": 94.7,
+    "pct_invadido": 98.7,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376614070",
+    "osm_id": "way/376614070",
+    "name": null,
+    "coords": [
+      -105.477263,
+      20.814192
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 161.6,
+    "area_invadida_m2": 92.5,
+    "pct_invadido": 57.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377282223",
+    "osm_id": "way/377282223",
+    "name": null,
+    "coords": [
+      -105.373352,
+      20.751464
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 114.7,
+    "area_invadida_m2": 89.7,
+    "pct_invadido": 78.2,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376609718",
+    "osm_id": "way/376609718",
+    "name": null,
+    "coords": [
+      -105.299824,
+      20.716152
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 117.9,
+    "area_invadida_m2": 88.6,
+    "pct_invadido": 75.1,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377280074",
+    "osm_id": "way/377280074",
+    "name": null,
+    "coords": [
+      -105.373576,
+      20.752202
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 289.3,
+    "area_invadida_m2": 87.1,
+    "pct_invadido": 30.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-379406903",
+    "osm_id": "way/379406903",
+    "name": null,
+    "coords": [
+      -105.339109,
+      20.755532
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 85.2,
+    "area_invadida_m2": 85.2,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376710333",
+    "osm_id": "way/376710333",
+    "name": null,
+    "coords": [
+      -105.427216,
+      20.744658
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 526.2,
+    "area_invadida_m2": 85.1,
+    "pct_invadido": 16.2,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-377392920",
+    "osm_id": "way/377392920",
+    "name": null,
+    "coords": [
+      -105.440375,
+      20.749275
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 98.1,
+    "area_invadida_m2": 82.5,
+    "pct_invadido": 84.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376565115",
+    "osm_id": "way/376565115",
+    "name": null,
+    "coords": [
+      -105.242263,
+      20.593758
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 81.4,
+    "area_invadida_m2": 81.4,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660556",
+    "osm_id": "way/376660556",
+    "name": null,
+    "coords": [
+      -105.245016,
+      20.581313
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 400.1,
+    "area_invadida_m2": 81.1,
+    "pct_invadido": 20.3,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376660561",
+    "osm_id": "way/376660561",
+    "name": null,
+    "coords": [
+      -105.244534,
+      20.585577
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 485.6,
+    "area_invadida_m2": 77.6,
+    "pct_invadido": 16.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376795590",
+    "osm_id": "way/376795590",
+    "name": null,
+    "coords": [
+      -105.51677,
+      20.771685
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 360.2,
+    "area_invadida_m2": 77.5,
+    "pct_invadido": 21.5,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376617553",
+    "osm_id": "way/376617553",
+    "name": null,
+    "coords": [
+      -105.461545,
+      20.845842
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 77.3,
+    "area_invadida_m2": 77.3,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795618",
+    "osm_id": "way/376795618",
+    "name": null,
+    "coords": [
+      -105.515997,
+      20.771643
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 162.7,
+    "area_invadida_m2": 75.2,
+    "pct_invadido": 46.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376660552",
+    "osm_id": "way/376660552",
+    "name": null,
+    "coords": [
+      -105.247376,
+      20.577028
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 73.7,
+    "area_invadida_m2": 73.0,
+    "pct_invadido": 99.1,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376571532",
+    "osm_id": "way/376571532",
+    "name": null,
+    "coords": [
+      -105.238882,
+      20.598592
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 472.0,
+    "area_invadida_m2": 67.5,
+    "pct_invadido": 14.3,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376653394",
+    "osm_id": "way/376653394",
+    "name": null,
+    "coords": [
+      -105.24313,
+      20.592642
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 202.0,
+    "area_invadida_m2": 66.0,
+    "pct_invadido": 32.7,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377291603",
+    "osm_id": "way/377291603",
+    "name": null,
+    "coords": [
+      -105.373251,
+      20.751619
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 259.4,
+    "area_invadida_m2": 65.8,
+    "pct_invadido": 25.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376565113",
+    "osm_id": "way/376565113",
+    "name": null,
+    "coords": [
+      -105.242382,
+      20.593693
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 66.7,
+    "area_invadida_m2": 64.4,
+    "pct_invadido": 96.6,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377280107",
+    "osm_id": "way/377280107",
+    "name": null,
+    "coords": [
+      -105.373583,
+      20.751859
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 61.9,
+    "area_invadida_m2": 61.9,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376620377",
+    "osm_id": "way/376620377",
+    "name": null,
+    "coords": [
+      -105.238361,
+      20.602764
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 58.7,
+    "area_invadida_m2": 58.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376614089",
+    "osm_id": "way/376614089",
+    "name": null,
+    "coords": [
+      -105.477125,
+      20.814382
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 91.9,
+    "area_invadida_m2": 58.7,
+    "pct_invadido": 63.9,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376660558",
+    "osm_id": "way/376660558",
+    "name": null,
+    "coords": [
+      -105.247146,
+      20.577128
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 121.6,
+    "area_invadida_m2": 56.5,
+    "pct_invadido": 46.5,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377392921",
+    "osm_id": "way/377392921",
+    "name": null,
+    "coords": [
+      -105.440199,
+      20.749191
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 56.2,
+    "area_invadida_m2": 56.2,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376795589",
+    "osm_id": "way/376795589",
+    "name": null,
+    "coords": [
+      -105.517683,
+      20.771508
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 74.5,
+    "area_invadida_m2": 55.4,
+    "pct_invadido": 74.4,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376701688",
+    "osm_id": "way/376701688",
+    "name": null,
+    "coords": [
+      -105.496978,
+      20.788015
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 54.4,
+    "area_invadida_m2": 54.4,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795600",
+    "osm_id": "way/376795600",
+    "name": null,
+    "coords": [
+      -105.517281,
+      20.771488
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 54.0,
+    "area_invadida_m2": 54.0,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376771103",
+    "osm_id": "way/376771103",
+    "name": null,
+    "coords": [
+      -105.352731,
+      20.761564
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 133.0,
+    "area_invadida_m2": 53.0,
+    "pct_invadido": 39.8,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376701713",
+    "osm_id": "way/376701713",
+    "name": null,
+    "coords": [
+      -105.504255,
+      20.783309
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 71.2,
+    "area_invadida_m2": 51.4,
+    "pct_invadido": 72.2,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376788576",
+    "osm_id": "way/376788576",
+    "name": null,
+    "coords": [
+      -105.418434,
+      20.739298
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 77.4,
+    "area_invadida_m2": 51.2,
+    "pct_invadido": 66.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376617480",
+    "osm_id": "way/376617480",
+    "name": null,
+    "coords": [
+      -105.463711,
+      20.841843
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 110.2,
+    "area_invadida_m2": 51.1,
+    "pct_invadido": 46.4,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377291593",
+    "osm_id": "way/377291593",
+    "name": null,
+    "coords": [
+      -105.373177,
+      20.751775
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 128.9,
+    "area_invadida_m2": 49.8,
+    "pct_invadido": 38.6,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376569210",
+    "osm_id": "way/376569210",
+    "name": null,
+    "coords": [
+      -105.2404,
+      20.595329
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 77.4,
+    "area_invadida_m2": 49.2,
+    "pct_invadido": 63.6,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376563121",
+    "osm_id": "way/376563121",
+    "name": null,
+    "coords": [
+      -105.243662,
+      20.592273
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 68.1,
+    "area_invadida_m2": 48.9,
+    "pct_invadido": 71.8,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376731857",
+    "osm_id": "way/376731857",
+    "name": null,
+    "coords": [
+      -105.232942,
+      20.614928
+    ],
+    "severidad": "ambar",
+    "building": "commercial",
+    "area_total_m2": 170.8,
+    "area_invadida_m2": 47.9,
+    "pct_invadido": 28.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376614094",
+    "osm_id": "way/376614094",
+    "name": null,
+    "coords": [
+      -105.478138,
+      20.813216
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 232.0,
+    "area_invadida_m2": 44.9,
+    "pct_invadido": 19.4,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376615823",
+    "osm_id": "way/376615823",
+    "name": null,
+    "coords": [
+      -105.353242,
+      20.761753
+    ],
+    "severidad": "ambar",
+    "building": "house",
+    "area_total_m2": 423.1,
+    "area_invadida_m2": 43.9,
+    "pct_invadido": 10.4,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376563411",
+    "osm_id": "way/376563411",
+    "name": null,
+    "coords": [
+      -105.243806,
+      20.591657
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 102.0,
+    "area_invadida_m2": 43.3,
+    "pct_invadido": 42.5,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376565114",
+    "osm_id": "way/376565114",
+    "name": null,
+    "coords": [
+      -105.242322,
+      20.593718
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 42.8,
+    "area_invadida_m2": 42.8,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376676300",
+    "osm_id": "way/376676300",
+    "name": null,
+    "coords": [
+      -105.534459,
+      20.775311
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 41.3,
+    "area_invadida_m2": 41.3,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376571508",
+    "osm_id": "way/376571508",
+    "name": null,
+    "coords": [
+      -105.506415,
+      20.782424
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 120.1,
+    "area_invadida_m2": 41.2,
+    "pct_invadido": 34.3,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376735386",
+    "osm_id": "way/376735386",
+    "name": null,
+    "coords": [
+      -105.366108,
+      20.759016
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 286.7,
+    "area_invadida_m2": 40.5,
+    "pct_invadido": 14.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376609851",
+    "osm_id": "way/376609851",
+    "name": "Pool",
+    "coords": [
+      -105.299917,
+      20.716033
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 39.5,
+    "area_invadida_m2": 39.5,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-376771122",
+    "osm_id": "way/376771122",
+    "name": null,
+    "coords": [
+      -105.351713,
+      20.761214
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 119.7,
+    "area_invadida_m2": 38.3,
+    "pct_invadido": 32.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376701704",
+    "osm_id": "way/376701704",
+    "name": null,
+    "coords": [
+      -105.504328,
+      20.783295
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 51.5,
+    "area_invadida_m2": 38.3,
+    "pct_invadido": 74.4,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376701716",
+    "osm_id": "way/376701716",
+    "name": null,
+    "coords": [
+      -105.507939,
+      20.782244
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 37.9,
+    "area_invadida_m2": 37.9,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376701721",
+    "osm_id": "way/376701721",
+    "name": null,
+    "coords": [
+      -105.508012,
+      20.782247
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 37.7,
+    "area_invadida_m2": 37.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376614079",
+    "osm_id": "way/376614079",
+    "name": null,
+    "coords": [
+      -105.478581,
+      20.812461
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 37.0,
+    "area_invadida_m2": 37.0,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376735388",
+    "osm_id": "way/376735388",
+    "name": null,
+    "coords": [
+      -105.365875,
+      20.760337
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 311.6,
+    "area_invadida_m2": 36.2,
+    "pct_invadido": 11.6,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376609723",
+    "osm_id": "way/376609723",
+    "name": null,
+    "coords": [
+      -105.300292,
+      20.71611
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 202.3,
+    "area_invadida_m2": 36.2,
+    "pct_invadido": 17.9,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-440074654",
+    "osm_id": "way/440074654",
+    "name": null,
+    "coords": [
+      -105.292114,
+      20.696969
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 35.7,
+    "area_invadida_m2": 35.7,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "puerto-vallarta"
+  },
+  {
+    "id": "way-377097970",
+    "osm_id": "way/377097970",
+    "name": null,
+    "coords": [
+      -105.532042,
+      20.777878
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 54.2,
+    "area_invadida_m2": 34.5,
+    "pct_invadido": 63.7,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376622011",
+    "osm_id": "way/376622011",
+    "name": "Litibu Grill",
+    "coords": [
+      -105.482275,
+      20.804164
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 106.9,
+    "area_invadida_m2": 34.2,
+    "pct_invadido": 32.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376701711",
+    "osm_id": "way/376701711",
+    "name": null,
+    "coords": [
+      -105.508001,
+      20.782
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 198.3,
+    "area_invadida_m2": 32.5,
+    "pct_invadido": 16.4,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377056761",
+    "osm_id": "way/377056761",
+    "name": null,
+    "coords": [
+      -105.51013,
+      20.782433
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 31.5,
+    "area_invadida_m2": 31.5,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376614093",
+    "osm_id": "way/376614093",
+    "name": null,
+    "coords": [
+      -105.476198,
+      20.81732
+    ],
+    "severidad": "roja",
+    "building": "yes",
+    "area_total_m2": 30.3,
+    "area_invadida_m2": 30.3,
+    "pct_invadido": 100.0,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376795616",
+    "osm_id": "way/376795616",
+    "name": null,
+    "coords": [
+      -105.512976,
+      20.772361
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 126.5,
+    "area_invadida_m2": 25.7,
+    "pct_invadido": 20.3,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376627175",
+    "osm_id": "way/376627175",
+    "name": null,
+    "coords": [
+      -105.327892,
+      20.745613
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 49.8,
+    "area_invadida_m2": 22.9,
+    "pct_invadido": 46.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-379406901",
+    "osm_id": "way/379406901",
+    "name": null,
+    "coords": [
+      -105.339026,
+      20.755584
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 118.9,
+    "area_invadida_m2": 22.7,
+    "pct_invadido": 19.1,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376771113",
+    "osm_id": "way/376771113",
+    "name": null,
+    "coords": [
+      -105.350657,
+      20.761624
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 144.9,
+    "area_invadida_m2": 21.1,
+    "pct_invadido": 14.6,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-379406898",
+    "osm_id": "way/379406898",
+    "name": null,
+    "coords": [
+      -105.339046,
+      20.755676
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 103.7,
+    "area_invadida_m2": 12.7,
+    "pct_invadido": 12.2,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376617574",
+    "osm_id": "way/376617574",
+    "name": null,
+    "coords": [
+      -105.463496,
+      20.843229
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 111.7,
+    "area_invadida_m2": 11.5,
+    "pct_invadido": 10.3,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376771109",
+    "osm_id": "way/376771109",
+    "name": null,
+    "coords": [
+      -105.351519,
+      20.761157
+    ],
+    "severidad": "ambar",
+    "building": "residential",
+    "area_total_m2": 83.5,
+    "area_invadida_m2": 11.0,
+    "pct_invadido": 13.2,
+    "source": "osm",
+    "localidad": "bahia-norte"
+  },
+  {
+    "id": "way-376701632",
+    "osm_id": "way/376701632",
+    "name": null,
+    "coords": [
+      -105.502079,
+      20.784119
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 50.9,
+    "area_invadida_m2": 3.0,
+    "pct_invadido": 5.9,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-376571510",
+    "osm_id": "way/376571510",
+    "name": null,
+    "coords": [
+      -105.506714,
+      20.782347
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 115.0,
+    "area_invadida_m2": 1.3,
+    "pct_invadido": 1.1,
+    "source": "osm",
+    "localidad": "punta-de-mita"
+  },
+  {
+    "id": "way-377392917",
+    "osm_id": "way/377392917",
+    "name": null,
+    "coords": [
+      -105.439446,
+      20.749331
+    ],
+    "severidad": "ambar",
+    "building": "yes",
+    "area_total_m2": 62.9,
+    "area_invadida_m2": 0.0,
+    "pct_invadido": 0.0,
+    "source": "osm",
+    "localidad": "bahia-norte"
   },
   {
     "id": "manual-manual-001",
@@ -572,7 +2364,8 @@
     "area_total_m2": 9217.8,
     "area_invadida_m2": 998.4,
     "pct_invadido": 10.8,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "bahia-norte"
   },
   {
     "id": "manual-manual-002",
@@ -587,7 +2380,8 @@
     "area_total_m2": 4839.3,
     "area_invadida_m2": 1643.3,
     "pct_invadido": 34.0,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "bahia-norte"
   },
   {
     "id": "manual-manual-003",
@@ -602,7 +2396,8 @@
     "area_total_m2": 4147.9,
     "area_invadida_m2": 1293.7,
     "pct_invadido": 31.2,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "bahia-norte"
   },
   {
     "id": "manual-manual-004",
@@ -617,7 +2412,8 @@
     "area_total_m2": 10369.0,
     "area_invadida_m2": 3072.6,
     "pct_invadido": 29.6,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "punta-de-mita"
   },
   {
     "id": "manual-manual-005",
@@ -632,7 +2428,8 @@
     "area_total_m2": 4147.3,
     "area_invadida_m2": 716.2,
     "pct_invadido": 17.3,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "punta-de-mita"
   },
   {
     "id": "manual-manual-006",
@@ -647,6 +2444,7 @@
     "area_total_m2": 5645.3,
     "area_invadida_m2": 1693.7,
     "pct_invadido": 30.0,
-    "source": "manual"
+    "source": "manual",
+    "localidad": "punta-de-mita"
   }
 ]

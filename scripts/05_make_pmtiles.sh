@@ -20,12 +20,20 @@ fi
 mkdir -p "$(dirname "$OUT")" "$(dirname "$WEB_OUT")"
 
 echo "Convirtiendo $SRC → $OUT"
+# --no-tile-size-limit + --no-feature-limit para que TODOS los planos se
+# preserven en cada zoom. Sin estos, tippecanoe descarta features en
+# zooms bajos cuando la densidad de líneas excede los defaults (500 KB /
+# 200K features por tile), lo que vacía los tiles que el frontend carga
+# por default (zoom 13–14 según localidad).
 tippecanoe \
   -o "$OUT" \
   --layer=zofemat \
   --minimum-zoom=8 \
   --maximum-zoom=16 \
+  --base-zoom=8 \
   --extend-zooms-if-still-dropping \
+  --no-tile-size-limit \
+  --no-feature-limit \
   --force \
   "$SRC"
 

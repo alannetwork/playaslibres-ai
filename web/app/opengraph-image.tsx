@@ -82,7 +82,7 @@ export default function OpengraphImage() {
           }}
         >
           <div>SEMARNAT · OpenStreetMap · Detección automatizada</div>
-          <div>Punta de Mita, Nayarit · 2026</div>
+          <div>Bahía de Banderas · 2026</div>
         </div>
       </div>
     ),

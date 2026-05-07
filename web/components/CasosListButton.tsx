@@ -4,18 +4,7 @@ import { useMemo, useState } from "react";
 import { AlertTriangle, HelpCircle, ListFilter, X } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Caso, ESTADO_LABELS, EstadoCaso } from "@/lib/casos";
-
-type Candidato = {
-  id: string;
-  osm_id: string;
-  name: string | null;
-  coords: [number, number];
-  severidad: "roja" | "ambar";
-  building: string;
-  area_total_m2: number;
-  area_invadida_m2: number;
-  pct_invadido: number;
-};
+import type { Candidato } from "@/lib/candidatos";
 
 type Props = {
   casos: Caso[];

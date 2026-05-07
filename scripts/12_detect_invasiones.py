@@ -38,14 +38,14 @@ import requests
 from shapely.geometry import Polygon, shape
 from shapely.ops import unary_union
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.localidades import Localidad, assign_localidad, load_localidades, union_bbox
+
 ROOT = Path(__file__).resolve().parent.parent
 PLAYA_LIBRE = ROOT / "data" / "processed" / "playa_libre_bb.geojson"
 OUT_GEOJSON = ROOT / "data" / "processed" / "invasiones_candidatas.geojson"
 OUT_HTML = ROOT / "data" / "processed" / "invasiones_candidatas.html"
 RAW_DIR = ROOT / "data" / "raw" / "buildings"
-
-# Bbox PoC: Punta de Mita ampliado (Las Cocinas + Anclote + Litibú).
-DEFAULT_BBOX = (-105.55, 20.75, -105.45, 20.80)
 
 OVERPASS = "https://overpass-api.de/api/interpreter"
 USER_AGENT = "playaslibres-ai/0.1 (https://github.com/playaslibres-mx)"
@@ -228,7 +228,7 @@ def write_geojson(gdf: gpd.GeoDataFrame, path: Path) -> None:
         print(f"  GeoJSON vacío en {path.relative_to(ROOT)}")
         return
     cols_keep = [
-        "osm_id", "severidad", "building", "name", "amenity", "leisure",
+        "osm_id", "severidad", "localidad", "building", "name", "amenity", "leisure",
         "tourism", "operator", "start_date",
         "area_total_m2", "area_invadida_m2", "pct_invadido", "pct_invadido_buf",
         "lat", "lon", "tags_json", "geometry",
@@ -260,7 +260,12 @@ def _download_thumb(lat: float, lon: float, dest: Path) -> bool:
         return False
 
 
-def render_html(gdf: gpd.GeoDataFrame, path: Path, bbox: tuple[float, float, float, float]) -> None:
+def render_html(
+    gdf: gpd.GeoDataFrame,
+    path: Path,
+    bbox: tuple[float, float, float, float],
+    localidades: list[Localidad] | None = None,
+) -> None:
     """Reporte estático con un card por candidato — para revisión humana antes
     de promover a `casos/`. Descarga thumbnails Esri al lado del HTML (evita
     problemas de CORS / mixed content al abrir como `file://`) y usa enlaces
@@ -301,11 +306,16 @@ def render_html(gdf: gpd.GeoDataFrame, path: Path, bbox: tuple[float, float, flo
         name = _str(c.get("name")) or "(sin nombre)"
         amen = _str(c.get("amenity")) or _str(c.get("leisure")) or _str(c.get("tourism"))
         b_type = _str(c.get("building")) or "?"
+        loc_slug = _str(c.get("localidad"))
+        loc_badge = (
+            f'<span class="loc-badge">{loc_slug}</span>' if loc_slug else ""
+        )
         cards.append(f"""
 <div class="card sev-{sev}">
   <div class="hdr">
     <span class="badge" style="background:{sev_color}">{sev.upper()}</span>
     <span class="title">{name}</span>
+    {loc_badge}
     <span class="osm"><a href="https://www.openstreetmap.org/{c['osm_id']}" target="_blank">{c['osm_id']}</a></span>
   </div>
   <div class="body">
@@ -328,6 +338,16 @@ def render_html(gdf: gpd.GeoDataFrame, path: Path, bbox: tuple[float, float, flo
     n_roja = sum(1 for c in candidatos if c["severidad"] == "roja")
     n_ambar = sum(1 for c in candidatos if c["severidad"] == "ambar")
     bbox_str = f"{bbox[0]}, {bbox[1]}, {bbox[2]}, {bbox[3]}"
+    if localidades:
+        loc_counts: dict[str, int] = {}
+        for c in candidatos:
+            slug = c.get("localidad") or "(sin localidad)"
+            loc_counts[slug] = loc_counts.get(slug, 0) + 1
+        loc_summary = " · ".join(
+            f"<b>{slug}</b>: {n}" for slug, n in sorted(loc_counts.items())
+        )
+    else:
+        loc_summary = ""
 
     html = f"""<!doctype html>
 <html lang="es-MX"><head>
@@ -349,6 +369,7 @@ def render_html(gdf: gpd.GeoDataFrame, path: Path, bbox: tuple[float, float, flo
   .body img {{ width: 320px; height: 320px; object-fit: cover; border-radius: 4px; background: #eee; }}
   .meta {{ flex: 1; line-height: 1.6; }}
   .links {{ margin-top: 0.5rem; font-size: 0.9rem; }}
+  .loc-badge {{ background: #e0f2fe; color: #075985; padding: 1px 6px; border-radius: 3px; font-size: 0.7rem; font-family: ui-monospace, monospace; }}
   .warn {{ background: #fef3c7; border-left: 4px solid #f59e0b; padding: 0.75rem 1rem; margin-bottom: 1.5rem; border-radius: 4px; }}
 </style>
 </head><body>
@@ -361,7 +382,7 @@ def render_html(gdf: gpd.GeoDataFrame, path: Path, bbox: tuple[float, float, flo
 </div>
 <div class="stats">
   <b>{n_roja}</b> rojos (≥ {int(PCT_ROJO)}% del edificio dentro de franja federal) ·
-  <b>{n_ambar}</b> ámbar ({int(PCT_AMBAR)}–{int(PCT_ROJO)}% o dentro de buffer)
+  <b>{n_ambar}</b> ámbar ({int(PCT_AMBAR)}–{int(PCT_ROJO)}% o dentro de buffer){f' · {loc_summary}' if loc_summary else ''}
 </div>
 {''.join(cards) if cards else '<p>No se encontraron candidatos.</p>'}
 </body></html>
@@ -374,8 +395,12 @@ def main(argv: Iterable[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     p.add_argument(
         "--bbox", nargs=4, type=float, metavar=("LON_MIN", "LAT_MIN", "LON_MAX", "LAT_MAX"),
-        default=list(DEFAULT_BBOX),
-        help="Bbox de detección (default: Punta de Mita PoC).",
+        default=None,
+        help=(
+            "Bbox de detección manual. Si se omite, se itera sobre las "
+            "localidades de data/localidades.json y se asigna `localidad` "
+            "a cada candidato por point-in-bbox."
+        ),
     )
     p.add_argument(
         "--min-area", type=float, default=DEFAULT_MIN_AREA_M2,
@@ -391,10 +416,19 @@ def main(argv: Iterable[str] | None = None) -> int:
     )
     args = p.parse_args(argv)
 
-    bbox = tuple(args.bbox)
     print(f"== Detector de invasiones (PoC) ==")
-    print(f"bbox: {bbox}")
     print(f"min_area: {args.min_area} m² · buffer franja: {args.buffer} m")
+
+    if args.bbox is not None:
+        # Modo manual: una sola bbox, sin asignación de localidad.
+        bbox = tuple(args.bbox)
+        localidades: list[Localidad] = []
+        print(f"bbox manual: {bbox}")
+    else:
+        localidades = load_localidades()
+        bbox = union_bbox(localidades)
+        print(f"localidades: {[l.slug for l in localidades]}")
+        print(f"bbox unión: {bbox}")
 
     print("\n[1/3] Cargando franja federal...")
     franja = load_franja_federal()
@@ -407,9 +441,27 @@ def main(argv: Iterable[str] | None = None) -> int:
     print("\n[3/3] Calculando intersecciones y severidad...")
     candidatos = detect(osm, franja, bbox, args.min_area, args.buffer)
 
+    if localidades:
+        # Asignar localidad por point-in-bbox del centroide.
+        if not candidatos.empty:
+            candidatos["localidad"] = [
+                assign_localidad(lon, lat, localidades)
+                for lon, lat in zip(candidatos["lon"], candidatos["lat"])
+            ]
+            sin_loc = candidatos["localidad"].isna().sum()
+            if sin_loc:
+                print(f"  descartando {sin_loc} candidatos fuera de bboxes de localidades")
+                candidatos = candidatos[candidatos["localidad"].notna()].copy()
+            for slug in sorted(set(candidatos["localidad"])):
+                n = (candidatos["localidad"] == slug).sum()
+                print(f"    {slug}: {n}")
+    else:
+        if not candidatos.empty:
+            candidatos["localidad"] = None
+
     print("\n== Salidas ==")
     write_geojson(candidatos, OUT_GEOJSON)
-    render_html(candidatos, OUT_HTML, bbox)
+    render_html(candidatos, OUT_HTML, bbox, localidades or None)
     print("\nListo. Abre el HTML en tu navegador y filtra falsos positivos antes de promover a casos/.")
     return 0
 

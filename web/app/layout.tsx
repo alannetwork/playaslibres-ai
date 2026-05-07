@@ -32,6 +32,12 @@ export const metadata: Metadata = {
     "Las Cocinas",
     "Cantiles de Mita",
     "Nayarit",
+    "Puerto Vallarta",
+    "Jalisco",
+    "Marina Vallarta",
+    "Mismaloya",
+    "Bucerías",
+    "Nuevo Vallarta",
     "SEMARNAT",
     "DGZFMTAC",
     "Sentinel-2",
@@ -74,10 +80,16 @@ const ldJson = {
       name: "Playas Libres",
       url: SITE_URL,
       logo: `${SITE_URL}/icon`,
-      areaServed: {
-        "@type": "Place",
-        name: "Bahía de Banderas, Nayarit, México",
-      },
+      areaServed: [
+        {
+          "@type": "Place",
+          name: "Bahía de Banderas, Nayarit, México",
+        },
+        {
+          "@type": "Place",
+          name: "Puerto Vallarta, Jalisco, México",
+        },
+      ],
     },
   ],
 };
