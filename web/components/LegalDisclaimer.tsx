@@ -114,8 +114,8 @@ export function LegalDisclaimer() {
               <strong className="text-slate-100">
                 Zona Federal Marítimo-Terrestre
               </strong>{" "}
-              (ZOFEMAT) en Bahía de Banderas, Nayarit, sobre imagen aérea
-              y datos oficiales de SEMARNAT.
+              (ZOFEMAT) en Bahía de Banderas (Nayarit y Jalisco), sobre
+              imagen aérea y datos oficiales de SEMARNAT.
             </p>
             <p className="text-slate-400">
               Te tomará 30 segundos entender qué estás viendo y los límites
@@ -292,11 +292,13 @@ export function LegalDisclaimer() {
         body: (
           <div className="space-y-3 text-slate-300">
             <p>
-              Empezamos por Bahía de Banderas porque ahí está el caso de
-              Playa Las Cocinas, pero la <strong className="text-slate-100">
-              ZOFEMAT existe en cada playa del país</strong>. Estamos trabajando
-              para extender el mapa a todo el litoral mexicano: Pacífico,
-              Golfo y Caribe.
+              Hoy cubrimos Bahía de Banderas (Punta de Mita, Bahía Norte y
+              Puerto Vallarta), donde está el caso de Playa Las Cocinas que
+              motivó este proyecto. La{" "}
+              <strong className="text-slate-100">
+              ZOFEMAT existe en cada playa del país</strong>: estamos
+              trabajando para extender el mapa al resto del litoral mexicano —
+              Pacífico, Golfo y Caribe.
             </p>
           </div>
         ),

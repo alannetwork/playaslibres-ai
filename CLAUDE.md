@@ -4,7 +4,7 @@ Este archivo orienta a futuras instancias de Claude Code que trabajen en este re
 
 ## Qué es este proyecto
 
-**Playas Libres** — sitio web público que muestra, sobre un mapa satelital de Bahía de Banderas (Nayarit, México) centrado en Punta de Mita, dos capas comparables:
+**Playas Libres** — sitio web público que muestra, sobre un mapa satelital de Bahía de Banderas (Nayarit y Jalisco, México) con localidades navegables (Punta de Mita, Bahía Norte y Puerto Vallarta), dos capas comparables:
 
 1. Línea de pleamar **estimada** (capa "ciudadana", aproximada) derivada de Sentinel-2 + Copernicus DEM 30 m + modelo global de marea FES2014.
 2. Delimitación **oficial** de la ZOFEMAT publicada por SEMARNAT (capa 220 `B_BANDERAS_2021` del MapServer).
@@ -67,8 +67,12 @@ tippecanoe -o out.pmtiles --layer=name --minimum-zoom=8 --maximum-zoom=16 \
 
 ## Coordenadas y parámetros del MVP
 
-- Centro mapa Punta de Mita: `lat 20.7660, lon -105.5460` (zoom inicial 13).
-- BBox Bahía de Banderas: `lon_min=-105.65, lat_min=20.50, lon_max=-105.15, lat_max=20.85`.
+- Localidades navegables (`data/localidades.json`, fuente única consumida por scripts y frontend vía alias `@data/`):
+  - **Punta de Mita** (Nayarit) — centro `[-105.5085, 20.7714]`, zoom 14, bbox `[-105.55, 20.74, -105.45, 20.85]`.
+  - **Bahía Norte** (Bucerías-Mezcales, Nayarit) — centro `[-105.34, 20.75]`, zoom 13, bbox `[-105.45, 20.70, -105.30, 20.85]`.
+  - **Puerto Vallarta** (Jalisco) — centro `[-105.24, 20.63]`, zoom 13, bbox `[-105.30, 20.55, -105.18, 20.72]`.
+- Punta de Mita es la localidad por default (caso ancla: Las Cocinas).
+- BBox Bahía de Banderas (DEM/escena base): `lon_min=-105.65, lat_min=20.50, lon_max=-105.15, lat_max=20.85`.
 - Año de referencia para mareas: 2025.
 - Alturas para floodlines (m): `[-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2]`.
 

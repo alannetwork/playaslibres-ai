@@ -6,7 +6,7 @@
 
 <p align="center"><em>La playa es de todos sólo si todos podemos verla.</em></p>
 
-Plataforma ciudadana para visualizar la **Zona Federal Marítimo-Terrestre** (ZOFEMAT) en Bahía de Banderas, Nayarit, sobre imagen aérea de alta resolución. Reorganiza datos públicos del catastro oficial de SEMARNAT — que existen pero casi nadie consulta — en un mapa interactivo verificable.
+Plataforma ciudadana para visualizar la **Zona Federal Marítimo-Terrestre** (ZOFEMAT) en Bahía de Banderas (Nayarit y Jalisco), sobre imagen aérea de alta resolución, con localidades navegables: Punta de Mita, Bahía Norte (Bucerías-Mezcales) y Puerto Vallarta. Reorganiza datos públicos del catastro oficial de SEMARNAT — que existen pero casi nadie consulta — en un mapa interactivo verificable.
 
 Surge a raíz del conflicto en **Playa Las Cocinas** (Punta de Mita, abril 2026) donde vecinos denuncian invasión de zona federal por el desarrollo Cantiles de Mita / Montage. El sitio sirve como herramienta de transparencia ciudadana, no como prueba pericial.
 

@@ -32,6 +32,9 @@ from pathlib import Path
 import geopandas as gpd
 from shapely.ops import unary_union
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib.localidades import assign_localidad, load_localidades
+
 ROOT = Path(__file__).resolve().parent.parent
 OSM_DETECTED = ROOT / "data" / "processed" / "invasiones_candidatas.geojson"
 MANUAL = ROOT / "data" / "manual" / "candidatos_manuales.geojson"
@@ -115,6 +118,9 @@ def to_record(row, source: str) -> dict:
         ident = row["osm_id"]
     else:
         ident = f"manual/{row['manual_id']}"
+    loc = row.get("localidad") if hasattr(row, "get") else None
+    if not isinstance(loc, str) or not loc:
+        loc = None
     return {
         "id": ident.replace("/", "-"),
         "osm_id": ident,
@@ -126,6 +132,7 @@ def to_record(row, source: str) -> dict:
         "area_invadida_m2": float(round(row["area_invadida_m2"], 1)),
         "pct_invadido": float(round(row["pct_invadido"], 1)),
         "source": source,
+        "localidad": loc,
     }
 
 
@@ -135,7 +142,10 @@ def main() -> None:
         "--top",
         type=int,
         default=None,
-        help="Limitar a N candidatos OSM (ordenados por área invadida desc).",
+        help=(
+            "Limitar a N candidatos OSM por localidad (ordenados por área "
+            "invadida desc). Si no hay localidades en la fuente, aplica global."
+        ),
     )
     ap.add_argument(
         "--only-manual",
@@ -159,7 +169,15 @@ def main() -> None:
     if not args.only_manual and OSM_DETECTED.exists():
         osm = gpd.read_file(OSM_DETECTED)
         if args.top is not None:
-            osm = osm.sort_values("area_invadida_m2", ascending=False).head(args.top)
+            if "localidad" in osm.columns and osm["localidad"].notna().any():
+                # Top-N por localidad: que PV no canibalice el cupo de PM.
+                osm = (
+                    osm.sort_values("area_invadida_m2", ascending=False)
+                    .groupby("localidad", group_keys=False, dropna=False)
+                    .head(args.top)
+                )
+            else:
+                osm = osm.sort_values("area_invadida_m2", ascending=False).head(args.top)
         for _, r in osm.iterrows():
             if r["osm_id"] in block:
                 continue
@@ -174,6 +192,12 @@ def main() -> None:
     if MANUAL.exists():
         manuales_raw = gpd.read_file(MANUAL)
         scored = score_manuales(manuales_raw, franja, args.min_area, args.buffer)
+        if not scored.empty:
+            localidades = load_localidades()
+            scored["localidad"] = [
+                assign_localidad(lon, lat, localidades)
+                for lon, lat in zip(scored["lon"], scored["lat"])
+            ]
         added = 0
         for _, r in scored.iterrows():
             mid = f"manual/{r['manual_id']}"
