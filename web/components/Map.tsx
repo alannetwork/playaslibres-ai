@@ -13,6 +13,7 @@ import { BrandMark } from "./BrandMark";
 import { ShareViewButton } from "./ShareViewButton";
 import { CasosListButton } from "./CasosListButton";
 import { LocalidadSelector } from "./LocalidadSelector";
+import { tileUrl } from "@/lib/tiles";
 import type { Caso, EstadoCaso } from "@/lib/casos";
 import type { Candidato } from "@/lib/candidatos";
 import {
@@ -257,7 +258,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       // Playa Libre (polígono pintado, debajo de las líneas).
       map.addSource("playa-libre", {
         type: "vector",
-        url: "pmtiles:///tiles/playa_libre_bb.pmtiles",
+        url: tileUrl("playa_libre_bb.pmtiles"),
       });
       map.addLayer({
         id: "playa-libre-fill",
@@ -300,7 +301,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       // ZOFEMAT vector source (1 PMTiles, múltiples sublayers por property "Layer").
       map.addSource("zofemat", {
         type: "vector",
-        url: "pmtiles:///tiles/zofemat_bb.pmtiles",
+        url: tileUrl("zofemat_bb.pmtiles"),
       });
 
       // Estilo por sub-categoría SEMARNAT. Cada feature tiene properties.Layer.
@@ -536,7 +537,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       if (map.getSource("floodlines")) return;
       map.addSource("floodlines", {
         type: "vector",
-        url: "pmtiles:///tiles/floodlines_bb.pmtiles",
+        url: tileUrl("floodlines_bb.pmtiles"),
       });
       map.addLayer({
         id: "pleamar-max",
