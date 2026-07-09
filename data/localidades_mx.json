@@ -1,0 +1,3186 @@
+[
+  {
+    "slug": "baja-california--ensenada",
+    "estado": "Baja California",
+    "municipio": "Ensenada",
+    "name": "Ensenada",
+    "center": [
+      -115.91699,
+      30.27182
+    ],
+    "bbox": [
+      -118.35394,
+      28.44503,
+      -113.48004,
+      32.09862
+    ],
+    "zoom": 9,
+    "anios": [
+      2020
+    ],
+    "anios_hist": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2009,
+      2011,
+      2015,
+      2016,
+      2018,
+      2020
+    ],
+    "feature_count": 9,
+    "feature_count_hist": 769,
+    "curada": false
+  },
+  {
+    "slug": "baja-california--mexicali",
+    "estado": "Baja California",
+    "municipio": "Mexicali",
+    "name": "Mexicali",
+    "center": [
+      -114.85158,
+      31.0573
+    ],
+    "bbox": [
+      -115.08266,
+      30.36398,
+      -114.6205,
+      31.75061
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2008,
+      2009,
+      2014,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 512,
+    "curada": false
+  },
+  {
+    "slug": "baja-california--playa-rosarito",
+    "estado": "Baja California",
+    "municipio": "Playa Rosarito",
+    "name": "Playa Rosarito",
+    "center": [
+      -116.97945,
+      32.25011
+    ],
+    "bbox": [
+      -117.09366,
+      32.09064,
+      -116.86524,
+      32.40957
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2005,
+      2007,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 66,
+    "curada": false
+  },
+  {
+    "slug": "baja-california--san-felipe",
+    "estado": "Baja California",
+    "municipio": "San Felipe",
+    "name": "San Felipe",
+    "center": [
+      -114.88719,
+      31.3102
+    ],
+    "bbox": [
+      -115.06859,
+      30.8704,
+      -114.7058,
+      31.75
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2005,
+      2009,
+      2014,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 434,
+    "curada": false
+  },
+  {
+    "slug": "baja-california--san-quintin",
+    "estado": "Baja California",
+    "municipio": "San Quintín",
+    "name": "San Quintín",
+    "center": [
+      -115.18345,
+      30.27182
+    ],
+    "bbox": [
+      -116.88686,
+      28.44503,
+      -113.48004,
+      32.09862
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2005,
+      2006,
+      2011,
+      2015,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 596,
+    "curada": false
+  },
+  {
+    "slug": "baja-california--tijuana",
+    "estado": "Baja California",
+    "municipio": "Tijuana",
+    "name": "Tijuana",
+    "center": [
+      -117.10882,
+      32.47199
+    ],
+    "bbox": [
+      -117.12419,
+      32.40957,
+      -117.09345,
+      32.53442
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 35,
+    "curada": false
+  },
+  {
+    "slug": "baja-california-sur--comondu",
+    "estado": "Baja California Sur",
+    "municipio": "Comondú",
+    "name": "Comondú",
+    "center": [
+      -112.95567,
+      25.86865
+    ],
+    "bbox": [
+      -113.97755,
+      24.73761,
+      -111.9338,
+      26.99968
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2007,
+      2011,
+      2012,
+      2015,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 210,
+    "curada": false
+  },
+  {
+    "slug": "baja-california-sur--la-paz",
+    "estado": "Baja California Sur",
+    "municipio": "La Paz",
+    "name": "La Paz",
+    "center": [
+      -110.563,
+      23.78014
+    ],
+    "bbox": [
+      -111.44098,
+      23.10859,
+      -109.68501,
+      24.45168
+    ],
+    "zoom": 9,
+    "anios": [
+      2019,
+      2020
+    ],
+    "anios_hist": [
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2015,
+      2016,
+      2019,
+      2020
+    ],
+    "feature_count": 355,
+    "feature_count_hist": 838,
+    "curada": false
+  },
+  {
+    "slug": "baja-california-sur--loreto",
+    "estado": "Baja California Sur",
+    "municipio": "Loreto",
+    "name": "Loreto",
+    "center": [
+      -111.30826,
+      25.98452
+    ],
+    "bbox": [
+      -111.39607,
+      25.71715,
+      -111.22044,
+      26.25189
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2007,
+      2011,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 29,
+    "curada": false
+  },
+  {
+    "slug": "baja-california-sur--los-cabos",
+    "estado": "Baja California Sur",
+    "municipio": "Los Cabos",
+    "name": "Los Cabos",
+    "center": [
+      -109.76796,
+      23.27277
+    ],
+    "bbox": [
+      -110.12157,
+      22.87218,
+      -109.41435,
+      23.67337
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2012,
+      2013
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 834,
+    "curada": false
+  },
+  {
+    "slug": "baja-california-sur--mulege",
+    "estado": "Baja California Sur",
+    "municipio": "Mulegé",
+    "name": "Mulegé",
+    "center": [
+      -113.03144,
+      27.24416
+    ],
+    "bbox": [
+      -114.27681,
+      26.40235,
+      -111.78607,
+      28.08598
+    ],
+    "zoom": 9,
+    "anios": [
+      2021
+    ],
+    "anios_hist": [
+      1999,
+      2000,
+      2006,
+      2007,
+      2008,
+      2009,
+      2013
+    ],
+    "feature_count": 6,
+    "feature_count_hist": 75,
+    "curada": false
+  },
+  {
+    "slug": "campeche--campeche",
+    "estado": "Campeche",
+    "municipio": "Campeche",
+    "name": "Campeche",
+    "center": [
+      -90.59218,
+      19.78876
+    ],
+    "bbox": [
+      -90.67481,
+      19.71165,
+      -90.50955,
+      19.86586
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      1999,
+      2013,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 20,
+    "curada": false
+  },
+  {
+    "slug": "campeche--carmen",
+    "estado": "Campeche",
+    "municipio": "Carmen",
+    "name": "Carmen",
+    "center": [
+      -91.78274,
+      18.82967
+    ],
+    "bbox": [
+      -92.46735,
+      18.60726,
+      -91.09813,
+      19.05208
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2014,
+      2017,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 382,
+    "curada": false
+  },
+  {
+    "slug": "campeche--champoton",
+    "estado": "Campeche",
+    "municipio": "Champotón",
+    "name": "Champotón",
+    "center": [
+      -90.95239,
+      19.1588
+    ],
+    "bbox": [
+      -91.11084,
+      19.04394,
+      -90.79395,
+      19.27366
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2013
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 19,
+    "curada": false
+  },
+  {
+    "slug": "campeche--seybaplaya",
+    "estado": "Campeche",
+    "municipio": "Seybaplaya",
+    "name": "Seybaplaya",
+    "center": [
+      -90.70933,
+      19.6611
+    ],
+    "bbox": [
+      -90.74359,
+      19.61094,
+      -90.67507,
+      19.71127
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2015,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 37,
+    "curada": false
+  },
+  {
+    "slug": "chiapas--acapetahua",
+    "estado": "Chiapas",
+    "municipio": "Acapetahua",
+    "name": "Acapetahua",
+    "center": [
+      -92.90358,
+      15.20637
+    ],
+    "bbox": [
+      -92.95472,
+      15.15827,
+      -92.85244,
+      15.25447
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 11,
+    "curada": false
+  },
+  {
+    "slug": "chiapas--pijijiapan",
+    "estado": "Chiapas",
+    "municipio": "Pijijiapan",
+    "name": "Pijijiapan",
+    "center": [
+      -93.58668,
+      15.76999
+    ],
+    "bbox": [
+      -93.8575,
+      15.58197,
+      -93.31586,
+      15.95801
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2012
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 144,
+    "curada": false
+  },
+  {
+    "slug": "chiapas--tapachula",
+    "estado": "Chiapas",
+    "municipio": "Tapachula",
+    "name": "Tapachula",
+    "center": [
+      -92.3724,
+      14.67164
+    ],
+    "bbox": [
+      -92.41915,
+      14.62455,
+      -92.32564,
+      14.71874
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      1993,
+      2001,
+      2014,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 10,
+    "curada": false
+  },
+  {
+    "slug": "chiapas--tonala",
+    "estado": "Chiapas",
+    "municipio": "Tonalá",
+    "name": "Tonalá",
+    "center": [
+      -93.61332,
+      15.79381
+    ],
+    "bbox": [
+      -93.82918,
+      15.64408,
+      -93.39746,
+      15.94354
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      1982,
+      1994,
+      2012
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 7,
+    "curada": false
+  },
+  {
+    "slug": "colima--armeria",
+    "estado": "Colima",
+    "municipio": "Armería",
+    "name": "Armería",
+    "center": [
+      -104.03879,
+      18.90292
+    ],
+    "bbox": [
+      -104.12167,
+      18.85835,
+      -103.95591,
+      18.94749
+    ],
+    "zoom": 11,
+    "anios": [
+      2020
+    ],
+    "anios_hist": [
+      2000,
+      2001,
+      2014
+    ],
+    "feature_count": 53,
+    "feature_count_hist": 49,
+    "curada": false
+  },
+  {
+    "slug": "colima--manzanillo",
+    "estado": "Colima",
+    "municipio": "Manzanillo",
+    "name": "Manzanillo",
+    "center": [
+      -104.40351,
+      19.07083
+    ],
+    "bbox": [
+      -104.69565,
+      18.94064,
+      -104.11137,
+      19.20103
+    ],
+    "zoom": 9,
+    "anios": [
+      2020,
+      2022
+    ],
+    "anios_hist": [
+      2001,
+      2004,
+      2009,
+      2014,
+      2015,
+      2020,
+      2022
+    ],
+    "feature_count": 347,
+    "feature_count_hist": 818,
+    "curada": false
+  },
+  {
+    "slug": "colima--tecoman",
+    "estado": "Colima",
+    "municipio": "Tecomán",
+    "name": "Tecomán",
+    "center": [
+      -103.84946,
+      18.77479
+    ],
+    "bbox": [
+      -103.97184,
+      18.68329,
+      -103.72708,
+      18.8663
+    ],
+    "zoom": 10,
+    "anios": [
+      2020
+    ],
+    "anios_hist": [
+      2007,
+      2016,
+      2018,
+      2020
+    ],
+    "feature_count": 78,
+    "feature_count_hist": 174,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--acapulco-de-juarez",
+    "estado": "Guerrero",
+    "municipio": "Acapulco de Juárez",
+    "name": "Acapulco de Juárez",
+    "center": [
+      -99.80146,
+      16.79706
+    ],
+    "bbox": [
+      -100.0026,
+      16.67905,
+      -99.60031,
+      16.91507
+    ],
+    "zoom": 9,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [
+      2002,
+      2013,
+      2016,
+      2017,
+      2018,
+      2021,
+      2022
+    ],
+    "feature_count": 107,
+    "feature_count_hist": 1149,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--coyuca-de-benitez",
+    "estado": "Guerrero",
+    "municipio": "Coyuca de Benítez",
+    "name": "Coyuca de Benítez",
+    "center": [
+      -100.0904,
+      16.94204
+    ],
+    "bbox": [
+      -100.22963,
+      16.88999,
+      -99.95117,
+      16.99408
+    ],
+    "zoom": 10,
+    "anios": [
+      2021
+    ],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 9,
+    "feature_count_hist": 61,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--florencio-villareal",
+    "estado": "Guerrero",
+    "municipio": "Florencio Villareal",
+    "name": "Florencio Villareal",
+    "center": [
+      -99.23396,
+      16.63475
+    ],
+    "bbox": [
+      -99.23573,
+      16.63441,
+      -99.23218,
+      16.63509
+    ],
+    "zoom": 15,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 2,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--la-union",
+    "estado": "Guerrero",
+    "municipio": "La Unión",
+    "name": "La Unión",
+    "center": [
+      -102.00206,
+      17.9516
+    ],
+    "bbox": [
+      -102.13657,
+      17.91391,
+      -101.86754,
+      17.98928
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1788,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--petatlan",
+    "estado": "Guerrero",
+    "municipio": "Petatlán",
+    "name": "Petatlán",
+    "center": [
+      -101.27187,
+      17.43457
+    ],
+    "bbox": [
+      -101.46181,
+      17.33019,
+      -101.08194,
+      17.53895
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 657,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--san-marcos",
+    "estado": "Guerrero",
+    "municipio": "San Marcos",
+    "name": "San Marcos",
+    "center": [
+      -99.61041,
+      16.68442
+    ],
+    "bbox": [
+      -99.6154,
+      16.68411,
+      -99.60541,
+      16.68473
+    ],
+    "zoom": 15,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 4,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--tecpan-galeana",
+    "estado": "Guerrero",
+    "municipio": "Técpan Galeana",
+    "name": "Técpan Galeana",
+    "center": [
+      -100.89764,
+      17.24117
+    ],
+    "bbox": [
+      -101.08089,
+      17.15295,
+      -100.71439,
+      17.32939
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 448,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--zihuatanejo",
+    "estado": "Guerrero",
+    "municipio": "Zihuatanejo",
+    "name": "Zihuatanejo",
+    "center": [
+      -101.57272,
+      17.65116
+    ],
+    "bbox": [
+      -101.70849,
+      17.5339,
+      -101.43694,
+      17.76842
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2001,
+      2007,
+      2019
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 18303,
+    "curada": false
+  },
+  {
+    "slug": "guerrero--zihuatanejo-de-azueta",
+    "estado": "Guerrero",
+    "municipio": "Zihuatanejo de Azueta",
+    "name": "Zihuatanejo de Azueta",
+    "center": [
+      -101.60809,
+      17.65838
+    ],
+    "bbox": [
+      -101.62515,
+      17.65093,
+      -101.59103,
+      17.66583
+    ],
+    "zoom": 13,
+    "anios": [
+      2019
+    ],
+    "anios_hist": [],
+    "feature_count": 11,
+    "feature_count_hist": 0,
+    "curada": false
+  },
+  {
+    "slug": "jalisco--cabo-corrientes",
+    "estado": "Jalisco",
+    "municipio": "Cabo Corrientes",
+    "name": "Cabo Corrientes",
+    "center": [
+      -105.50951,
+      20.30564
+    ],
+    "bbox": [
+      -105.69386,
+      20.09831,
+      -105.32516,
+      20.51296
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      1997,
+      2000,
+      2008,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 190,
+    "curada": false
+  },
+  {
+    "slug": "jalisco--cihuatlan",
+    "estado": "Jalisco",
+    "municipio": "Cihuatlán",
+    "name": "Cihuatlán",
+    "center": [
+      -104.71254,
+      19.21039
+    ],
+    "bbox": [
+      -104.7771,
+      19.18014,
+      -104.64797,
+      19.24064
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2000,
+      2003,
+      2004,
+      2009,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 227,
+    "curada": false
+  },
+  {
+    "slug": "jalisco--la-huerta",
+    "estado": "Jalisco",
+    "municipio": "La Huerta",
+    "name": "La Huerta",
+    "center": [
+      -104.99012,
+      19.43776
+    ],
+    "bbox": [
+      -105.2096,
+      19.23763,
+      -104.77064,
+      19.63789
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2014,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1541,
+    "curada": false
+  },
+  {
+    "slug": "jalisco--puerto-vallarta",
+    "estado": "Jalisco",
+    "municipio": "Puerto Vallarta",
+    "name": "Puerto Vallarta",
+    "center": [
+      -105.27566,
+      20.59194
+    ],
+    "bbox": [
+      -105.33517,
+      20.50266,
+      -105.21614,
+      20.68122
+    ],
+    "zoom": 10,
+    "anios": [
+      2019,
+      2022
+    ],
+    "anios_hist": [
+      2005,
+      2014,
+      2016,
+      2017,
+      2019,
+      2022
+    ],
+    "feature_count": 353,
+    "feature_count_hist": 842,
+    "curada": true
+  },
+  {
+    "slug": "jalisco--tomatlan",
+    "estado": "Jalisco",
+    "municipio": "Tomatlán",
+    "name": "Tomatlán",
+    "center": [
+      -105.39061,
+      19.92473
+    ],
+    "bbox": [
+      -105.5484,
+      19.67632,
+      -105.23282,
+      20.17315
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      1997,
+      2003,
+      2007,
+      2008,
+      2010
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 112,
+    "curada": false
+  },
+  {
+    "slug": "michoacan--aquila",
+    "estado": "Michoacán",
+    "municipio": "Aquila",
+    "name": "Aquila",
+    "center": [
+      -102.79767,
+      18.08873
+    ],
+    "bbox": [
+      -102.80501,
+      18.08577,
+      -102.79033,
+      18.09168
+    ],
+    "zoom": 14,
+    "anios": [],
+    "anios_hist": [
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 4,
+    "curada": false
+  },
+  {
+    "slug": "michoacan--coahuayana",
+    "estado": "Michoacán",
+    "municipio": "Coahuayana",
+    "name": "Coahuayana",
+    "center": [
+      -103.71201,
+      18.65373
+    ],
+    "bbox": [
+      -103.73905,
+      18.62157,
+      -103.68496,
+      18.68588
+    ],
+    "zoom": 12,
+    "anios": [],
+    "anios_hist": [
+      2010
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 20,
+    "curada": false
+  },
+  {
+    "slug": "michoacan--lazaro-cardenas",
+    "estado": "Michoacán",
+    "municipio": "Lázaro Cárdenas",
+    "name": "Lázaro Cárdenas",
+    "center": [
+      -102.50902,
+      18.0087
+    ],
+    "bbox": [
+      -102.80501,
+      17.92572,
+      -102.21303,
+      18.09168
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 74,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--bahia-de-banderas",
+    "estado": "Nayarit",
+    "municipio": "Bahía de Banderas",
+    "name": "Bahía de Banderas",
+    "center": [
+      -105.40679,
+      20.8181
+    ],
+    "bbox": [
+      -105.54091,
+      20.67132,
+      -105.27267,
+      20.96488
+    ],
+    "zoom": 10,
+    "anios": [
+      2019,
+      2022
+    ],
+    "anios_hist": [
+      1997,
+      2002,
+      2003,
+      2004,
+      2005,
+      2010,
+      2011,
+      2013,
+      2014,
+      2015,
+      2017,
+      2018,
+      2019,
+      2021
+    ],
+    "feature_count": 1362,
+    "feature_count_hist": 1721,
+    "curada": true
+  },
+  {
+    "slug": "nayarit--compostela",
+    "estado": "Nayarit",
+    "municipio": "Compostela",
+    "name": "Compostela",
+    "center": [
+      -105.28107,
+      21.16239
+    ],
+    "bbox": [
+      -105.35881,
+      20.95763,
+      -105.20332,
+      21.36715
+    ],
+    "zoom": 9,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [],
+    "feature_count": 1515,
+    "feature_count_hist": 0,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--rosamorada",
+    "estado": "Nayarit",
+    "municipio": "Rosamorada",
+    "name": "Rosamorada",
+    "center": [
+      -105.38332,
+      22.19741
+    ],
+    "bbox": [
+      -105.44863,
+      22.15743,
+      -105.31801,
+      22.23738
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2013,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 18,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--san-blas",
+    "estado": "Nayarit",
+    "municipio": "San Blas",
+    "name": "San Blas",
+    "center": [
+      -105.31346,
+      21.49795
+    ],
+    "bbox": [
+      -105.44644,
+      21.36172,
+      -105.18047,
+      21.63418
+    ],
+    "zoom": 10,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [
+      2004,
+      2010,
+      2013,
+      2015
+    ],
+    "feature_count": 1084,
+    "feature_count_hist": 189,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--santiago-ixcuintla",
+    "estado": "Nayarit",
+    "municipio": "Santiago Ixcuintla",
+    "name": "Santiago Ixcuintla",
+    "center": [
+      -105.55356,
+      21.96245
+    ],
+    "bbox": [
+      -105.66204,
+      21.6347,
+      -105.44508,
+      22.2902
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2000
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 29,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--santiago-de-compostela",
+    "estado": "Nayarit",
+    "municipio": "Santiago de Compostela",
+    "name": "Santiago de Compostela",
+    "center": [
+      -105.28234,
+      21.16262
+    ],
+    "bbox": [
+      -105.3556,
+      20.95809,
+      -105.20908,
+      21.36715
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2001,
+      2006,
+      2010,
+      2013,
+      2014,
+      2016,
+      2018,
+      2021
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 2627,
+    "curada": false
+  },
+  {
+    "slug": "nayarit--tecuala",
+    "estado": "Nayarit",
+    "municipio": "Tecuala",
+    "name": "Tecuala",
+    "center": [
+      -105.70961,
+      22.41668
+    ],
+    "bbox": [
+      -105.75739,
+      22.29018,
+      -105.66184,
+      22.54318
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2011
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 36,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--salina-cruz",
+    "estado": "Oaxaca",
+    "municipio": "Salina Cruz",
+    "name": "Salina Cruz",
+    "center": [
+      -95.35426,
+      16.06736
+    ],
+    "bbox": [
+      -95.53639,
+      15.96211,
+      -95.17213,
+      16.17261
+    ],
+    "zoom": 9,
+    "anios": [
+      2020
+    ],
+    "anios_hist": [
+      2005,
+      2006,
+      2008,
+      2013
+    ],
+    "feature_count": 5,
+    "feature_count_hist": 138,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--san-pedro-huamelula",
+    "estado": "Oaxaca",
+    "municipio": "San Pedro Huamelula",
+    "name": "San Pedro Huamelula",
+    "center": [
+      -95.72141,
+      15.89379
+    ],
+    "bbox": [
+      -95.78139,
+      15.87424,
+      -95.66142,
+      15.91333
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2008
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 16,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--san-pedro-mixtepec",
+    "estado": "Oaxaca",
+    "municipio": "San Pedro Mixtepec",
+    "name": "San Pedro Mixtepec",
+    "center": [
+      -97.12812,
+      15.89117
+    ],
+    "bbox": [
+      -97.21158,
+      15.83054,
+      -97.04466,
+      15.95179
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 102,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--san-pedro-pochutla",
+    "estado": "Oaxaca",
+    "municipio": "San Pedro Pochutla",
+    "name": "San Pedro Pochutla",
+    "center": [
+      -96.50722,
+      15.66386
+    ],
+    "bbox": [
+      -96.52395,
+      15.66068,
+      -96.49049,
+      15.66705
+    ],
+    "zoom": 13,
+    "anios": [],
+    "anios_hist": [
+      1998,
+      2002
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 21,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--santa-maria-colotepec",
+    "estado": "Oaxaca",
+    "municipio": "Santa María Colotepec",
+    "name": "Santa María Colotepec",
+    "center": [
+      -97.0549,
+      15.84607
+    ],
+    "bbox": [
+      -97.06515,
+      15.83054,
+      -97.04466,
+      15.86161
+    ],
+    "zoom": 13,
+    "anios": [],
+    "anios_hist": [
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 31,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--santa-maria-huatulco",
+    "estado": "Oaxaca",
+    "municipio": "Santa María Huatulco",
+    "name": "Santa María Huatulco",
+    "center": [
+      -96.20036,
+      15.73511
+    ],
+    "bbox": [
+      -96.34607,
+      15.68297,
+      -96.05464,
+      15.78725
+    ],
+    "zoom": 10,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [
+      2004,
+      2005,
+      2008,
+      2013,
+      2022
+    ],
+    "feature_count": 3,
+    "feature_count_hist": 275,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--santa-maria-tonameca",
+    "estado": "Oaxaca",
+    "municipio": "Santa María Tonameca",
+    "name": "Santa María Tonameca",
+    "center": [
+      -96.5524,
+      15.66378
+    ],
+    "bbox": [
+      -96.568,
+      15.66116,
+      -96.53681,
+      15.6664
+    ],
+    "zoom": 13,
+    "anios": [],
+    "anios_hist": [
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 9,
+    "curada": false
+  },
+  {
+    "slug": "oaxaca--villa-de-tututepec",
+    "estado": "Oaxaca",
+    "municipio": "Villa de Tututepec",
+    "name": "Villa de Tututepec",
+    "center": [
+      -97.52138,
+      15.966
+    ],
+    "bbox": [
+      -97.68861,
+      15.94305,
+      -97.35414,
+      15.98896
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2016,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 13,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--bacalar",
+    "estado": "Quintana Roo",
+    "municipio": "Bacalar",
+    "name": "Bacalar",
+    "center": [
+      -87.58213,
+      19.04057
+    ],
+    "bbox": [
+      -87.61444,
+      18.96251,
+      -87.54982,
+      19.11862
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 37,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--benito-juarez",
+    "estado": "Quintana Roo",
+    "municipio": "Benito Juárez",
+    "name": "Benito Juárez",
+    "center": [
+      -86.8258,
+      21.01348
+    ],
+    "bbox": [
+      -86.91105,
+      20.81206,
+      -86.74055,
+      21.2149
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2005,
+      2006,
+      2007,
+      2011,
+      2013,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 669,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--cozumel",
+    "estado": "Quintana Roo",
+    "municipio": "Cozumel",
+    "name": "Cozumel",
+    "center": [
+      -87.04269,
+      20.43201
+    ],
+    "bbox": [
+      -87.36194,
+      20.27201,
+      -86.72343,
+      20.59201
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2013,
+      2016,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 2462,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--isla-mujeres",
+    "estado": "Quintana Roo",
+    "municipio": "Isla Mujeres",
+    "name": "Isla Mujeres",
+    "center": [
+      -86.76401,
+      21.30712
+    ],
+    "bbox": [
+      -86.81688,
+      21.202,
+      -86.71114,
+      21.41225
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2015,
+      2017,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 177,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--lazaro-cardenas",
+    "estado": "Quintana Roo",
+    "municipio": "Lázaro Cárdenas",
+    "name": "Lázaro Cárdenas",
+    "center": [
+      -87.25774,
+      21.55027
+    ],
+    "bbox": [
+      -87.40167,
+      21.50236,
+      -87.11381,
+      21.59819
+    ],
+    "zoom": 10,
+    "anios": [
+      2020,
+      2023
+    ],
+    "anios_hist": [
+      2002,
+      2010,
+      2022
+    ],
+    "feature_count": 82,
+    "feature_count_hist": 85,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--othon-p-blanco",
+    "estado": "Quintana Roo",
+    "municipio": "Othón P. Blanco",
+    "name": "Othón P. Blanco",
+    "center": [
+      -87.80175,
+      18.6408
+    ],
+    "bbox": [
+      -88.30512,
+      18.20906,
+      -87.29837,
+      19.07253
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2009,
+      2012,
+      2013,
+      2017,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 240,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--puerto-morelos",
+    "estado": "Quintana Roo",
+    "municipio": "Puerto Morelos",
+    "name": "Puerto Morelos",
+    "center": [
+      -86.8258,
+      21.01342
+    ],
+    "bbox": [
+      -86.91105,
+      20.81194,
+      -86.74055,
+      21.2149
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2007,
+      2009,
+      2013
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 233,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--solidaridad",
+    "estado": "Quintana Roo",
+    "municipio": "Solidaridad",
+    "name": "Solidaridad",
+    "center": [
+      -87.19465,
+      20.29635
+    ],
+    "bbox": [
+      -87.48168,
+      19.77996,
+      -86.90761,
+      20.81274
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2016,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1265,
+    "curada": false
+  },
+  {
+    "slug": "quintana-roo--tulum",
+    "estado": "Quintana Roo",
+    "municipio": "Tulum",
+    "name": "Tulum",
+    "center": [
+      -87.19877,
+      20.29525
+    ],
+    "bbox": [
+      -87.48992,
+      19.77776,
+      -86.90761,
+      20.81274
+    ],
+    "zoom": 9,
+    "anios": [
+      2021
+    ],
+    "anios_hist": [
+      2007,
+      2013,
+      2015,
+      2017,
+      2021
+    ],
+    "feature_count": 764,
+    "feature_count_hist": 786,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--ahome",
+    "estado": "Sinaloa",
+    "municipio": "Ahome",
+    "name": "Ahome",
+    "center": [
+      -109.14148,
+      25.88878
+    ],
+    "bbox": [
+      -109.44971,
+      25.43284,
+      -108.83325,
+      26.34473
+    ],
+    "zoom": 9,
+    "anios": [
+      2019
+    ],
+    "anios_hist": [
+      2000,
+      2007,
+      2008,
+      2016,
+      2017,
+      2019
+    ],
+    "feature_count": 1320,
+    "feature_count_hist": 2563,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--angostura",
+    "estado": "Sinaloa",
+    "municipio": "Angostura",
+    "name": "Angostura",
+    "center": [
+      -108.21386,
+      25.00206
+    ],
+    "bbox": [
+      -108.38729,
+      24.81976,
+      -108.04044,
+      25.18436
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 638,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--culiacan",
+    "estado": "Sinaloa",
+    "municipio": "Culiacán",
+    "name": "Culiacán",
+    "center": [
+      -107.34242,
+      24.31935
+    ],
+    "bbox": [
+      -107.64334,
+      24.02912,
+      -107.0415,
+      24.60958
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2000,
+      2003,
+      2004,
+      2007,
+      2008
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 908,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--elota",
+    "estado": "Sinaloa",
+    "municipio": "Elota",
+    "name": "Elota",
+    "center": [
+      -107.01893,
+      23.92802
+    ],
+    "bbox": [
+      -107.19576,
+      23.74992,
+      -106.8421,
+      24.10613
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2008,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 363,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--escuinapa",
+    "estado": "Sinaloa",
+    "municipio": "Escuinapa",
+    "name": "Escuinapa",
+    "center": [
+      -105.75751,
+      22.66597
+    ],
+    "bbox": [
+      -105.99615,
+      22.48461,
+      -105.51887,
+      22.84734
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 762,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--guasave",
+    "estado": "Sinaloa",
+    "municipio": "Guasave",
+    "name": "Guasave",
+    "center": [
+      -108.69001,
+      25.48696
+    ],
+    "bbox": [
+      -109.02421,
+      25.22203,
+      -108.35581,
+      25.75189
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2007,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1001,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--mazatlan",
+    "estado": "Sinaloa",
+    "municipio": "Mazatlán",
+    "name": "Mazatlán",
+    "center": [
+      -106.38897,
+      23.28804
+    ],
+    "bbox": [
+      -106.61868,
+      23.06823,
+      -106.15926,
+      23.50785
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1196,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--navolato",
+    "estado": "Sinaloa",
+    "municipio": "Navolato",
+    "name": "Navolato",
+    "center": [
+      -107.83337,
+      24.69843
+    ],
+    "bbox": [
+      -108.12976,
+      24.41048,
+      -107.53697,
+      24.98637
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2008
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 2070,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--rosario",
+    "estado": "Sinaloa",
+    "municipio": "Rosario",
+    "name": "Rosario",
+    "center": [
+      -106.04043,
+      22.9588
+    ],
+    "bbox": [
+      -106.25738,
+      22.8178,
+      -105.82348,
+      23.0998
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2008
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 484,
+    "curada": false
+  },
+  {
+    "slug": "sinaloa--san-ignacio",
+    "estado": "Sinaloa",
+    "municipio": "San Ignacio",
+    "name": "San Ignacio",
+    "center": [
+      -106.7305,
+      23.62083
+    ],
+    "bbox": [
+      -106.858,
+      23.47159,
+      -106.60299,
+      23.77008
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      1999,
+      2002,
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 269,
+    "curada": false
+  },
+  {
+    "slug": "sonora--benito-juarez",
+    "estado": "Sonora",
+    "municipio": "Benito Juárez",
+    "name": "Benito Juárez",
+    "center": [
+      -109.89782,
+      26.97681
+    ],
+    "bbox": [
+      -109.91943,
+      26.93369,
+      -109.87621,
+      27.01993
+    ],
+    "zoom": 12,
+    "anios": [],
+    "anios_hist": [
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 36,
+    "curada": false
+  },
+  {
+    "slug": "sonora--caborca",
+    "estado": "Sonora",
+    "municipio": "Caborca",
+    "name": "Caborca",
+    "center": [
+      -112.98611,
+      30.59464
+    ],
+    "bbox": [
+      -113.12693,
+      30.27167,
+      -112.8453,
+      30.9176
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2009,
+      2011,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 115,
+    "curada": false
+  },
+  {
+    "slug": "sonora--cajeme",
+    "estado": "Sonora",
+    "municipio": "Cajeme",
+    "name": "Cajeme",
+    "center": [
+      -109.99223,
+      27.0536
+    ],
+    "bbox": [
+      -110.04552,
+      27.01799,
+      -109.93895,
+      27.0892
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 5,
+    "curada": false
+  },
+  {
+    "slug": "sonora--empalme",
+    "estado": "Sonora",
+    "municipio": "Empalme",
+    "name": "Empalme",
+    "center": [
+      -110.70464,
+      27.91859
+    ],
+    "bbox": [
+      -110.8299,
+      27.86469,
+      -110.57939,
+      27.9725
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 100,
+    "curada": false
+  },
+  {
+    "slug": "sonora--guaymas",
+    "estado": "Sonora",
+    "municipio": "Guaymas",
+    "name": "Guaymas",
+    "center": [
+      -110.95219,
+      27.92054
+    ],
+    "bbox": [
+      -111.13728,
+      27.85586,
+      -110.76709,
+      27.98521
+    ],
+    "zoom": 9,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [
+      2002,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2012,
+      2013,
+      2014,
+      2016
+    ],
+    "feature_count": 3,
+    "feature_count_hist": 163,
+    "curada": false
+  },
+  {
+    "slug": "sonora--hermosillo",
+    "estado": "Sonora",
+    "municipio": "Hermosillo",
+    "name": "Hermosillo",
+    "center": [
+      -111.82343,
+      28.79615
+    ],
+    "bbox": [
+      -112.23615,
+      28.28065,
+      -111.41071,
+      29.31165
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2008,
+      2011,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 576,
+    "curada": false
+  },
+  {
+    "slug": "sonora--huatabampo",
+    "estado": "Sonora",
+    "municipio": "Huatabampo",
+    "name": "Huatabampo",
+    "center": [
+      -109.5693,
+      26.61675
+    ],
+    "bbox": [
+      -109.88697,
+      26.32128,
+      -109.25162,
+      26.91221
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 267,
+    "curada": false
+  },
+  {
+    "slug": "sonora--pitiquito",
+    "estado": "Sonora",
+    "municipio": "Pitiquito",
+    "name": "Pitiquito",
+    "center": [
+      -112.57288,
+      29.72192
+    ],
+    "bbox": [
+      -112.71805,
+      29.52631,
+      -112.4277,
+      29.91754
+    ],
+    "zoom": 9,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [
+      2011
+    ],
+    "feature_count": 10,
+    "feature_count_hist": 28,
+    "curada": false
+  },
+  {
+    "slug": "sonora--puerto-penasco",
+    "estado": "Sonora",
+    "municipio": "Puerto Peñasco",
+    "name": "Puerto Peñasco",
+    "center": [
+      -113.33516,
+      31.13049
+    ],
+    "bbox": [
+      -113.63593,
+      30.91754,
+      -113.03438,
+      31.34345
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      1999,
+      2000,
+      2001,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 299,
+    "curada": false
+  },
+  {
+    "slug": "sonora--san-luis-rio-colorado",
+    "estado": "Sonora",
+    "municipio": "San Luis Río Colorado",
+    "name": "San Luis Río Colorado",
+    "center": [
+      -114.37901,
+      31.71489
+    ],
+    "bbox": [
+      -114.73403,
+      31.4909,
+      -114.02398,
+      31.93887
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2007,
+      2009,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 148,
+    "curada": false
+  },
+  {
+    "slug": "tabasco--centla",
+    "estado": "Tabasco",
+    "municipio": "Centla",
+    "name": "Centla",
+    "center": [
+      -92.83433,
+      18.52565
+    ],
+    "bbox": [
+      -93.08811,
+      18.42988,
+      -92.58055,
+      18.62141
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      1997,
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 82,
+    "curada": false
+  },
+  {
+    "slug": "tabasco--cardenas",
+    "estado": "Tabasco",
+    "municipio": "Cárdenas",
+    "name": "Cárdenas",
+    "center": [
+      -93.86404,
+      18.29326
+    ],
+    "bbox": [
+      -93.87755,
+      18.28644,
+      -93.85053,
+      18.30007
+    ],
+    "zoom": 13,
+    "anios": [],
+    "anios_hist": [
+      1997
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1,
+    "curada": false
+  },
+  {
+    "slug": "tabasco--paraiso",
+    "estado": "Tabasco",
+    "municipio": "Paraíso",
+    "name": "Paraíso",
+    "center": [
+      -93.23237,
+      18.44268
+    ],
+    "bbox": [
+      -93.2565,
+      18.43851,
+      -93.20824,
+      18.44684
+    ],
+    "zoom": 12,
+    "anios": [],
+    "anios_hist": [
+      1985,
+      1997,
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 9,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--aldama",
+    "estado": "Tamaulipas",
+    "municipio": "Aldama",
+    "name": "Aldama",
+    "center": [
+      -97.81067,
+      22.924
+    ],
+    "bbox": [
+      -97.86013,
+      22.54511,
+      -97.76121,
+      23.30289
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2002,
+      2005,
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 108,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--altamira",
+    "estado": "Tamaulipas",
+    "municipio": "Altamira",
+    "name": "Altamira",
+    "center": [
+      -97.84067,
+      22.43657
+    ],
+    "bbox": [
+      -97.86012,
+      22.32801,
+      -97.82121,
+      22.54512
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2018
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 17,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--ciudad-madero",
+    "estado": "Tamaulipas",
+    "municipio": "Ciudad Madero",
+    "name": "Ciudad Madero",
+    "center": [
+      -97.80383,
+      22.31596
+    ],
+    "bbox": [
+      -97.83484,
+      22.26366,
+      -97.77281,
+      22.36825
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      1997,
+      2005,
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 23,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--madero",
+    "estado": "Tamaulipas",
+    "municipio": "Madero",
+    "name": "Madero",
+    "center": [
+      -97.80208,
+      22.29527
+    ],
+    "bbox": [
+      -97.82713,
+      22.25896,
+      -97.77702,
+      22.33159
+    ],
+    "zoom": 12,
+    "anios": [
+      2022
+    ],
+    "anios_hist": [],
+    "feature_count": 25,
+    "feature_count_hist": 0,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--matamoros",
+    "estado": "Tamaulipas",
+    "municipio": "Matamoros",
+    "name": "Matamoros",
+    "center": [
+      -97.29449,
+      25.6014
+    ],
+    "bbox": [
+      -97.44467,
+      25.24923,
+      -97.1443,
+      25.95356
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2005,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1570,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--san-fernando",
+    "estado": "Tamaulipas",
+    "municipio": "San Fernando",
+    "name": "San Fernando",
+    "center": [
+      -97.72715,
+      24.57397
+    ],
+    "bbox": [
+      -97.74632,
+      24.48783,
+      -97.70799,
+      24.66012
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1331,
+    "curada": false
+  },
+  {
+    "slug": "tamaulipas--soto-la-marina",
+    "estado": "Tamaulipas",
+    "municipio": "Soto la Marina",
+    "name": "Soto la Marina",
+    "center": [
+      -97.75698,
+      23.89123
+    ],
+    "bbox": [
+      -97.7776,
+      23.78516,
+      -97.73636,
+      23.9973
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 203,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--actopan",
+    "estado": "Veracruz",
+    "municipio": "Actopan",
+    "name": "Actopan",
+    "center": [
+      -96.36904,
+      19.59912
+    ],
+    "bbox": [
+      -96.40743,
+      19.4963,
+      -96.33065,
+      19.70194
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2000,
+      2009,
+      2010,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 23,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--agua-dulce",
+    "estado": "Veracruz",
+    "municipio": "Agua Dulce",
+    "name": "Agua Dulce",
+    "center": [
+      -94.18553,
+      18.20016
+    ],
+    "bbox": [
+      -94.24002,
+      18.18749,
+      -94.13104,
+      18.21283
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--alto-lucero",
+    "estado": "Veracruz",
+    "municipio": "Alto Lucero",
+    "name": "Alto Lucero",
+    "center": [
+      -96.41016,
+      19.72196
+    ],
+    "bbox": [
+      -96.419,
+      19.70485,
+      -96.40131,
+      19.73907
+    ],
+    "zoom": 13,
+    "anios": [],
+    "anios_hist": [
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 4,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--alvarado",
+    "estado": "Veracruz",
+    "municipio": "Alvarado",
+    "name": "Alvarado",
+    "center": [
+      -95.91617,
+      18.93345
+    ],
+    "bbox": [
+      -96.10113,
+      18.76515,
+      -95.7312,
+      19.10175
+    ],
+    "zoom": 9,
+    "anios": [
+      2023
+    ],
+    "anios_hist": [
+      2000,
+      2008,
+      2016,
+      2018
+    ],
+    "feature_count": 20,
+    "feature_count_hist": 43,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--boca-del-rio",
+    "estado": "Veracruz",
+    "municipio": "Boca del Río",
+    "name": "Boca del Río",
+    "center": [
+      -96.10996,
+      19.13833
+    ],
+    "bbox": [
+      -96.12762,
+      19.09928,
+      -96.09231,
+      19.17737
+    ],
+    "zoom": 12,
+    "anios": [
+      2019
+    ],
+    "anios_hist": [
+      2009,
+      2013,
+      2015,
+      2019
+    ],
+    "feature_count": 20,
+    "feature_count_hist": 66,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--cazones-de-herrera",
+    "estado": "Veracruz",
+    "municipio": "Cazones de Herrera",
+    "name": "Cazones de Herrera",
+    "center": [
+      -97.20004,
+      20.73349
+    ],
+    "bbox": [
+      -97.21904,
+      20.67109,
+      -97.18103,
+      20.7959
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2000,
+      2006
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 6,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--coatzacoalcos",
+    "estado": "Veracruz",
+    "municipio": "Coatzacoalcos",
+    "name": "Coatzacoalcos",
+    "center": [
+      -94.50359,
+      18.1677
+    ],
+    "bbox": [
+      -94.59146,
+      18.14961,
+      -94.41572,
+      18.1858
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 52,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--la-antigua",
+    "estado": "Veracruz",
+    "municipio": "La Antigua",
+    "name": "La Antigua",
+    "center": [
+      -96.25229,
+      19.33196
+    ],
+    "bbox": [
+      -96.32259,
+      19.24922,
+      -96.18199,
+      19.4147
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 9,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--papantla",
+    "estado": "Veracruz",
+    "municipio": "Papantla",
+    "name": "Papantla",
+    "center": [
+      -97.1629,
+      20.64199
+    ],
+    "bbox": [
+      -97.18157,
+      20.61313,
+      -97.14423,
+      20.67085
+    ],
+    "zoom": 12,
+    "anios": [],
+    "anios_hist": [
+      2009
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 4,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--san-andres-tuxtla",
+    "estado": "Veracruz",
+    "municipio": "San Andrés Tuxtla",
+    "name": "San Andrés Tuxtla",
+    "center": [
+      -95.16752,
+      18.65412
+    ],
+    "bbox": [
+      -95.28542,
+      18.59495,
+      -95.04963,
+      18.71329
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2013
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 57,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--tamiahua",
+    "estado": "Veracruz",
+    "municipio": "Tamiahua",
+    "name": "Tamiahua",
+    "center": [
+      -97.42023,
+      21.28755
+    ],
+    "bbox": [
+      -97.42047,
+      21.28592,
+      -97.41999,
+      21.28917
+    ],
+    "zoom": 15,
+    "anios": [],
+    "anios_hist": [
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 1,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--tecolutla",
+    "estado": "Veracruz",
+    "municipio": "Tecolutla",
+    "name": "Tecolutla",
+    "center": [
+      -96.96594,
+      20.42815
+    ],
+    "bbox": [
+      -97.1435,
+      20.24339,
+      -96.78838,
+      20.61291
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2004,
+      2012,
+      2015
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 63,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--tuxpan",
+    "estado": "Veracruz",
+    "municipio": "Tuxpan",
+    "name": "Tuxpan",
+    "center": [
+      -97.29243,
+      20.94628
+    ],
+    "bbox": [
+      -97.36674,
+      20.79612,
+      -97.21812,
+      21.09645
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2007
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 60,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--vega-de-alatorre",
+    "estado": "Veracruz",
+    "municipio": "Vega de Alatorre",
+    "name": "Vega de Alatorre",
+    "center": [
+      -96.61038,
+      20.03373
+    ],
+    "bbox": [
+      -96.70373,
+      19.91425,
+      -96.51704,
+      20.15321
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2000
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 8,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--veracruz",
+    "estado": "Veracruz",
+    "municipio": "Veracruz",
+    "name": "Veracruz",
+    "center": [
+      -95.96618,
+      19.09756
+    ],
+    "bbox": [
+      -96.12462,
+      18.99404,
+      -95.80774,
+      19.20109
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2005,
+      2006,
+      2016
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 181,
+    "curada": false
+  },
+  {
+    "slug": "veracruz--ursulo-galvan",
+    "estado": "Veracruz",
+    "municipio": "Úrsulo Galván",
+    "name": "Úrsulo Galván",
+    "center": [
+      -96.3199,
+      19.45738
+    ],
+    "bbox": [
+      -96.33107,
+      19.41722,
+      -96.30873,
+      19.49754
+    ],
+    "zoom": 12,
+    "anios": [],
+    "anios_hist": [
+      2001,
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 26,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--celestun",
+    "estado": "Yucatán",
+    "municipio": "Celestún",
+    "name": "Celestún",
+    "center": [
+      -90.30317,
+      20.96869
+    ],
+    "bbox": [
+      -90.4069,
+      20.84504,
+      -90.19943,
+      21.09234
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 49,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--dzidzantun",
+    "estado": "Yucatán",
+    "municipio": "Dzidzantún",
+    "name": "Dzidzantún",
+    "center": [
+      -89.05299,
+      21.37242
+    ],
+    "bbox": [
+      -89.22597,
+      21.3479,
+      -88.88,
+      21.39694
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2012,
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 44,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--dzilam",
+    "estado": "Yucatán",
+    "municipio": "Dzilam",
+    "name": "Dzilam",
+    "center": [
+      -88.93488,
+      21.38725
+    ],
+    "bbox": [
+      -88.98975,
+      21.37757,
+      -88.88,
+      21.39694
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 14,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--hunucma",
+    "estado": "Yucatán",
+    "municipio": "Hunucmá",
+    "name": "Hunucmá",
+    "center": [
+      -90.04531,
+      21.16242
+    ],
+    "bbox": [
+      -90.19954,
+      21.09219,
+      -89.89108,
+      21.23265
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2013,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 62,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--ixil",
+    "estado": "Yucatán",
+    "municipio": "Ixil",
+    "name": "Ixil",
+    "center": [
+      -89.50441,
+      21.31239
+    ],
+    "bbox": [
+      -89.5897,
+      21.29844,
+      -89.41912,
+      21.32634
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 22,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--progreso",
+    "estado": "Yucatán",
+    "municipio": "Progreso",
+    "name": "Progreso",
+    "center": [
+      -89.63183,
+      21.83529
+    ],
+    "bbox": [
+      -89.84454,
+      21.2491,
+      -89.41912,
+      22.42149
+    ],
+    "zoom": 9,
+    "anios": [],
+    "anios_hist": [
+      2006,
+      2009,
+      2014,
+      2017
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 189,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--rio-lagartos",
+    "estado": "Yucatán",
+    "municipio": "Río Lagartos",
+    "name": "Río Lagartos",
+    "center": [
+      -88.01818,
+      21.59734
+    ],
+    "bbox": [
+      -88.17747,
+      21.57028,
+      -87.85889,
+      21.62439
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2012
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 44,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--sinanche",
+    "estado": "Yucatán",
+    "municipio": "Sinanché",
+    "name": "Sinanché",
+    "center": [
+      -89.10816,
+      21.36293
+    ],
+    "bbox": [
+      -89.22597,
+      21.3479,
+      -88.99036,
+      21.37796
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2012
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 30,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--telchac-puerto",
+    "estado": "Yucatán",
+    "municipio": "Telchac Puerto",
+    "name": "Telchac Puerto",
+    "center": [
+      -89.1606,
+      21.35641
+    ],
+    "bbox": [
+      -89.33083,
+      21.33485,
+      -88.99036,
+      21.37796
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2009,
+      2012,
+      2013
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 82,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--tizimin",
+    "estado": "Yucatán",
+    "municipio": "Tizimín",
+    "name": "Tizimín",
+    "center": [
+      -87.70782,
+      21.52905
+    ],
+    "bbox": [
+      -87.85898,
+      21.48766,
+      -87.55667,
+      21.57044
+    ],
+    "zoom": 10,
+    "anios": [
+      2023
+    ],
+    "anios_hist": [
+      2012
+    ],
+    "feature_count": 45,
+    "feature_count_hist": 36,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--yobain",
+    "estado": "Yucatán",
+    "municipio": "Yobaín",
+    "name": "Yobaín",
+    "center": [
+      -89.10816,
+      21.36293
+    ],
+    "bbox": [
+      -89.22597,
+      21.3479,
+      -88.99036,
+      21.37796
+    ],
+    "zoom": 10,
+    "anios": [],
+    "anios_hist": [
+      2012
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 30,
+    "curada": false
+  },
+  {
+    "slug": "yucatan--yucatan",
+    "estado": "Yucatán",
+    "municipio": "Yucatán",
+    "name": "Yucatán",
+    "center": [
+      -89.50441,
+      21.31239
+    ],
+    "bbox": [
+      -89.5897,
+      21.29844,
+      -89.41912,
+      21.32634
+    ],
+    "zoom": 11,
+    "anios": [],
+    "anios_hist": [
+      2014
+    ],
+    "feature_count": 0,
+    "feature_count_hist": 22,
+    "curada": false
+  }
+]
