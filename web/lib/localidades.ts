@@ -1,6 +1,11 @@
 import localidadesJson from "@data/localidades.json";
 
-export type LocalidadSlug = "punta-de-mita" | "bahia-norte" | "puerto-vallarta";
+// Antes era un union cerrado de los 3 slugs de Bahía de Banderas. Al escalar a
+// nivel nacional el conjunto de localidades es abierto (se deriva de los datos),
+// así que el slug pasa a ser un string genérico. Las localidades CURADAS siguen
+// viviendo en data/localidades.json; el catálogo nacional está en
+// lib/localidades-mx.ts (data/localidades_mx.json).
+export type LocalidadSlug = string;
 
 export type TrazadoSemarnat = {
   fecha: string;

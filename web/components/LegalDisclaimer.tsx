@@ -284,21 +284,30 @@ export function LegalDisclaimer() {
       },
       {
         id: "futuro",
-        eyebrow: "Próximamente",
-        title: "Pronto disponible para todo México",
+        eyebrow: "Nuevo",
+        title: "Ahora con cobertura nacional",
         icon: Sparkles,
         iconBg: "bg-amber-500/15",
         iconFg: "text-amber-300",
         body: (
           <div className="space-y-3 text-slate-300">
             <p>
-              Hoy cubrimos Bahía de Banderas (Punta de Mita, Bahía Norte y
-              Puerto Vallarta), donde está el caso de Playa Las Cocinas que
-              motivó este proyecto. La{" "}
+              Además del detalle completo de Bahía de Banderas (donde está el
+              caso de Playa Las Cocinas que motivó este proyecto), el mapa ya
+              muestra las{" "}
               <strong className="text-slate-100">
-              ZOFEMAT existe en cada playa del país</strong>: estamos
-              trabajando para extender el mapa al resto del litoral mexicano —
-              Pacífico, Golfo y Caribe.
+                delimitaciones oficiales de la ZOFEMAT publicadas por SEMARNAT
+                en 17 estados costeros
+              </strong>
+              : los consolidados nacionales 2019–2023 y los planos históricos
+              por municipio (1982–2022, en color verde azulado). La cobertura
+              es un mosaico de proyectos publicados — no una línea continua de
+              toda la costa: donde no se ve franja, SEMARNAT no ha publicado
+              delimitación para ese tramo.
+            </p>
+            <p>
+              Usa <strong className="text-slate-100">Buscar localidad</strong>{" "}
+              para navegar a cualquier municipio con delimitación publicada.
             </p>
           </div>
         ),

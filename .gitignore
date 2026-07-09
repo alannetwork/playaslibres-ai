@@ -10,6 +10,11 @@ data/raw/*
 # pero conservamos el snapshot fechado del MapServer SEMARNAT
 !data/raw/zofemat_bb_raw.geojson
 
+# ZOFEMAT histórica combinada: 112 MB, excede el límite de 100 MB de GitHub.
+# Regenerable con scripts/01c_download_zofemat_historico.py (cache en data/raw/).
+# El artefacto que consume el sitio es web/public/tiles/zofemat_hist.pmtiles.
+data/processed/zofemat_hist.geojson
+
 # Imágenes raster pesadas
 data/processed/*.tif
 data/processed/*.tiff
