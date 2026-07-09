@@ -13,6 +13,8 @@ import { BrandMark } from "./BrandMark";
 import { ShareViewButton } from "./ShareViewButton";
 import { CasosListButton } from "./CasosListButton";
 import { LocalidadSelector } from "./LocalidadSelector";
+import { RegionNav } from "./RegionNav";
+import { YearSelector } from "./YearSelector";
 import { tileUrl } from "@/lib/tiles";
 import type { Caso, EstadoCaso } from "@/lib/casos";
 import type { Candidato } from "@/lib/candidatos";
@@ -22,6 +24,7 @@ import {
   localidadFromCoords,
   type LocalidadSlug,
 } from "@/lib/localidades";
+import { ANIOS_ZOFEMAT, type LocalidadMx } from "@/lib/localidades-mx";
 
 export type { Candidato };
 
@@ -62,12 +65,131 @@ const MARKER_BY_ESTADO: Record<
   },
 };
 
-const CENTER: [number, number] = DEFAULT_LOCALIDAD.center;
-const INITIAL_ZOOM = DEFAULT_LOCALIDAD.zoom;
+// Vista nacional por default (todo México). El caso ancla (Punta de Mita /
+// Las Cocinas) sigue accesible vía marcadores de casos, deep-links /c/<slug>
+// y el selector de localidades curadas.
+const NATIONAL_CENTER: [number, number] = [-102.5, 23.5];
+const NATIONAL_ZOOM = 4.4;
+// Bounds nacionales (costa Pacífico a Caribe). Antes estaba acotado a la
+// Bahía de Banderas; al escalar se amplía a todo el país.
 const MAX_BOUNDS: [[number, number], [number, number]] = [
-  [-105.85, 20.35],
-  [-104.95, 21.0],
+  [-119.5, 13.0],
+  [-85.0, 33.8],
 ];
+// Filtro de año: un año concreto o "todos" (unión de los 5 consolidados).
+// Cada consolidado anual de SEMARNAT cubre estados distintos y ninguno es
+// nacional por sí solo, así que el default es "todos" para mostrar la máxima
+// cobertura del país; el selector permite acotar a un año específico.
+export type YearFilter = number | "todos";
+const DEFAULT_YEAR: YearFilter = "todos";
+
+// Capas de la ZOFEMAT NACIONAL (polilíneas consolidadas, atributo `LAYER`).
+// El filtro por categoría usa substring (["in", needle, valor]) para capturar
+// variantes (ZONA FEDERAL DE ESTERO, PLEAMAR MAXIMA DE ESTERO, etc.).
+type NationalCat = {
+  id: string;
+  color: string;
+  width: number;
+  dashArray?: number[];
+  /** substring de LAYER; null = todo lo demás salvo PLANO. */
+  needle: string | null;
+  tip: { title: string; body: string };
+};
+const NATIONAL_CATS: NationalCat[] = [
+  {
+    id: "mx-otras",
+    needle: null,
+    color: "#475569",
+    width: 1.2,
+    tip: {
+      title: "ZOFEMAT · otra delimitación",
+      body: "Línea de delimitación oficial (manglar, muelle, escollera, etc.).",
+    },
+  },
+  {
+    id: "mx-terrenos-ganados",
+    needle: "TERRENOS GANADOS",
+    color: "#a855f7",
+    width: 1.5,
+    dashArray: [3, 2],
+    tip: {
+      title: "ZOFEMAT · Terrenos ganados al mar",
+      body: "Áreas rellenadas o ganadas artificialmente al mar (régimen especial).",
+    },
+  },
+  {
+    id: "mx-zona-federal",
+    needle: "ZONA FEDERAL",
+    color: "#dc2626",
+    width: 2,
+    tip: {
+      title: "ZOFEMAT · Zona federal",
+      body: "Borde interno de la franja federal (20 m tierra adentro de la pleamar).",
+    },
+  },
+  {
+    id: "mx-pleamar",
+    needle: "PLEAMAR",
+    color: "#0ea5e9",
+    width: 2.5,
+    tip: {
+      title: "ZOFEMAT · Pleamar máxima",
+      body: "Línea oficial de la pleamar máxima delimitada por SEMARNAT.",
+    },
+  },
+];
+
+// Halo de cobertura: trazo ancho y translúcido debajo de las líneas
+// nacionales, visible sólo en zooms bajos (se desvanece hacia z9). Los tramos
+// SEMARNAT son cortos (cientos de metros) y a zoom nacional una línea de 2-3 px
+// es casi invisible; el halo hace que el mosaico de cobertura resalte sin
+// ensuciar el detalle al acercar.
+const NATIONAL_HALO_ID = "mx-halo";
+
+/** Filtro del halo: todo salvo PLANO (índice de hojas), acotado por año. */
+function nationalHaloFilter(year: YearFilter): maplibregl.FilterSpecification {
+  const layer: maplibregl.ExpressionSpecification = ["to-string", ["get", "LAYER"]];
+  const base: maplibregl.ExpressionSpecification[] =
+    year === "todos" ? [] : [["==", ["get", "anio"], year]];
+  return ["all", ...base, ["!", ["in", "PLANO", layer]]];
+}
+
+// DELIMITACIONES HISTÓRICAS (planos por municipio 1982-2022, group layer 5
+// del MapServer). Cubren 17 estados / ~120 municipios, muchos sin consolidado
+// 2019-2023 (Mazatlán, Los Cabos, Cancún, Campeche, Tabasco, Chiapas...).
+// Fuente oficial pero potencialmente sustituida por planos posteriores, por
+// eso se pintan en un color propio (teal) debajo de los consolidados.
+const HIST_LAYER_ID = "hist-lineas";
+const HIST_HALO_ID = "hist-halo";
+
+/** Filtro por año de la capa histórica (null = sin filtro, muestra todo). */
+function histFilter(year: YearFilter): maplibregl.FilterSpecification | null {
+  return year === "todos" ? null : ["==", ["get", "anio"], year];
+}
+
+/** Filtro MapLibre de una categoría nacional para un año (o "todos"). */
+function nationalFilter(
+  cat: NationalCat,
+  year: YearFilter,
+): maplibregl.FilterSpecification {
+  // to-string coacciona LAYER null -> "" para que ["in", ...] no falle.
+  const layer: maplibregl.ExpressionSpecification = ["to-string", ["get", "LAYER"]];
+  const base: maplibregl.ExpressionSpecification[] =
+    year === "todos" ? [] : [["==", ["get", "anio"], year]];
+  if (cat.needle === null) {
+    // Todo lo demás: excluye PLANO (índice de hojas) y las categorías ya
+    // pintadas por otra capa.
+    return [
+      "all",
+      ...base,
+      ["!", ["in", "PLANO", layer]],
+      ["!", ["in", "PLEAMAR", layer]],
+      ["!", ["in", "ZONA FEDERAL", layer]],
+      ["!", ["in", "TERRENOS GANADOS", layer]],
+    ];
+  }
+  return ["all", ...base, ["in", cat.needle, layer]];
+}
 const BASEMAP_STYLE = "https://tiles.openfreemap.org/styles/positron";
 const SENTINEL_TILEJSON = (cogUrl: string) =>
   `https://titiler.xyz/cog/WebMercatorQuad/tilejson.json?url=${encodeURIComponent(cogUrl)}`;
@@ -154,7 +276,12 @@ export function Map({ focusSlug }: MapProps = {}) {
   const focusedRef = useRef(false);
 
   const [layers, setLayers] = useState<LayerVisibility>({
-    sentinel: true,
+    // Satélite APAGADO por default en la vista nacional: encenderlo obliga a
+    // bajar ~30 teselas aéreas de todo el país desde un servidor externo
+    // (carga lenta) y entierra las líneas finas de ZOFEMAT en un fondo ocupado.
+    // Sobre el basemap claro las líneas resaltan. Se enciende sólo en deep-link
+    // a un caso concreto (focusSlug), donde sí se quiere ver la imagen aérea.
+    sentinel: !!focusSlug,
     zofemat: true,
     pleamar: false, // experimental — ver /validacion
     candidatos: true, // candidatos automáticos visibles por default (PoC)
@@ -166,6 +293,9 @@ export function Map({ focusSlug }: MapProps = {}) {
       terrenosGanadosMar: true,
       mangle: false,
       muelle: false,
+      // Históricas ON por default: son la única cobertura en 4 estados y
+      // ~100 municipios que los consolidados 2019-2023 no incluyen.
+      historicas: true,
     },
   });
   const [satSource, setSatSource] = useState<SatelliteSource>("esri");
@@ -173,6 +303,7 @@ export function Map({ focusSlug }: MapProps = {}) {
   const [localidad, setLocalidad] = useState<LocalidadSlug>(
     DEFAULT_LOCALIDAD.slug,
   );
+  const [zofematYear, setZofematYear] = useState<YearFilter>(DEFAULT_YEAR);
 
   // Carga inicial de metadata estática.
   useEffect(() => {
@@ -203,8 +334,8 @@ export function Map({ focusSlug }: MapProps = {}) {
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: BASEMAP_STYLE,
-      center: hashView ? [hashView.lng, hashView.lat] : CENTER,
-      zoom: hashView ? hashView.zoom : INITIAL_ZOOM,
+      center: hashView ? [hashView.lng, hashView.lat] : NATIONAL_CENTER,
+      zoom: hashView ? hashView.zoom : NATIONAL_ZOOM,
       maxZoom: 20,
       maxBounds: MAX_BOUNDS,
       attributionControl: false,
@@ -254,6 +385,195 @@ export function Map({ focusSlug }: MapProps = {}) {
         const tip = tooltipRef.current;
         if (tip) tip.style.display = "none";
       };
+
+      // ZOFEMAT HISTÓRICA. Va al fondo del stack vectorial: donde hay
+      // consolidado 2019-2023 este se pinta encima.
+      map.addSource("zofemat-hist", {
+        type: "vector",
+        url: tileUrl("zofemat_hist.pmtiles"),
+      });
+      map.addLayer({
+        id: HIST_HALO_ID,
+        type: "line",
+        source: "zofemat-hist",
+        "source-layer": "zofemat_hist",
+        paint: {
+          "line-color": "#0f766e",
+          "line-width": ["interpolate", ["linear"], ["zoom"], 3, 8, 6, 6, 9, 0],
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            0.3,
+            7,
+            0.22,
+            9,
+            0,
+          ],
+        },
+      });
+      map.addLayer({
+        id: HIST_LAYER_ID,
+        type: "line",
+        source: "zofemat-hist",
+        "source-layer": "zofemat_hist",
+        paint: {
+          "line-color": "#0d9488",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            3,
+            6,
+            2.4,
+            11,
+            1.6,
+            14,
+            1.6,
+          ],
+          "line-opacity": 0.9,
+        },
+      });
+      map.on("mousemove", HIST_LAYER_ID, (e) => {
+        map.getCanvas().style.cursor = "pointer";
+        const anio = e.features?.[0]?.properties?.anio;
+        showTooltip(
+          e,
+          `ZOFEMAT · Delimitación histórica${anio ? ` (${anio})` : ""}`,
+          "Plano oficial SEMARNAT anterior a los consolidados 2019-2023.",
+        );
+      });
+      map.on("mouseleave", HIST_LAYER_ID, () => {
+        map.getCanvas().style.cursor = "";
+        hideTooltip();
+      });
+      map.on(
+        "click",
+        HIST_LAYER_ID,
+        (e: MapMouseEvent & { features?: maplibregl.MapGeoJSONFeature[] }) => {
+          const f = e.features?.[0];
+          if (!f) return;
+          const p = f.properties ?? {};
+          const html = `
+            <div style="font-size:12px;line-height:1.4;">
+              <div style="font-weight:600;margin-bottom:2px;">ZOFEMAT · Delimitación histórica</div>
+              <div style="color:#94a3b8;margin-bottom:6px;font-size:11px;">Plano oficial publicado por SEMARNAT. Puede haber sido sustituido por delimitaciones posteriores.</div>
+              <span style="color:#94a3b8;">Categoría:</span> ${p.LAYER ?? "?"}<br/>
+              <span style="color:#94a3b8;">Municipio:</span> ${p.MUNICIPIO ?? "?"}<br/>
+              <span style="color:#94a3b8;">Estado:</span> ${p.ESTADO ?? "?"}<br/>
+              <span style="color:#94a3b8;">Plano:</span> ${p.PLANO ?? p.capa ?? "?"}<br/>
+              <span style="color:#94a3b8;">Proyecto:</span> ${p.PROYECTO ?? "?"}<br/>
+              <span style="color:#94a3b8;">Año:</span> ${p.anio ?? "?"}
+              <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;color:#2dd4bf;font-size:10px;">Fuente oficial · DGZFMTAC SEMARNAT (histórico)</div>
+            </div>`;
+          new maplibregl.Popup({ closeButton: true })
+            .setLngLat(e.lngLat)
+            .setHTML(html)
+            .addTo(map);
+        },
+      );
+
+      // ZOFEMAT NACIONAL (todo México). La delimitación detallada de la bahía
+      // (playa-libre + zofemat_bb) se pinta encima donde existe.
+      map.addSource("zofemat-mx", {
+        type: "vector",
+        url: tileUrl("zofemat_mx.pmtiles"),
+      });
+      map.addLayer({
+        id: NATIONAL_HALO_ID,
+        type: "line",
+        source: "zofemat-mx",
+        "source-layer": "zofemat_mx",
+        filter: nationalHaloFilter(DEFAULT_YEAR),
+        paint: {
+          "line-color": "#0369a1",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            8,
+            6,
+            6,
+            9,
+            0,
+          ],
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            0.3,
+            7,
+            0.22,
+            9,
+            0,
+          ],
+        },
+      });
+      for (const cat of NATIONAL_CATS) {
+        map.addLayer({
+          id: cat.id,
+          type: "line",
+          source: "zofemat-mx",
+          "source-layer": "zofemat_mx",
+          filter: nationalFilter(cat, DEFAULT_YEAR),
+          paint: {
+            "line-color": cat.color,
+            // Un poco más gruesas al alejar para que estados con pocos tramos
+            // (Oaxaca, Sonora, BC) sean visibles en la vista nacional.
+            "line-width": [
+              "interpolate",
+              ["linear"],
+              ["zoom"],
+              3,
+              cat.width + 2,
+              6,
+              cat.width + 1.2,
+              11,
+              cat.width,
+              14,
+              cat.width,
+            ],
+            "line-opacity": 0.95,
+            ...(cat.dashArray ? { "line-dasharray": cat.dashArray } : {}),
+          },
+        });
+        map.on("mousemove", cat.id, (e) => {
+          map.getCanvas().style.cursor = "pointer";
+          showTooltip(e, cat.tip.title, cat.tip.body);
+        });
+        map.on("mouseleave", cat.id, () => {
+          map.getCanvas().style.cursor = "";
+          hideTooltip();
+        });
+        map.on(
+          "click",
+          cat.id,
+          (e: MapMouseEvent & { features?: maplibregl.MapGeoJSONFeature[] }) => {
+            const f = e.features?.[0];
+            if (!f) return;
+            const p = f.properties ?? {};
+            const html = `
+              <div style="font-size:12px;line-height:1.4;">
+                <div style="font-weight:600;margin-bottom:2px;">${cat.tip.title}</div>
+                <div style="color:#94a3b8;margin-bottom:6px;font-size:11px;">${cat.tip.body}</div>
+                <span style="color:#94a3b8;">Localidad:</span> ${p.LOCALIDAD ?? p.MUNICIPIO ?? "?"}<br/>
+                <span style="color:#94a3b8;">Municipio:</span> ${p.MUNICIPIO ?? "?"}<br/>
+                <span style="color:#94a3b8;">Estado:</span> ${p.ESTADO ?? "?"}<br/>
+                <span style="color:#94a3b8;">Plano:</span> ${p.PLANO ?? "?"}<br/>
+                <span style="color:#94a3b8;">Año:</span> ${p.anio ?? "?"}
+                <div style="margin-top:6px;padding-top:6px;border-top:1px solid #334155;color:#10b981;font-size:10px;">Fuente oficial · DGZFMTAC SEMARNAT</div>
+              </div>`;
+            new maplibregl.Popup({ closeButton: true })
+              .setLngLat(e.lngLat)
+              .setHTML(html)
+              .addTo(map);
+          },
+        );
+      }
 
       // Playa Libre (polígono pintado, debajo de las líneas).
       map.addSource("playa-libre", {
@@ -465,6 +785,13 @@ export function Map({ focusSlug }: MapProps = {}) {
       // Insertamos el raster ANTES de la franja Playa Libre y de las líneas
       // ZOFEMAT, para que el polígono amarillo y las líneas queden encima.
       const STACK_TOP_FIRST = [
+        HIST_HALO_ID,
+        HIST_LAYER_ID,
+        NATIONAL_HALO_ID,
+        "mx-otras",
+        "mx-terrenos-ganados",
+        "mx-zona-federal",
+        "mx-pleamar",
         "playa-libre-fill",
         "playa-libre-outline",
         "zofemat-mangle",
@@ -566,6 +893,25 @@ export function Map({ focusSlug }: MapProps = {}) {
     });
   }, [styleReady]);
 
+  // Filtro por año de la ZOFEMAT nacional.
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !styleReady) return;
+    for (const cat of NATIONAL_CATS) {
+      if (map.getLayer(cat.id)) {
+        map.setFilter(cat.id, nationalFilter(cat, zofematYear));
+      }
+    }
+    if (map.getLayer(NATIONAL_HALO_ID)) {
+      map.setFilter(NATIONAL_HALO_ID, nationalHaloFilter(zofematYear));
+    }
+    for (const id of [HIST_LAYER_ID, HIST_HALO_ID]) {
+      if (map.getLayer(id)) {
+        map.setFilter(id, histFilter(zofematYear) ?? undefined);
+      }
+    }
+  }, [zofematYear, styleReady]);
+
   // Toggle de visibilidad por capa.
   useEffect(() => {
     const map = mapRef.current;
@@ -579,6 +925,15 @@ export function Map({ focusSlug }: MapProps = {}) {
     // ZOFEMAT master + sub-capas individuales
     const sub = layers.zofematSub;
     const masterOn = layers.zofemat;
+    // Capa nacional: cada categoría sigue su sub-toggle para ser coherente
+    // con el detalle de la bahía. "otras" es catch-all, sólo depende del maestro.
+    setVis(NATIONAL_HALO_ID, masterOn);
+    setVis(HIST_LAYER_ID, masterOn && sub.historicas);
+    setVis(HIST_HALO_ID, masterOn && sub.historicas);
+    setVis("mx-pleamar", masterOn && sub.pleamarMaxima);
+    setVis("mx-zona-federal", masterOn && sub.zonaFederal);
+    setVis("mx-terrenos-ganados", masterOn && sub.terrenosGanadosMar);
+    setVis("mx-otras", masterOn);
     setVis("playa-libre-fill", masterOn && sub.playaLibre);
     setVis("playa-libre-outline", masterOn && sub.playaLibre);
     setVis("zofemat-pleamar-oficial", masterOn && sub.pleamarMaxima);
@@ -839,6 +1194,20 @@ export function Map({ focusSlug }: MapProps = {}) {
     map.once("moveend", () => openCandidatoPopup(map, c));
   }, []);
 
+  const onRegionSelect = useCallback((loc: LocalidadMx) => {
+    const map = mapRef.current;
+    if (!map) return;
+    setActiveCaso(null);
+    const [w, s, e, n] = loc.bbox;
+    map.fitBounds(
+      [
+        [w, s],
+        [e, n],
+      ],
+      { padding: 60, maxZoom: 16, duration: 1000 },
+    );
+  }, []);
+
   const onLocalidadSelect = useCallback((slug: LocalidadSlug) => {
     const map = mapRef.current;
     if (!map) return;
@@ -891,9 +1260,7 @@ export function Map({ focusSlug }: MapProps = {}) {
             <BrandMark size={18} className="shrink-0" title="Playas Libres" />
             <span className="truncate">
               <span className="sm:hidden">Playas Libres</span>
-              <span className="hidden sm:inline">
-                Playas Libres · Bahía de Banderas
-              </span>
+              <span className="hidden sm:inline">Playas Libres · México</span>
             </span>
             <span className="hidden truncate text-slate-400 md:inline">
               · {headerLabel}
@@ -913,10 +1280,13 @@ export function Map({ focusSlug }: MapProps = {}) {
             );
           })()}
           <ShareViewButton />
-          <LocalidadSelector
-            current={localidad}
-            onSelect={onLocalidadSelect}
+          <YearSelector
+            years={ANIOS_ZOFEMAT}
+            value={zofematYear}
+            onChange={setZofematYear}
           />
+          <RegionNav onSelect={onRegionSelect} />
+          <LocalidadSelector current={localidad} onSelect={onLocalidadSelect} />
         </div>
       </div>
 

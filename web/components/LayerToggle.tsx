@@ -13,6 +13,7 @@ export type ZofematSubLayers = {
   terrenosGanadosMar: boolean;
   mangle: boolean;
   muelle: boolean;
+  historicas: boolean;
 };
 
 export type LayerVisibility = {
@@ -72,6 +73,12 @@ const ZOFEMAT_SUBS: {
     label: "Muelle",
     hint: "Estructuras portuarias",
     swatch: { color: "#94a3b8" },
+  },
+  {
+    key: "historicas",
+    label: "Delimitaciones históricas",
+    hint: "Planos SEMARNAT 1982-2022; amplían cobertura donde no hay consolidado",
+    swatch: { color: "#0d9488", thick: true },
   },
 ];
 
@@ -254,6 +261,9 @@ export function LayerToggle({
             />
             <span className="font-medium">Pleamar estimada</span>
             <span className="text-xs text-amber-300/90">experimental</span>
+            <span className="rounded bg-sky-500/15 px-1 py-0.5 text-[9px] font-semibold uppercase text-sky-300">
+              solo Bahía de Banderas
+            </span>
             <a
               href="/validacion"
               className="text-[10px] text-blue-300 underline-offset-2 hover:underline"
