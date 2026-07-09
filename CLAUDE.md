@@ -39,6 +39,13 @@ python scripts/03_find_sentinel.py
 python scripts/04_compute_tides.py
 bash   scripts/05_make_pmtiles.sh
 python scripts/06_compute_floodlines.py
+
+# Cobertura nacional (independiente del pipeline de Bahía de Banderas)
+python scripts/01b_download_zofemat_nacional.py    # consolidados 2019-2023 (capas 0-4)
+bash   scripts/05c_make_zofemat_nacional_pmtiles.sh
+python scripts/01c_download_zofemat_historico.py   # ~400 planos históricos (group layer 5)
+bash   scripts/05d_make_zofemat_historico_pmtiles.sh
+python scripts/14_build_localidades_nacional.py    # catálogo para la navegación del frontend
 ```
 
 ### Frontend (`web/`)

@@ -53,5 +53,25 @@ if [[ -f "scripts/06_compute_floodlines.py" ]]; then
   bash scripts/05b_make_floodlines_pmtiles.sh 2>/dev/null || true
 fi
 
+# ----------------------------------------------------------------------------
+# ZOFEMAT NACIONAL (todo México). Independiente del pipeline de la capa
+# estimada de Bahía de Banderas: baja los consolidados anuales 0-4 de SEMARNAT,
+# genera el PMTiles nacional y deriva el catálogo de localidades del frontend.
+# ----------------------------------------------------------------------------
+step "01b — Descarga ZOFEMAT NACIONAL (consolidados 2019-2023)"
+python scripts/01b_download_zofemat_nacional.py
+
+step "05c — Conversión a PMTiles (ZOFEMAT nacional)"
+bash scripts/05c_make_zofemat_nacional_pmtiles.sh
+
+step "01c — Descarga ZOFEMAT HISTÓRICA (~400 planos por municipio, 17 estados)"
+python scripts/01c_download_zofemat_historico.py
+
+step "05d — Conversión a PMTiles (ZOFEMAT histórica)"
+bash scripts/05d_make_zofemat_historico_pmtiles.sh
+
+step "14 — Catálogo nacional de localidades (data/localidades_mx.json)"
+python scripts/14_build_localidades_nacional.py
+
 echo
 echo "✔ Pipeline completo."
