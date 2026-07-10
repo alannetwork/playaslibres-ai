@@ -46,6 +46,8 @@ bash   scripts/05c_make_zofemat_nacional_pmtiles.sh
 python scripts/01c_download_zofemat_historico.py   # ~400 planos históricos (group layer 5)
 bash   scripts/05d_make_zofemat_historico_pmtiles.sh
 python scripts/14_build_localidades_nacional.py    # catálogo para la navegación del frontend
+python scripts/15_build_franja_nacional.py         # franja verde: banda pleamar↔zona federal
+bash   scripts/05e_make_franja_pmtiles.sh
 ```
 
 ### Frontend (`web/`)

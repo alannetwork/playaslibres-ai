@@ -73,5 +73,11 @@ bash scripts/05d_make_zofemat_historico_pmtiles.sh
 step "14 — Catálogo nacional de localidades (data/localidades_mx.json)"
 python scripts/14_build_localidades_nacional.py
 
+step "15 — Franja federal nacional (banda pleamar↔zona federal)"
+python scripts/15_build_franja_nacional.py
+
+step "05e — Conversión a PMTiles (franja federal)"
+bash scripts/05e_make_franja_pmtiles.sh
+
 echo
 echo "✔ Pipeline completo."

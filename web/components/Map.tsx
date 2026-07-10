@@ -13,6 +13,7 @@ import { BrandMark } from "./BrandMark";
 import { ShareViewButton } from "./ShareViewButton";
 import { CasosListButton } from "./CasosListButton";
 import { LocalidadSelector } from "./LocalidadSelector";
+import { MapLegend } from "./MapLegend";
 import { RegionNav } from "./RegionNav";
 import { YearSelector } from "./YearSelector";
 import { tileUrl } from "@/lib/tiles";
@@ -304,6 +305,8 @@ export function Map({ focusSlug }: MapProps = {}) {
     DEFAULT_LOCALIDAD.slug,
   );
   const [zofematYear, setZofematYear] = useState<YearFilter>(DEFAULT_YEAR);
+  // Zoom actual (throttled a moveend) — gobierna la leyenda de detalle.
+  const [mapZoom, setMapZoom] = useState(NATIONAL_ZOOM);
 
   // Carga inicial de metadata estática.
   useEffect(() => {
@@ -386,8 +389,38 @@ export function Map({ focusSlug }: MapProps = {}) {
         if (tip) tip.style.display = "none";
       };
 
-      // ZOFEMAT HISTÓRICA. Va al fondo del stack vectorial: donde hay
-      // consolidado 2019-2023 este se pinta encima.
+      // FRANJA FEDERAL NACIONAL (banda verde entre pleamar y zona federal,
+      // derivada de las líneas oficiales por el script 15). Al fondo del
+      // stack: todas las líneas pintan encima de ella.
+      map.addSource("franja-mx", {
+        type: "vector",
+        url: tileUrl("franja_mx.pmtiles"),
+      });
+      map.addLayer({
+        id: "franja-mx-fill",
+        type: "fill",
+        source: "franja-mx",
+        "source-layer": "franja_mx",
+        paint: {
+          "fill-color": "#22c55e",
+          "fill-opacity": 0.4,
+        },
+      });
+      map.on("mousemove", "franja-mx-fill", (e) => {
+        map.getCanvas().style.cursor = "help";
+        showTooltip(
+          e,
+          "Franja federal (ZOFEMAT)",
+          "Banda entre la pleamar máxima y la línea de zona federal, derivada de las líneas oficiales SEMARNAT. Uso público inalienable (Art. 27 Const., LGBN art. 119).",
+        );
+      });
+      map.on("mouseleave", "franja-mx-fill", () => {
+        map.getCanvas().style.cursor = "";
+        hideTooltip();
+      });
+
+      // ZOFEMAT HISTÓRICA. Donde hay consolidado 2019-2023 este se pinta
+      // encima.
       map.addSource("zofemat-hist", {
         type: "vector",
         url: tileUrl("zofemat_hist.pmtiles"),
@@ -420,6 +453,10 @@ export function Map({ focusSlug }: MapProps = {}) {
         "source-layer": "zofemat_hist",
         paint: {
           "line-color": "#0d9488",
+          // Punteada y más delgada que el consolidado: en municipios con
+          // ambas fuentes (y varios planos históricos encimados) el
+          // consolidado sólido debe dominar visualmente.
+          "line-dasharray": [2, 1.6],
           "line-width": [
             "interpolate",
             ["linear"],
@@ -429,11 +466,22 @@ export function Map({ focusSlug }: MapProps = {}) {
             6,
             2.4,
             11,
-            1.6,
+            1.3,
             14,
-            1.6,
+            1.3,
           ],
-          "line-opacity": 0.9,
+          // Más antiguo -> más tenue. Comunica recencia sin ocultar datos.
+          "line-opacity": [
+            "interpolate",
+            ["linear"],
+            ["coalesce", ["get", "anio"], 1997],
+            1997,
+            0.4,
+            2010,
+            0.55,
+            2022,
+            0.8,
+          ],
         },
       });
       map.on("mousemove", HIST_LAYER_ID, (e) => {
@@ -537,7 +585,17 @@ export function Map({ focusSlug }: MapProps = {}) {
               14,
               cat.width,
             ],
-            "line-opacity": 0.95,
+            // Recencia visible cuando hay planos de varios años encimados:
+            // el más nuevo pinta a plena opacidad, los viejos se atenúan.
+            "line-opacity": [
+              "interpolate",
+              ["linear"],
+              ["coalesce", ["get", "anio"], 2019],
+              2019,
+              0.65,
+              2023,
+              0.95,
+            ],
             ...(cat.dashArray ? { "line-dasharray": cat.dashArray } : {}),
           },
         });
@@ -785,6 +843,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       // Insertamos el raster ANTES de la franja Playa Libre y de las líneas
       // ZOFEMAT, para que el polígono amarillo y las líneas queden encima.
       const STACK_TOP_FIRST = [
+        "franja-mx-fill",
         HIST_HALO_ID,
         HIST_LAYER_ID,
         NATIONAL_HALO_ID,
@@ -905,7 +964,7 @@ export function Map({ focusSlug }: MapProps = {}) {
     if (map.getLayer(NATIONAL_HALO_ID)) {
       map.setFilter(NATIONAL_HALO_ID, nationalHaloFilter(zofematYear));
     }
-    for (const id of [HIST_LAYER_ID, HIST_HALO_ID]) {
+    for (const id of [HIST_LAYER_ID, HIST_HALO_ID, "franja-mx-fill"]) {
       if (map.getLayer(id)) {
         map.setFilter(id, histFilter(zofematYear) ?? undefined);
       }
@@ -928,6 +987,7 @@ export function Map({ focusSlug }: MapProps = {}) {
     // Capa nacional: cada categoría sigue su sub-toggle para ser coherente
     // con el detalle de la bahía. "otras" es catch-all, sólo depende del maestro.
     setVis(NATIONAL_HALO_ID, masterOn);
+    setVis("franja-mx-fill", masterOn && sub.playaLibre);
     setVis(HIST_LAYER_ID, masterOn && sub.historicas);
     setVis(HIST_HALO_ID, masterOn && sub.historicas);
     setVis("mx-pleamar", masterOn && sub.pleamarMaxima);
@@ -1137,6 +1197,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       raf = requestAnimationFrame(() => {
         writeHash();
         syncLocalidad();
+        setMapZoom(map.getZoom());
       });
     };
     map.on("moveend", onMove);
@@ -1144,6 +1205,7 @@ export function Map({ focusSlug }: MapProps = {}) {
     // el hash incluso antes del primer pan.
     writeHash();
     syncLocalidad();
+    setMapZoom(map.getZoom());
     return () => {
       map.off("moveend", onMove);
       cancelAnimationFrame(raf);
@@ -1291,6 +1353,7 @@ export function Map({ focusSlug }: MapProps = {}) {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 p-2 sm:p-4">
+        {layers.zofemat && mapZoom >= 10 && <MapLegend />}
         <div className="pointer-events-auto flex w-full flex-wrap items-end gap-2">
           <LayerToggle
             value={layers}
